@@ -8,7 +8,11 @@ import { PROJECTS } from "@/data/projects";
 import ProjectCard from "@/components/work/ProjectCard";
 
 export default function Home() {
-  const planitPrep = PROJECTS.find((project) => project.slug === "planit-prep");
+  const selectedProjects = ["mahfooz", "planit-prep"]
+    .map((slug) => PROJECTS.find((project) => project.slug === slug))
+    .filter((project): project is (typeof PROJECTS)[number] =>
+      Boolean(project),
+    );
 
   return (
     <div className="w-full flex flex-col">
@@ -127,7 +131,7 @@ export default function Home() {
       </section>
 
       {/* Selected Work */}
-      {planitPrep && (
+      {selectedProjects.length > 0 && (
         <section className="border-t border-border bg-muted/10 px-6 py-24 md:py-32">
           <div className="container mx-auto max-w-6xl">
             <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -136,7 +140,7 @@ export default function Home() {
                   Selected Work
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                  A product designed around real routines.
+                  Complete products designed around real needs.
                 </h2>
               </div>
               <Link
@@ -146,7 +150,11 @@ export default function Home() {
                 View all work <ArrowRight size={18} aria-hidden="true" />
               </Link>
             </div>
-            <ProjectCard project={planitPrep} isWide />
+            <div className="space-y-20">
+              {selectedProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} isWide />
+              ))}
+            </div>
           </div>
         </section>
       )}

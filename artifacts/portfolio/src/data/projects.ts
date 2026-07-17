@@ -3,6 +3,8 @@ export interface Project {
   slug: string;
   title: string;
   category: string;
+  cardCategory?: string;
+  filterTags?: string[];
   industry: string;
   duration?: string;
   role: string;
@@ -81,6 +83,83 @@ export const PROJECTS: Project[] = [
     results:
       "A cohesive product direction that connects personal preferences to adaptable weekly planning and practical meal preparation.",
     technologies: ["Figma", "Interactive Prototyping", "Design Systems"],
+  },
+  {
+    id: "mahfooz",
+    slug: "mahfooz",
+    title: "Mahfooz",
+    category: "Mobile App · HealthTech · Full-Stack Product",
+    cardCategory: "Mobile App · HealthTech",
+    filterTags: [
+      "UI/UX Design",
+      "Mobile Apps",
+      "AI Products",
+      "Branding",
+      "Graphic Design",
+    ],
+    industry: "Family Health · Personal Organization · Health Technology",
+    role: "Product Designer and Full-Stack Mobile App Developer",
+    services: [
+      "Product strategy",
+      "User-flow design",
+      "Information architecture",
+      "Mobile UI/UX design",
+      "Interactive prototyping",
+      "Design system",
+      "Brand identity",
+      "Logo design",
+      "App-icon design",
+      "Graphic design",
+      "Social-media design",
+      "React Native development",
+      "Backend integration",
+      "AI feature integration",
+      "Notification workflows",
+      "Deployment preparation",
+    ],
+    image: "/projects/mahfooz/mahfooz-cover.png",
+    imageWidth: 1024,
+    imageHeight: 500,
+    imageAlt:
+      "Mahfooz family health organizer branding and three mobile screens showing family records, the daily health dashboard, and a pregnancy profile.",
+    platform: "iOS and Android",
+    year: "2026",
+    summary:
+      "A private family health organizer for medicines, reports, doctor notes, daily routines, reminders, pregnancy tracking, and AI-assisted health organization.",
+    shortLabel:
+      "One app for the health records and routines of the whole family.",
+    tags: [
+      "UI/UX",
+      "Mobile App",
+      "Full-Stack",
+      "Branding",
+      "HealthTech",
+      "AI Product",
+    ],
+    overview:
+      "Mahfooz brings medicines, reports, doctor notes, reminders, daily routines, pregnancy information, and family health records into one clear and manageable experience.",
+    challenge:
+      "Organize different kinds of family health information and time-sensitive routines without making the product feel clinical, complicated, or medically authoritative.",
+    discovery:
+      "Mapped medicines, reports, appointments, doctor notes, reminders, pregnancy records, and everyday routines across multiple family members.",
+    strategy:
+      "Created a member-based architecture that keeps each person’s records independent while making the wider family picture easy to understand.",
+    designDecisions:
+      "Combined calm teal actions, readable status colors, large touch targets, reusable cards, and clear navigation across the product and brand.",
+    developmentApproach:
+      "Built the mobile experience with React Native, Expo, TypeScript, API integration, notifications, and a FastAPI backend service.",
+    results:
+      "A cohesive family-health product foundation spanning strategy, interface design, brand identity, campaign graphics, mobile development, and delivery preparation.",
+    technologies: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Expo Router",
+      "FastAPI",
+      "Groq integration",
+      "Expo Notifications",
+      "Local and cloud-ready data architecture",
+    ],
   },
   {
     id: "fintech-dashboard",

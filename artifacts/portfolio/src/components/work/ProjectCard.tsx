@@ -85,7 +85,7 @@ export default function ProjectCard({
           )}
         </div>
         <div className="shrink-0 font-mono text-sm text-muted-foreground/70">
-          <div>{project.category}</div>
+          <div>{project.cardCategory ?? project.category}</div>
           <div className="mt-1">{project.industry}</div>
         </div>
       </div>

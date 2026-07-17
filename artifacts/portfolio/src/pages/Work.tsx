@@ -13,7 +13,11 @@ export default function Work() {
   const filteredProjects =
     activeFilter === "All"
       ? PROJECTS
-      : PROJECTS.filter((p) => p.category.includes(activeFilter));
+      : PROJECTS.filter(
+          (project) =>
+            project.category.includes(activeFilter) ||
+            project.filterTags?.includes(activeFilter),
+        );
 
   return (
     <div className="w-full">

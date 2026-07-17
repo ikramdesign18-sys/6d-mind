@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, LayoutTemplate } from "lucide-react";
 import { PROJECTS } from "@/data/projects";
 import NotFound from "./not-found";
 import PlanitPrepCaseStudy from "./PlanitPrepCaseStudy";
+import MahfoozCaseStudy from "./MahfoozCaseStudy";
 
 export default function WorkDetail() {
   const [match, params] = useRoute("/work/:slug");
@@ -16,6 +17,10 @@ export default function WorkDetail() {
 
   if (project.slug === "planit-prep") {
     return <PlanitPrepCaseStudy project={project} />;
+  }
+
+  if (project.slug === "mahfooz") {
+    return <MahfoozCaseStudy project={project} />;
   }
 
   const nextProject = PROJECTS[projectIndex + 1] || PROJECTS[0]; // Loop around
