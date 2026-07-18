@@ -8,7 +8,12 @@ import { PROJECTS } from "@/data/projects";
 import ProjectCard from "@/components/work/ProjectCard";
 
 export default function Home() {
-  const selectedProjects = ["amanat-diary", "mahfooz", "planit-prep"]
+  const selectedProjects = [
+    "crunchtime-fitness",
+    "amanat-diary",
+    "mahfooz",
+    "planit-prep",
+  ]
     .map((slug) => PROJECTS.find((project) => project.slug === slug))
     .filter((project): project is (typeof PROJECTS)[number] =>
       Boolean(project),

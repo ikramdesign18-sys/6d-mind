@@ -245,6 +245,71 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    id: "crunchtime-fitness",
+    slug: "crunchtime-fitness",
+    title: "CrunchTime Fitness",
+    category: "Mobile App · Website · Full-Stack Product",
+    cardCategory: "Mobile App · Website · Full-Stack",
+    filterTags: ["UI/UX Design", "Mobile Apps", "Web Development"],
+    industry: "Fitness · Wellness · Personal Coaching",
+    role: "Product Designer and Full-Stack Product Developer",
+    services: [
+      "Product strategy",
+      "User-flow design",
+      "Mobile app UI/UX design",
+      "Responsive website UI/UX design",
+      "Information architecture",
+      "Interactive prototyping",
+      "Design system",
+      "Trainer-booking workflows",
+      "Video-coaching experience design",
+      "Workout and nutrition flows",
+      "Pricing and payment experience design",
+      "Support-center design",
+      "Development-ready product specification",
+      "Responsive implementation planning",
+      "Testing",
+      "Launch preparation",
+    ],
+    image: "/projects/crunchtime-fitness/crunchtime-cover.png",
+    imageWidth: 2048,
+    imageHeight: 1219,
+    imageAlt:
+      "CrunchTime Fitness premium website hero showing dark and light mobile fitness dashboards beside the Discipline Meets Dedication headline.",
+    platform: "iOS · Android · Responsive Web",
+    year: "2026",
+    summary:
+      "A premium fitness and coaching platform connecting users with expert trainers, personalized workouts, meal plans, video consultations, booking, and progress tools.",
+    shortLabel:
+      "Personal training, nutrition, booking, and coaching in one connected platform.",
+    tags: [
+      "UI/UX",
+      "Mobile App",
+      "Website",
+      "Full-Stack",
+      "Fitness",
+      "SaaS",
+      "Product Design",
+    ],
+    overview:
+      "CrunchTime Fitness brings training, nutrition, trainer booking, coaching communication, progress tracking, pricing, and support into one connected cross-platform experience.",
+    challenge:
+      "Unify complex coaching workflows across mobile and responsive web while keeping pricing, booking status, communication, and everyday fitness actions clear.",
+    discovery:
+      "Mapped member and trainer journeys across workout discovery, progress tracking, booking requests, approval, payment, consultation access, nutrition, and support.",
+    strategy:
+      "Structured the product around a focused mobile dashboard and a responsive website that explains value, features, pricing, booking, coaching, and support.",
+    designDecisions:
+      "Used a restrained black, charcoal, gold, and off-white system to communicate premium coaching while preserving legibility, status clarity, and responsive consistency.",
+    developmentApproach:
+      "Prepared responsive mobile and website interfaces, reusable states, and implementation-ready workflows. The supplied portfolio materials do not include the product source, so framework, backend, payment-provider, and video-provider details are not presented as verified implementation.",
+    results:
+      "A launch-preparation foundation connecting mobile product design, responsive website design, booking and coaching workflows, pricing, support, and implementation-ready product documentation.",
+    technologies: [
+      "Product implementation stack not verified from supplied source",
+    ],
+  },
+  {
     id: "fintech-dashboard",
     slug: "fintech-dashboard",
     title: "Aura Financial",
