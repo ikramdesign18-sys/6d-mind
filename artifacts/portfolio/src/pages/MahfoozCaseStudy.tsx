@@ -1239,14 +1239,14 @@ export default function MahfoozCaseStudy({ project }: { project: Project }) {
             </span>
           </Link>
           <Link
-            href="/work/fintech-dashboard"
+            href="/work/amanat-diary"
             className="group flex min-h-32 flex-col justify-center py-8 outline-none focus-visible:ring-2 focus-visible:ring-primary md:pl-8 md:text-right"
           >
             <span className="font-mono text-xs tracking-[0.16em] text-muted-foreground uppercase">
               Next Project
             </span>
             <span className="mt-2 flex items-center gap-3 text-xl font-bold transition-colors group-hover:text-primary md:justify-end">
-              Aura Financial <ArrowRight size={20} aria-hidden="true" />
+              Amanat Diary <ArrowRight size={20} aria-hidden="true" />
             </span>
           </Link>
         </div>

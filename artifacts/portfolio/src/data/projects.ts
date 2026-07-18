@@ -162,6 +162,89 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    id: "amanat-diary",
+    slug: "amanat-diary",
+    title: "Amanat Diary",
+    category: "Mobile App · Personal Productivity · Privacy",
+    cardCategory: "Mobile App · UI/UX · Full-Stack",
+    filterTags: [
+      "UI/UX Design",
+      "Mobile Apps",
+      "AI Products",
+      "Branding",
+      "Graphic Design",
+      "Web Development",
+    ],
+    industry:
+      "Personal Journaling · Memory Preservation · Lifestyle Technology",
+    role: "Product Designer and Full-Stack Mobile App Developer",
+    services: [
+      "Product strategy",
+      "Information architecture",
+      "User-flow design",
+      "Mobile UI/UX design",
+      "Interactive prototyping",
+      "Design system",
+      "Brand identity",
+      "Logo design",
+      "App-icon design",
+      "Promotional graphic design",
+      "React Native development",
+      "Local database architecture",
+      "Optional authentication",
+      "Optional cloud synchronization",
+      "Voice recording workflows",
+      "Notification workflows",
+      "AI-assisted text polishing",
+      "Export and backup functionality",
+      "Testing and launch preparation",
+    ],
+    image: "/projects/amanat-diary/amanat-diary-cover.png",
+    imageWidth: 1794,
+    imageHeight: 876,
+    imageAlt:
+      "Amanat Diary brand presentation and mobile home screen showing personal diaries, voice notes, future letters, backup, and synchronization features.",
+    platform: "iOS and Android",
+    year: "2026",
+    summary:
+      "A private, local-first diary that helps people preserve written memories, record voice entries, create future messages, and protect personal stories.",
+    shortLabel:
+      "Your voice, thoughts, and future memories—privately preserved.",
+    tags: [
+      "UI/UX",
+      "Mobile App",
+      "Full-Stack",
+      "AI Product",
+      "Branding",
+      "Graphic Design",
+      "Privacy",
+    ],
+    overview:
+      "Amanat Diary is a local-first personal memory vault for written journals, voice entries, multiple diaries, and future messages, with optional backup and synchronization.",
+    challenge:
+      "Create emotional value across several memory formats while making privacy, local use, account choices, and future delivery easy to understand.",
+    discovery:
+      "Mapped the moments people want to preserve, the different ways they capture memories, and the trust questions that appear before someone writes something personal.",
+    strategy:
+      "Designed a local-first core with optional identity and cloud services, then organized writing, voice, multiple diaries, and scheduled memories as one coherent product.",
+    designDecisions:
+      "Combined calm editorial layouts, explicit privacy language, large actions, warm literary branding, and clear separation between local and optional cloud features.",
+    developmentApproach:
+      "Prepared a React Native and Expo application architecture using TypeScript, SQLite for device-local data, optional Supabase services, notifications, audio workflows, and AI-assisted text polishing.",
+    results:
+      "A launch-preparation foundation that connects product strategy, interface design, brand identity, promotional graphics, mobile development, privacy decisions, testing, and delivery planning.",
+    technologies: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "SQLite",
+      "Supabase",
+      "Expo Notifications",
+      "Audio recording",
+      "AI-assisted text workflows",
+    ],
+  },
+  {
     id: "fintech-dashboard",
     slug: "fintech-dashboard",
     title: "Aura Financial",

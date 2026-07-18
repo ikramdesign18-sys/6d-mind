@@ -4,6 +4,7 @@ import { PROJECTS } from "@/data/projects";
 import NotFound from "./not-found";
 import PlanitPrepCaseStudy from "./PlanitPrepCaseStudy";
 import MahfoozCaseStudy from "./MahfoozCaseStudy";
+import AmanatDiaryCaseStudy from "./AmanatDiaryCaseStudy";
 
 export default function WorkDetail() {
   const [match, params] = useRoute("/work/:slug");
@@ -21,6 +22,10 @@ export default function WorkDetail() {
 
   if (project.slug === "mahfooz") {
     return <MahfoozCaseStudy project={project} />;
+  }
+
+  if (project.slug === "amanat-diary") {
+    return <AmanatDiaryCaseStudy project={project} />;
   }
 
   const nextProject = PROJECTS[projectIndex + 1] || PROJECTS[0]; // Loop around
