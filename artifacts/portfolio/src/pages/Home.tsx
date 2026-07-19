@@ -9,6 +9,7 @@ import ProjectCard from "@/components/work/ProjectCard";
 
 export default function Home() {
   const selectedProjects = [
+    "elan-fashion",
     "crunchtime-fitness",
     "amanat-diary",
     "mahfooz",

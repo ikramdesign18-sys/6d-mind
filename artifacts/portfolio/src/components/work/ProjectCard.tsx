@@ -55,8 +55,13 @@ export default function ProjectCard({
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <div className="max-w-2xl">
+      <div
+        className={cn(
+          "flex flex-col gap-4",
+          isWide && "md:flex-row md:items-start md:justify-between",
+        )}
+      >
+        <div className="min-w-0 max-w-2xl">
           <h2 className="text-2xl font-bold transition-colors group-hover:text-primary group-focus-visible:text-primary">
             {project.title}
           </h2>
@@ -84,9 +89,18 @@ export default function ProjectCard({
             </div>
           )}
         </div>
-        <div className="shrink-0 font-mono text-sm text-muted-foreground/70">
-          <div>{project.cardCategory ?? project.category}</div>
-          <div className="mt-1">{project.industry}</div>
+        <div
+          className={cn(
+            "min-w-0 font-mono text-sm text-muted-foreground/70",
+            isWide
+              ? "md:max-w-[44%] md:shrink-0 md:text-right"
+              : "w-full border-t border-border pt-3",
+          )}
+        >
+          <div className="break-words">
+            {project.cardCategory ?? project.category}
+          </div>
+          <div className="mt-1 break-words">{project.industry}</div>
         </div>
       </div>
     </Link>

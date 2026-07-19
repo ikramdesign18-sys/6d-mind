@@ -52,10 +52,10 @@ export const PROJECTS: Project[] = [
       "Developer handoff",
     ],
     image: "/projects/planit-prep/planit-prep-cover.png",
-    imageWidth: 1033,
-    imageHeight: 769,
+    imageWidth: 1672,
+    imageHeight: 941,
     imageAlt:
-      "Planit Prep mobile application showing the weekly meal dashboard, AI-generated recipe details, and meal feedback flow.",
+      "Planit Prep AI meal-planning application presented across three mobile screens with daily planning, generated recipe details, and meal feedback features.",
     platform: "iOS and Android",
     year: "2026",
     summary:
@@ -272,10 +272,10 @@ export const PROJECTS: Project[] = [
       "Launch preparation",
     ],
     image: "/projects/crunchtime-fitness/crunchtime-cover.png",
-    imageWidth: 2048,
-    imageHeight: 1219,
+    imageWidth: 1672,
+    imageHeight: 941,
     imageAlt:
-      "CrunchTime Fitness premium website hero showing dark and light mobile fitness dashboards beside the Discipline Meets Dedication headline.",
+      "CrunchTime Fitness premium platform presented across a laptop and mobile fitness dashboards beside black-and-gold training, coaching, nutrition, and progress messaging.",
     platform: "iOS · Android · Responsive Web",
     year: "2026",
     summary:
@@ -307,6 +307,76 @@ export const PROJECTS: Project[] = [
       "A launch-preparation foundation connecting mobile product design, responsive website design, booking and coaching workflows, pricing, support, and implementation-ready product documentation.",
     technologies: [
       "Product implementation stack not verified from supplied source",
+    ],
+  },
+  {
+    id: "elan-fashion",
+    slug: "elan-fashion",
+    title: "ÉLAN",
+    category: "Website · E-commerce · UI/UX",
+    cardCategory: "Responsive E-commerce · UI/UX · Frontend",
+    filterTags: ["UI/UX Design", "Web Development"],
+    industry: "Fashion · Lifestyle · Retail",
+    role: "UI/UX Designer and Frontend Developer",
+    services: [
+      "Product strategy",
+      "E-commerce information architecture",
+      "User-flow design",
+      "Responsive website design",
+      "Homepage UI/UX",
+      "Collection-page UI/UX",
+      "Product-detail UI/UX",
+      "Product discovery",
+      "Filtering experience",
+      "Wishlist interactions",
+      "Product-card system",
+      "Color selection",
+      "Size selection",
+      "Cart-entry experience",
+      "Responsive design system",
+      "Interactive prototyping",
+      "Frontend development planning",
+      "Accessibility",
+      "Performance optimization",
+      "Testing",
+      "Launch preparation",
+    ],
+    image: "/projects/elan-fashion/elan-cover.png",
+    imageWidth: 1672,
+    imageHeight: 941,
+    imageAlt:
+      "ÉLAN responsive fashion e-commerce homepage shown across desktop, tablet, and mobile with a seasonal campaign hero and curated products.",
+    platform: "Desktop · Tablet · Mobile Web",
+    year: "2026",
+    summary:
+      "A refined responsive fashion store designed around editorial storytelling, clear product discovery, and a seamless journey from browsing to product selection.",
+    shortLabel:
+      "Editorial fashion storytelling with a focused shopping experience.",
+    tags: [
+      "UI/UX",
+      "Website",
+      "E-commerce",
+      "Responsive Design",
+      "Frontend Development",
+      "Fashion",
+      "Product Design",
+    ],
+    overview:
+      "ÉLAN balances editorial fashion storytelling with practical product discovery across a responsive homepage, filtered collections, reusable product cards, and a purchase-focused product-detail experience.",
+    challenge:
+      "Preserve a premium editorial identity while keeping navigation, product discovery, filters, pricing, options, and purchase actions clear across desktop, tablet, and mobile.",
+    discovery:
+      "Mapped the store structure, collection browsing, filter groups, product-card behavior, product options, and responsive priorities visible in the supplied experience.",
+    strategy:
+      "Structured the journey from seasonal campaign to collection discovery and product decision, with imagery leading while commerce controls remain predictable.",
+    designDecisions:
+      "Used warm neutral surfaces, editorial typography, restrained controls, consistent product imagery, and responsive grids to keep the experience calm and commercially practical.",
+    developmentApproach:
+      "Prepared reusable responsive components and development-ready interaction states. The supplied materials do not include the storefront source, so framework, commerce API, wishlist persistence, cart state, checkout, and payment integrations are not presented as verified implementation.",
+    results:
+      "A complete responsive fashion-commerce foundation connecting product strategy, editorial UI/UX, reusable component planning, accessibility, performance, testing, and launch preparation.",
+    technologies: [
+      "Storefront implementation stack not verified from supplied source",
     ],
   },
   {

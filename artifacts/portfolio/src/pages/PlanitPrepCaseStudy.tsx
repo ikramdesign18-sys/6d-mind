@@ -362,7 +362,7 @@ export default function PlanitPrepCaseStudy({ project }: { project: Project }) {
           <Reveal className="mt-16 md:mt-24">
             <ImagePanel
               src="/projects/planit-prep/planit-prep-cover.png"
-              alt="Planit Prep mobile application showing the weekly meal dashboard, AI-generated recipe details, and meal feedback flow."
+              alt="Planit Prep AI meal-planning application presented across three mobile screens with daily planning, generated recipe details, and meal feedback features."
               eager
             />
           </Reveal>

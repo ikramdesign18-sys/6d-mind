@@ -577,9 +577,9 @@ export default function CrunchTimeFitnessCaseStudy({
           <Reveal className="mt-14">
             <MediaPanel
               src="/projects/crunchtime-fitness/crunchtime-cover.png"
-              alt="CrunchTime Fitness dark website homepage showing premium fitness messaging, App Store and Google Play actions, platform statistics, and dark and light mobile application screens."
-              width={2048}
-              height={1219}
+              alt="CrunchTime Fitness premium platform presented across a laptop and mobile fitness dashboards beside black-and-gold training, coaching, nutrition, and progress messaging."
+              width={1672}
+              height={941}
               caption="Responsive product website and mobile application direction"
               priority
             />
@@ -1318,14 +1318,14 @@ export default function CrunchTimeFitnessCaseStudy({
             </span>
           </Link>
           <Link
-            href="/work/fintech-dashboard"
+            href="/work/elan-fashion"
             className="group flex min-h-32 flex-col justify-center py-8 outline-none focus-visible:ring-2 focus-visible:ring-[#e5af1f] md:pl-8 md:text-right"
           >
             <span className="font-mono text-xs tracking-[0.16em] text-white/45 uppercase">
               Next Project
             </span>
             <span className="mt-2 flex items-center gap-3 text-xl font-bold transition-colors group-hover:text-[#e5af1f] md:justify-end">
-              Aura Financial <ArrowRight size={20} aria-hidden="true" />
+              ÉLAN <ArrowRight size={20} aria-hidden="true" />
             </span>
           </Link>
         </div>
