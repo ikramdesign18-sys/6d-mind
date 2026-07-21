@@ -34,6 +34,76 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: "mdcn-distribution",
+    slug: "mdcn-distribution",
+    title: "MDCN Distribution",
+    category: "E-commerce · Website · UI/UX · Development",
+    cardCategory: "E-commerce · UI/UX · Frontend Development",
+    filterTags: ["UI/UX Design", "Web Development"],
+    industry: "Skateboarding · Streetwear · Lifestyle Retail",
+    role: "UI/UX Designer and Frontend Developer",
+    services: [
+      "Product strategy",
+      "User-flow design",
+      "E-commerce information architecture",
+      "Responsive website UI/UX",
+      "Homepage design",
+      "Navigation and mega-menu design",
+      "Product-listing and filter experience",
+      "Product-card system",
+      "Product-detail design",
+      "Wishlist experience",
+      "Cart and promo-code experience",
+      "Checkout-entry flow",
+      "Order-confirmation experience",
+      "Design system",
+      "Interactive prototyping",
+      "Frontend development planning",
+      "Accessibility",
+      "Performance optimization",
+      "Responsive testing",
+      "Launch preparation",
+    ],
+    image: "/projects/mdcn-distribution/mdcn-cover.png",
+    imageWidth: 1672,
+    imageHeight: 941,
+    imageAlt:
+      "MDCN Distribution e-commerce platform shown on a laptop with product, product-detail, cart, and order-confirmation interface previews.",
+    platform: "Desktop · Tablet · Mobile Web",
+    year: "2026",
+    summary:
+      "A complete skate and streetwear e-commerce experience combining expressive collection storytelling, advanced product discovery, detailed product pages, cart management, and a clear post-purchase journey.",
+    shortLabel:
+      "From skate discovery to order confirmation in one connected commerce experience.",
+    tags: [
+      "UI/UX",
+      "Website",
+      "E-commerce",
+      "Product Design",
+      "Frontend Development",
+      "Responsive Design",
+      "Retail",
+      "Skateboarding",
+    ],
+    overview:
+      "MDCN Distribution connects brand-led homepage discovery with category navigation, advanced filtering, detailed product evaluation, cart management, promotion handling, and a clear order-confirmation journey.",
+    challenge:
+      "Organize a broad skate, streetwear, apparel, footwear, protection, and accessories catalog without losing brand energy or making product discovery and pricing difficult to understand.",
+    discovery:
+      "Mapped the visible store taxonomy, category and brand navigation, filter groups, product-card anatomy, product options, cart hierarchy, and order-confirmation requirements.",
+    strategy:
+      "Structured one connected journey from campaign storytelling and catalog discovery to product evaluation, cart review, checkout entry, and post-purchase reassurance.",
+    designDecisions:
+      "Used a neutral monochrome interface, large product imagery, restrained sale and trust accents, editorial headings, and predictable commerce controls so products and skate culture remain dominant.",
+    developmentApproach:
+      "Prepared reusable responsive component patterns and development-ready interaction states. The supplied materials do not include the storefront source, so framework, live search, filter logic, wishlist state, inventory, checkout, payment, account, and commerce-provider integrations are not presented as verified implementation.",
+    results:
+      "A complete responsive commerce foundation connecting product strategy, information architecture, UI/UX, reusable component planning, accessibility, performance, testing, and launch preparation.",
+    technologies: [
+      "Storefront implementation stack not verified from supplied source",
+    ],
+  },
+  {
     id: "planit-prep",
     slug: "planit-prep",
     title: "Planit Prep 2.0",

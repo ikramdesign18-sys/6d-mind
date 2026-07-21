@@ -7,6 +7,7 @@ import MahfoozCaseStudy from "./MahfoozCaseStudy";
 import AmanatDiaryCaseStudy from "./AmanatDiaryCaseStudy";
 import CrunchTimeFitnessCaseStudy from "./CrunchTimeFitnessCaseStudy";
 import ElanFashionCaseStudy from "./ElanFashionCaseStudy";
+import MdcnDistributionCaseStudy from "./MdcnDistributionCaseStudy";
 
 export default function WorkDetail() {
   const [match, params] = useRoute("/work/:slug");
@@ -17,6 +18,10 @@ export default function WorkDetail() {
   const project = PROJECTS[projectIndex];
 
   if (!project) return <NotFound />;
+
+  if (project.slug === "mdcn-distribution") {
+    return <MdcnDistributionCaseStudy project={project} />;
+  }
 
   if (project.slug === "planit-prep") {
     return <PlanitPrepCaseStudy project={project} />;

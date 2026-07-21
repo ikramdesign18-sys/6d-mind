@@ -6,9 +6,11 @@ import { STATS, WORK_MESSAGE } from "@/data/stats";
 import { CONTACT_INFO } from "@/data/contact";
 import { PROJECTS } from "@/data/projects";
 import ProjectCard from "@/components/work/ProjectCard";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 export default function Home() {
   const selectedProjects = [
+    "mdcn-distribution",
     "elan-fashion",
     "crunchtime-fitness",
     "amanat-diary",
@@ -164,6 +166,8 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      <TestimonialsSection />
 
       {/* Why Work With Me */}
       <section className="py-24 md:py-32 bg-foreground text-background px-6">

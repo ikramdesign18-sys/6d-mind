@@ -1,0 +1,1095 @@
+Build a complete, production-ready, world-class personal portfolio website for a multidisciplinary digital product expert.
+
+## 1. Core Vision
+
+Create a premium futuristic portfolio experience built around the concept:
+
+**“One Creative Brain. Complete Digital Solutions.”**
+
+The homepage must not look like a traditional portfolio with many stacked sections. It should feel like one immersive, cinematic hero experience.
+
+At the center of the hero, create a large interactive 3D digital brain. Animated neural connections should extend from the brain toward floating expertise cards.
+
+The website should communicate that I can take a digital product from initial idea to branding, UI/UX design, development, AI integration, launch, and continued improvement.
+
+The final website must feel like one of the best creative developer and designer portfolios in the world.
+
+Do not create a generic agency template.
+
+---
+
+## 2. Technology Stack
+
+Use:
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* Framer Motion
+* React Three Fiber
+* Three.js
+* GSAP only where advanced timeline animation is necessary
+* React Router for service and project pages
+* Lucide React for icons
+* Accessible semantic HTML
+* Responsive CSS with fluid typography
+* Reusable components
+* Clean production-quality folder structure
+
+Use modern coding standards with:
+
+* Strict TypeScript
+* Reusable components
+* Clean state management
+* Proper loading states
+* Error boundaries
+* Lazy loading for heavy 3D elements
+* Performance optimization
+* SEO metadata
+* Keyboard accessibility
+* Reduced-motion support
+* Mobile fallbacks for heavy effects
+
+Do not use fake APIs or unnecessary backend functionality.
+
+---
+
+## 3. Typography
+
+Use **Plus Jakarta Sans** as the primary font across the entire website.
+
+Typography should feel modern, premium, bold, and highly readable.
+
+Recommended hierarchy:
+
+* Hero headline: 72px–96px desktop
+* Tablet headline: 56px–72px
+* Mobile headline: 42px–52px
+* Section headings: 40px–64px
+* Body text: 16px–18px
+* Small labels: 12px–14px
+
+Use strong font weights for headlines and softer weights for descriptions.
+
+Apply balanced line-height and letter spacing.
+
+---
+
+## 4. Visual Style
+
+Create a premium futuristic dark theme.
+
+### Main colors
+
+* Background: `#050507`
+* Secondary background: `#0A0A0F`
+* Elevated surfaces: `#101018`
+* Primary text: `#F7F7FA`
+* Secondary text: `#A4A4B3`
+* Border: rgba(255,255,255,0.08)
+* Main accent: electric violet
+* Secondary accent: soft blue
+* Additional glow: cyan
+* Success accent: emerald
+
+Suggested gradients:
+
+* Violet to electric blue
+* Deep purple to cyan
+* Transparent radial glows behind the brain
+* Very subtle aurora gradients
+
+Use:
+
+* Soft glassmorphism
+* Thin luminous borders
+* Controlled shadows
+* Subtle grain texture
+* Radial background lighting
+* Depth through blur and layering
+* High-end micro-interactions
+
+Avoid:
+
+* Excessive neon
+* Too many gradients
+* Cheap glowing text
+* Overloaded layouts
+* Generic cards
+* Cartoon-style graphics
+* Heavy animations that reduce usability
+
+The final result should feel luxurious, intelligent, futuristic, and professional.
+
+---
+
+## 5. Navigation
+
+Create a minimal floating navigation bar.
+
+Left side:
+
+* Personal logo or monogram
+* Name or brand title
+
+Center navigation:
+
+* Expertise
+* Selected Work
+* Process
+* About
+* Contact
+
+Right side:
+
+* Availability indicator
+* “Start a Project” button
+
+Navigation requirements:
+
+* Transparent when at the top
+* Blurred dark glass background after scrolling
+* Smooth hover animations
+* Active-page indicator
+* Mobile menu with premium full-screen animation
+* Sticky but unobtrusive
+* Fully accessible
+
+---
+
+## 6. Homepage Hero Experience
+
+The homepage should appear as one immersive hero section occupying most of the viewport.
+
+### Hero layout
+
+Create a full-screen or minimum `100svh` hero.
+
+Include:
+
+* A subtle top label such as:
+  “Multidisciplinary Digital Product Expert”
+* Main headline:
+  **“One Creative Brain. Complete Digital Solutions.”**
+* Supporting copy:
+  “I combine product strategy, UI/UX design, branding, development, and AI to transform ambitious ideas into complete digital products.”
+* Primary CTA:
+  “Explore My Expertise”
+* Secondary CTA:
+  “Start a Project”
+* Availability status:
+  “Available for selected projects”
+* Small location or remote-work label:
+  “Based in Islamabad · Working Worldwide”
+
+The large 3D brain should be the main visual focal point.
+
+Do not place all content in a basic left-text, right-image layout. Build a more original cinematic composition where typography, brain, neural connections, and expertise cards feel connected.
+
+---
+
+## 7. Interactive 3D Brain
+
+Create a high-quality interactive digital brain using Three.js and React Three Fiber.
+
+The brain should:
+
+* Sit near the center of the hero
+* Be built from particles, lines, wireframe geometry, or a high-quality optimized 3D model
+* Have subtle animated electrical impulses
+* Slowly rotate or respond to cursor movement
+* React gently when users hover over expertise cards
+* Send light pulses through neural connections
+* Have subtle breathing or energy animation
+* Look professional and technologically advanced
+* Maintain good performance
+
+Add a soft radial light behind it.
+
+When a user moves the cursor:
+
+* The brain should rotate slightly
+* Nearby particles should respond
+* Light intensity can subtly change
+* Neural connection lines should feel alive
+
+When a user hovers over an expertise card:
+
+* The corresponding neural path should brighten
+* A pulse should travel from the brain to the card
+* The brain should highlight a specific region
+* The selected card should move slightly closer to the viewer
+
+When a card is clicked:
+
+* Create a cinematic transition
+* Animate the pulse from the brain to the selected card
+* Expand the card
+* Transition to the relevant expertise page
+
+For mobile devices:
+
+* Reduce particle count
+* Simplify the 3D effect
+* Disable expensive cursor tracking
+* Preserve the premium visual experience
+* Provide a static or lightweight animated fallback where necessary
+
+---
+
+## 8. Expertise Cards
+
+Place six connected expertise cards around the central brain.
+
+### Expertise 1: UI/UX & Product Design
+
+Description:
+
+“Research-driven user experiences, scalable design systems, prototypes, dashboards, websites, mobile apps, SaaS platforms, and developer-ready interfaces.”
+
+Skills:
+
+* UX research
+* User flows
+* Wireframing
+* UI design
+* Prototyping
+* Design systems
+* Mobile app design
+* Web app design
+* SaaS design
+* Dashboard design
+* Responsive design
+* Developer handoff
+
+Tools:
+
+* Figma
+* FigJam
+* Adobe tools
+* Prototyping systems
+
+### Expertise 2: Mobile App Development
+
+Description:
+
+“Production-ready mobile experiences built for performance, usability, maintainability, and future growth.”
+
+Skills:
+
+* React Native
+* Expo
+* TypeScript
+* Mobile architecture
+* API integration
+* Local-first applications
+* Push notifications
+* Authentication
+* Cloud storage
+* App deployment
+
+### Expertise 3: Website & Web App Development
+
+Description:
+
+“Modern websites, landing pages, SaaS applications, dashboards, and full digital platforms.”
+
+Skills:
+
+* React
+* Next.js
+* TypeScript
+* Tailwind CSS
+* Responsive development
+* API integration
+* Performance optimization
+* SEO
+* Accessibility
+* Frontend architecture
+
+### Expertise 4: AI Product Development
+
+Description:
+
+“Practical AI-powered products that automate work, personalize experiences, and solve real business problems.”
+
+Skills:
+
+* AI product strategy
+* LLM integrations
+* OpenAI integrations
+* Groq integrations
+* AI assistants
+* Content generation
+* Image analysis
+* Voice processing
+* Recommendation systems
+* Workflow automation
+
+### Expertise 5: Graphic Design
+
+Description:
+
+“High-impact visual communication for digital platforms, campaigns, products, and social media.”
+
+Skills:
+
+* Social media design
+* Marketing graphics
+* App Store visuals
+* Presentation design
+* Promotional design
+* Layout systems
+* Visual storytelling
+* Digital advertising assets
+
+### Expertise 6: Branding & Visual Identity
+
+Description:
+
+“Strategic brand identities that make businesses recognizable, trustworthy, and memorable.”
+
+Skills:
+
+* Brand strategy
+* Logo design
+* Color systems
+* Typography
+* Brand guidelines
+* Visual identity
+* Brand applications
+* Digital brand systems
+
+Each expertise card should include:
+
+* Icon
+* Category number
+* Expertise title
+* One-line value statement
+* Small skill preview
+* Animated arrow
+* “Explore Expertise” interaction
+
+The cards should not look identical. Use subtle variations in layout and neural connection positioning while maintaining visual consistency.
+
+---
+
+## 9. Expertise Page Structure
+
+Create a complete dedicated page for each expertise area.
+
+Each expertise page must include:
+
+### Hero
+
+* Expertise title
+* Strong outcome-focused statement
+* Short introduction
+* Relevant visual
+* “Start a Project” CTA
+* “View Related Work” CTA
+
+### Problems I Solve
+
+Show real problems clients experience and how I solve them.
+
+### Services
+
+Display the specific services available in that expertise category.
+
+### Selected Work
+
+Show relevant case-study cards with:
+
+* Project image
+* Project title
+* Industry
+* Service
+* Challenge
+* Result
+* “View Case Study” action
+
+### My Process
+
+Present a clear process tailored to the selected service.
+
+### Deliverables
+
+Explain exactly what the client receives.
+
+### Tools and Technologies
+
+Show the tools used for that expertise.
+
+### Why Work With Me
+
+Include:
+
+* Design and development in one place
+* Strong business understanding
+* Clear communication
+* Production-ready execution
+* Scalable systems
+* Attention to detail
+* Long-term support
+* Faster handoff between design and development
+* Consistent product quality
+* Complete ownership from idea to launch
+
+### Final CTA
+
+Include:
+
+* Strong headline
+* Supporting message
+* Project inquiry button
+* Email or contact action
+
+Every expertise page should feel unique but belong to the same design system.
+
+---
+
+## 10. Selected Work Page
+
+Create a premium project portfolio page.
+
+Add filter tabs:
+
+* All
+* UI/UX
+* Mobile Apps
+* Websites
+* AI Products
+* Branding
+* Graphic Design
+
+Each project card should include:
+
+* Large visual
+* Project category
+* Project title
+* Short description
+* Services provided
+* Technologies used
+* Year
+* View Case Study button
+
+Use a premium editorial grid rather than a basic equal card grid.
+
+Include large featured projects and smaller secondary projects.
+
+Add smooth filter transitions.
+
+---
+
+## 11. Case Study Page
+
+Each case study page should include:
+
+* Project title
+* Project category
+* Industry
+* Project duration
+* My role
+* Services delivered
+* Hero visual
+* Project overview
+* Business challenge
+* Research and discovery
+* Strategy
+* User flows
+* Design decisions
+* Development approach
+* Final solution
+* Key screens
+* Results or impact
+* Technologies used
+* Client testimonial placeholder
+* Next project navigation
+* Contact CTA
+
+Use storytelling and visual rhythm.
+
+Do not create empty generic paragraphs. Add realistic, editable placeholder content that clearly shows where final project details will go.
+
+---
+
+## 12. Work Process Page
+
+Create a complete process page covering the full product journey.
+
+### Step 1: Discovery
+
+* Business goals
+* User problems
+* Competitor research
+* Project requirements
+* Technical limitations
+* Success metrics
+
+### Step 2: Strategy
+
+* Product direction
+* Feature prioritization
+* Information architecture
+* User flows
+* Brand positioning
+* Technology selection
+
+### Step 3: Design
+
+* Wireframes
+* Design system
+* Visual direction
+* Responsive UI
+* Interactive prototypes
+* Usability validation
+
+### Step 4: Development
+
+* Frontend architecture
+* Backend integration
+* Responsive implementation
+* AI integration
+* Performance
+* Accessibility
+* Security
+
+### Step 5: Testing
+
+* Functional testing
+* Responsive testing
+* Browser testing
+* Usability testing
+* Performance testing
+* Bug fixing
+
+### Step 6: Launch
+
+* Deployment
+* Domain setup
+* Analytics
+* Store submission
+* Production checks
+* Documentation
+
+### Step 7: Growth
+
+* Product improvements
+* New features
+* Optimization
+* Design support
+* Development support
+* Long-term partnership
+
+Create a connected animated timeline that resembles a neural pathway.
+
+---
+
+## 13. Why Work With Me Page or Section
+
+Communicate that clients do not need to hire multiple disconnected specialists.
+
+Main message:
+
+**“One expert. One vision. One complete product journey.”**
+
+Explain these advantages:
+
+* Design and development stay aligned
+* Less communication overhead
+* Faster decision-making
+* Stronger visual consistency
+* Better technical feasibility
+* Clear project ownership
+* More efficient delivery
+* Scalable design systems
+* Production-ready code
+* Business-focused thinking
+* Long-term reliability
+
+Include trust indicators:
+
+* 5+ years of experience
+* 200+ completed projects
+* Mobile, web, SaaS, AI, branding, and product experience
+* Experience working across multiple industries
+* Remote collaboration worldwide
+* Strong client communication
+* Design-to-development capability
+
+Make all statistics easy to edit from one data file.
+
+---
+
+## 14. About Page
+
+Create a premium but human About page.
+
+Content direction:
+
+“I am a multidisciplinary UI/UX designer, product designer, developer, AI product builder, graphic designer, and branding specialist. I help startups, businesses, and ambitious founders turn ideas into professional digital products.”
+
+Include:
+
+* Personal introduction
+* Professional philosophy
+* Experience
+* Areas of specialization
+* Industries worked in
+* Tools and technology
+* Work principles
+* Personal portrait placeholder
+* Download résumé button
+* Contact CTA
+
+Core philosophy:
+
+* Design must solve a real problem
+* Technology must support the experience
+* Branding must create trust
+* Every detail must have a reason
+* Products must be scalable
+* Communication must remain clear
+
+---
+
+## 15. Contact Experience
+
+Create a premium contact page and modal.
+
+Include fields:
+
+* Full name
+* Email
+* Company
+* Project type
+* Estimated budget
+* Expected timeline
+* Project description
+* Preferred communication method
+
+Project types:
+
+* UI/UX Design
+* Mobile App
+* Website
+* Web Application
+* AI Product
+* Branding
+* Graphic Design
+* Complete Digital Product
+* Ongoing Support
+
+Budget options:
+
+* Under $1,000
+* $1,000–$3,000
+* $3,000–$5,000
+* $5,000–$10,000
+* $10,000+
+* Let’s discuss
+
+Add:
+
+* Validation
+* Error messages
+* Success state
+* Loading state
+* Spam protection placeholder
+* Accessible labels
+* Keyboard support
+
+Show a confirmation message such as:
+
+“Your idea has entered the system. I’ll review the details and respond as soon as possible.”
+
+Add direct contact options:
+
+* Email
+* Fiverr
+* Upwork
+* LinkedIn
+* WhatsApp
+* Schedule a meeting
+
+Use editable placeholder URLs.
+
+---
+
+## 16. Animation System
+
+The animation quality is one of the most important parts of the website.
+
+Create smooth, sophisticated animations inspired by award-winning digital studios.
+
+Use animation intentionally.
+
+### Page load animation
+
+* Dark screen
+* Small central neural spark
+* Spark expands into brain particles
+* Brain becomes visible
+* Connection lines activate
+* Expertise cards appear sequentially
+* Main headline reveals with masked animation
+* Navigation fades into position
+
+Keep the intro under approximately three seconds and allow it to be skipped.
+
+### Text animations
+
+* Masked line reveals
+* Word-by-word entrance
+* Subtle blur-to-sharp effect
+* Letter spacing settles naturally
+* No excessive bouncing
+
+### Card animations
+
+* Smooth perspective tilt
+* Soft border illumination
+* Background depth shift
+* Arrow movement
+* Connection pulse
+* Magnetic hover behavior
+* Strong focus states for keyboard users
+
+### Page transitions
+
+* Selected neural connection expands
+* Screen transitions through a soft light pulse
+* New page content reveals smoothly
+* Preserve navigation continuity
+
+### Scroll animations
+
+* Use restrained parallax
+* Reveal content progressively
+* Animate timelines as they enter the viewport
+* Keep text readable at all times
+* Avoid excessive scroll hijacking
+
+### Cursor
+
+Create a custom cursor on desktop only.
+
+Cursor behavior:
+
+* Small dot and outer circle
+* Expands over links
+* Shows “View” over project cards
+* Shows “Explore” over expertise cards
+* Shows “Drag” where appropriate
+* Automatically disables on touch devices
+
+### Reduced motion
+
+Respect the user’s `prefers-reduced-motion` setting.
+
+When enabled:
+
+* Remove the cinematic intro
+* Disable cursor effects
+* Reduce 3D motion
+* Replace large transitions with simple fades
+* Keep all functionality available
+
+---
+
+## 17. Responsive Design
+
+The website must be fully responsive across:
+
+* Large desktop displays
+* Standard laptops
+* Tablets
+* Small tablets
+* Large phones
+* Small phones
+
+Desktop:
+
+* Full interactive brain
+* Cards arranged around the brain
+* Advanced neural connections
+* Custom cursor
+* Full cinematic animation
+
+Tablet:
+
+* Simplified brain interaction
+* Cards positioned in a balanced orbit or grid
+* Reduced particle count
+
+Mobile:
+
+* Brain remains the central visual
+* Expertise cards appear beneath or around it in a swipeable layout
+* Simplified neural connections
+* Touch-friendly buttons
+* No custom cursor
+* No tiny text
+* No horizontal overflow
+* Maintain premium spacing
+
+Test at:
+
+* 1440px
+* 1280px
+* 1024px
+* 768px
+* 430px
+* 390px
+* 360px
+
+---
+
+## 18. Performance Requirements
+
+Performance is essential.
+
+Implement:
+
+* Lazy-loaded 3D brain
+* Code splitting
+* Route-based chunking
+* Optimized images
+* WebP or AVIF assets
+* Deferred non-critical animations
+* Reduced particle count on lower-powered devices
+* GPU-friendly transforms
+* No unnecessary rerenders
+* Proper React memoization
+* Suspense loading state
+* Lightweight mobile fallback
+* Font preloading
+* Minimal layout shifts
+
+Target:
+
+* Lighthouse Performance: 90+
+* Accessibility: 95+
+* Best Practices: 95+
+* SEO: 95+
+
+The website must remain smooth and usable even when the 3D scene is loading.
+
+---
+
+## 19. Accessibility
+
+Include:
+
+* Semantic page structure
+* Visible keyboard focus
+* Skip-to-content link
+* Accessible form labels
+* Correct heading hierarchy
+* ARIA attributes only where needed
+* Keyboard-accessible cards
+* Sufficient contrast
+* Reduced-motion support
+* Alt text
+* Screen-reader descriptions for the 3D brain
+* Accessible navigation
+* Focus trapping inside modals
+
+The expertise cards must work using both mouse and keyboard.
+
+---
+
+## 20. SEO
+
+Add editable SEO content for every page.
+
+Include:
+
+* Page titles
+* Meta descriptions
+* Open Graph metadata
+* Twitter card metadata
+* Canonical placeholders
+* Structured data
+* Person schema
+* Professional service schema
+* Project schema
+* Sitemap structure
+* Robots configuration
+* Social preview placeholders
+
+Suggested homepage title:
+
+“Multidisciplinary UI/UX Designer, Developer and AI Product Expert”
+
+Suggested description:
+
+“I design and build complete digital products, including mobile apps, websites, SaaS platforms, AI solutions, branding, and user experiences.”
+
+---
+
+## 21. Data Architecture
+
+Store editable content separately from UI components.
+
+Create files such as:
+
+* `src/data/expertise.ts`
+* `src/data/projects.ts`
+* `src/data/process.ts`
+* `src/data/testimonials.ts`
+* `src/data/statistics.ts`
+* `src/data/socialLinks.ts`
+* `src/data/siteSettings.ts`
+
+I should be able to update project names, statistics, social links, skills, text, images, and services without editing the component logic.
+
+---
+
+## 22. Suggested Folder Structure
+
+Use a clean structure similar to:
+
+```text
+src/
+  assets/
+  components/
+    common/
+    navigation/
+    brain/
+    expertise/
+    projects/
+    process/
+    contact/
+    animations/
+  data/
+  hooks/
+  layouts/
+  pages/
+  routes/
+  styles/
+  types/
+  utils/
+  App.tsx
+  main.tsx
+```
+
+Create reusable components such as:
+
+* Navigation
+* MobileMenu
+* Hero
+* BrainScene
+* NeuralConnection
+* ExpertiseCard
+* ProjectCard
+* ProcessTimeline
+* SectionHeading
+* AnimatedText
+* MagneticButton
+* CustomCursor
+* PageTransition
+* ContactForm
+* Footer
+* LoadingScreen
+* ErrorBoundary
+
+---
+
+## 23. Footer
+
+Create a minimal premium footer containing:
+
+* Name or logo
+* Short positioning statement
+* Email
+* Social links
+* Availability status
+* Copyright
+* Privacy
+* Terms
+* Back-to-top action
+
+Suggested statement:
+
+“Designing intelligence. Building experiences. Creating complete digital products.”
+
+---
+
+## 24. Content Tone
+
+The copy should sound:
+
+* Confident
+* Professional
+* Intelligent
+* Human
+* Clear
+* Business-focused
+* Premium
+* Results-oriented
+
+Avoid:
+
+* Empty buzzwords
+* Excessive self-praise
+* Generic phrases
+* Long difficult paragraphs
+* Claims that cannot be edited
+* Robotic AI-style writing
+
+Focus on client outcomes.
+
+Instead of:
+
+“I make beautiful designs.”
+
+Use:
+
+“I design intuitive digital products that help users act confidently and businesses grow efficiently.”
+
+---
+
+## 25. Final Quality Requirements
+
+The website must:
+
+* Feel custom-built
+* Look world-class
+* Use Plus Jakarta Sans
+* Have a premium dark theme
+* Include the central interactive brain
+* Connect the brain to expertise cards
+* Include cinematic but usable animations
+* Include six complete expertise experiences
+* Include project and case-study pages
+* Include the full work process
+* Explain why clients should work with me
+* Include a professional contact experience
+* Work perfectly on desktop and mobile
+* Be accessible
+* Be fast
+* Be SEO-ready
+* Use production-quality React and TypeScript
+* Avoid generic template design
+* Avoid unfinished placeholders in the interface
+* Avoid broken links and console errors
+
+Before finishing:
+
+1. Review every page.
+2. Test every card and button.
+3. Test mobile navigation.
+4. Test keyboard navigation.
+5. Check browser console for errors.
+6. Check responsive layouts.
+7. Confirm the 3D brain has a loading fallback.
+8. Confirm reduced-motion behavior.
+9. Confirm all editable content is stored in data files.
+10. Make the visual experience cohesive from beginning to end.
+
+Start by creating the complete architecture, design system, data files, routes, reusable components, homepage hero, interactive brain experience, and expertise cards. Then complete all supporting pages and refine the animations and responsive behavior.
+
+Do not simplify the concept into a basic landing page. Build the complete premium portfolio experience.

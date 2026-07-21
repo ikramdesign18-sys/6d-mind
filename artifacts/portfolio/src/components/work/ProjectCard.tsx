@@ -22,9 +22,8 @@ export default function ProjectCard({
     >
       <div
         className={cn(
-          "bg-muted overflow-hidden border border-border relative flex items-center justify-center mb-6",
-          isWide ? "aspect-[21/9]" : "aspect-[4/3]",
-          hasProjectArtwork && "bg-[#eef0ff]",
+          "relative mb-6 flex aspect-video w-full items-center justify-center overflow-hidden border border-border p-0",
+          hasProjectArtwork ? "bg-transparent" : "bg-muted",
         )}
       >
         {hasProjectArtwork ? (
@@ -34,7 +33,7 @@ export default function ProjectCard({
             height={project.imageHeight}
             alt={project.imageAlt ?? `${project.title} project presentation`}
             loading="lazy"
-            className="h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+            className="block h-full w-full max-w-none object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.015]"
           />
         ) : (
           <LayoutTemplate
