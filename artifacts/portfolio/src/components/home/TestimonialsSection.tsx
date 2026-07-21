@@ -38,6 +38,7 @@ export default function TestimonialsSection() {
 
   return (
     <section
+      id="testimonials"
       aria-labelledby="testimonials-heading"
       className="border-t border-border bg-background px-6 py-24 md:py-32"
     >

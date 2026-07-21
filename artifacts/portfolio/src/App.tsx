@@ -12,6 +12,8 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 const Home = lazy(() => import("@/pages/Home"));
 const ExpertiseDetail = lazy(() => import("@/pages/ExpertiseDetail"));
 const Work = lazy(() => import("@/pages/Work"));
+const Solutions = lazy(() => import("@/pages/Solutions"));
+const Why6DMind = lazy(() => import("@/pages/Why6DMind"));
 const WorkDetail = lazy(() => import("@/pages/WorkDetail"));
 const LogoBrandIdentityCollection = lazy(
   () => import("@/pages/LogoBrandIdentityCollection"),
@@ -52,6 +54,8 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/expertise/:slug" component={ExpertiseDetail} />
           <Route path="/work" component={Work} />
+          <Route path="/solutions" component={Solutions} />
+          <Route path="/why-6d-mind" component={Why6DMind} />
           <Route
             path="/work/graphic-design/logo-branding-collection"
             component={LogoBrandIdentityCollection}
