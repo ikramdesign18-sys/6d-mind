@@ -16,7 +16,7 @@ export default function ProjectCard({
 
   return (
     <Link
-      href={`/work/${project.slug}`}
+      href={project.detailPath ?? `/work/${project.slug}`}
       aria-label={`View ${project.title} case study`}
       className="group block outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
     >
@@ -26,7 +26,19 @@ export default function ProjectCard({
           hasProjectArtwork ? "bg-transparent" : "bg-muted",
         )}
       >
-        {hasProjectArtwork ? (
+        {project.galleryImages?.length ? (
+          <div className="grid h-full w-full grid-cols-3 grid-rows-2 gap-px bg-border">
+            {project.galleryImages.map((image) => (
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                className="block h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+              />
+            ))}
+          </div>
+        ) : hasProjectArtwork ? (
           <img
             src={project.image}
             width={project.imageWidth}

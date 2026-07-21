@@ -13,6 +13,12 @@ export interface Project {
   imageWidth?: number;
   imageHeight?: number;
   imageAlt?: string;
+  detailPath?: string;
+  homepageVisible?: boolean;
+  galleryImages?: Array<{
+    src: string;
+    alt: string;
+  }>;
   platform?: string;
   year?: string;
   summary?: string;
@@ -448,6 +454,92 @@ export const PROJECTS: Project[] = [
     technologies: [
       "Storefront implementation stack not verified from supplied source",
     ],
+  },
+  {
+    id: "logo-branding-collection",
+    slug: "logo-branding-collection",
+    title: "Logo & Brand Identity Collection",
+    category: "Graphic Design",
+    cardCategory: "Branding · Logo Design",
+    filterTags: ["Graphic Design", "Branding", "Logo Design"],
+    industry:
+      "Fashion · Technology · Skincare · Fitness · Coffee · Architecture",
+    role: "Logo Designer and Brand Identity Designer",
+    services: [
+      "Logo strategy",
+      "Brand naming concepts",
+      "Monogram design",
+      "Symbol development",
+      "Typography selection",
+      "Color direction",
+      "Visual identity design",
+      "Brand positioning",
+      "Logo presentation",
+      "Digital identity preparation",
+    ],
+    image: "/projects/logo-branding-collection/aureline-logo.png",
+    imageWidth: 1254,
+    imageHeight: 1254,
+    imageAlt:
+      "Logo and brand identity collection featuring Aureline, NovaForge, Verdelle, IronPeak, Soluna Roasters, and Atelier North.",
+    detailPath: "/work/graphic-design/logo-branding-collection",
+    homepageVisible: false,
+    galleryImages: [
+      {
+        src: "/projects/logo-branding-collection/aureline-logo.png",
+        alt: "Aureline luxury fashion AL monogram and wordmark in gold and black.",
+      },
+      {
+        src: "/projects/logo-branding-collection/novaforge-logo.png",
+        alt: "NovaForge technology logo with geometric NF symbol and circuit details.",
+      },
+      {
+        src: "/projects/logo-branding-collection/verdelle-logo.png",
+        alt: "Verdelle organic skincare botanical V logo in sage green and gold.",
+      },
+      {
+        src: "/projects/logo-branding-collection/ironpeak-logo.png",
+        alt: "IronPeak fitness logo combining an angular IP monogram and mountain peak.",
+      },
+      {
+        src: "/projects/logo-branding-collection/soluna-roasters-logo.png",
+        alt: "Soluna Roasters coffee identity with sun, moon, coffee plant, and landscape symbol.",
+      },
+      {
+        src: "/projects/logo-branding-collection/atelier-north-logo.png",
+        alt: "Atelier North architecture identity with building linework and north marker.",
+      },
+    ],
+    platform: "Brand identity · Digital and print",
+    year: "2026",
+    summary:
+      "A curated collection of six logo and visual identity concepts, each designed around a different audience, industry, personality, and positioning strategy.",
+    shortLabel:
+      "Six distinctive logo systems created for fashion, technology, skincare, fitness, coffee, and architecture brands.",
+    tags: [
+      "Graphic Design",
+      "Branding",
+      "Logo Design",
+      "Visual Identity",
+      "Typography",
+      "Monogram",
+      "Brand Strategy",
+    ],
+    overview:
+      "A curated collection of six logo and visual identity concepts, each designed around a different audience, industry, personality, and positioning strategy.",
+    challenge:
+      "Create six immediately distinctive identities while giving every brand a clear strategic idea, ownable visual language, appropriate typography, and enough simplicity to work across modern digital touchpoints.",
+    discovery:
+      "Defined the audience, competitive tone, emotional qualities, naming cues, and practical identity requirements for luxury fashion, engineered technology, organic skincare, performance fitness, specialty coffee, and architecture.",
+    strategy:
+      "Built each direction around one memorable visual idea, then aligned symbol, monogram, typography, palette, spacing, and presentation with the brand’s intended position.",
+    designDecisions:
+      "Balanced expressive symbols with disciplined construction, pairing each mark with an industry-appropriate wordmark and a focused color system that remains recognizable at digital sizes.",
+    developmentApproach:
+      "Prepared presentation-ready raster assets and digital identity guidance for responsive portfolio display. Production vector masters, trademark review, and final brand-guideline documents would follow in a client delivery phase.",
+    results:
+      "Six differentiated identity systems demonstrating range across monogram, geometric, botanical, athletic, illustrative, and architectural logo directions.",
+    technologies: ["Adobe Illustrator", "Figma", "Adobe Photoshop"],
   },
   {
     id: "fintech-dashboard",

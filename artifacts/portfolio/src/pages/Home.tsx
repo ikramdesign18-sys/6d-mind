@@ -18,8 +18,9 @@ export default function Home() {
     "planit-prep",
   ]
     .map((slug) => PROJECTS.find((project) => project.slug === slug))
-    .filter((project): project is (typeof PROJECTS)[number] =>
-      Boolean(project),
+    .filter(
+      (project): project is (typeof PROJECTS)[number] =>
+        project !== undefined && project.homepageVisible !== false,
     );
 
   return (
