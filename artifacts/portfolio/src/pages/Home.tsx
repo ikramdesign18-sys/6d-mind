@@ -39,15 +39,17 @@ export default function Home() {
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 text-foreground bg-clip-text">
-            One Creative Brain.
+            6D Mind.
             <br />
-            <span className="text-primary/90">Complete Digital Solutions.</span>
+            <span className="text-primary/90">
+              One Mind. Six Digital Dimensions.
+            </span>
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl font-light mb-10 leading-relaxed backdrop-blur-sm bg-background/30 p-2">
-            A multidisciplinary digital product expert bridging the gap between
-            design, engineering, and AI. Taking your project from pure idea to
-            production-ready launch.
+            One creative mind connecting UI/UX and product design, mobile apps,
+            websites and web apps, AI products, graphic design, and brand
+            identity—from idea to production-ready launch.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">

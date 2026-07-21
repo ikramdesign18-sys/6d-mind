@@ -29,9 +29,16 @@ const queryClient = new QueryClient();
 const PageLoader = () => (
   <div className="w-full min-h-[50vh] flex items-center justify-center">
     <div className="flex flex-col items-center gap-4 opacity-50">
-      <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      <img
+        src="/brand/6d-mind/6d-mind-icon.png"
+        width="650"
+        height="650"
+        alt=""
+        aria-hidden="true"
+        className="h-10 w-10 animate-pulse object-contain motion-reduce:animate-none"
+      />
       <div className="font-mono text-xs tracking-widest text-primary">
-        LOADING_MODULE
+        LOADING 6D MIND
       </div>
     </div>
   </div>
