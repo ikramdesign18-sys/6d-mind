@@ -16,6 +16,9 @@ const WorkDetail = lazy(() => import("@/pages/WorkDetail"));
 const LogoBrandIdentityCollection = lazy(
   () => import("@/pages/LogoBrandIdentityCollection"),
 );
+const LuminaBotanicalsCaseStudy = lazy(
+  () => import("@/pages/LuminaBotanicalsCaseStudy"),
+);
 const Process = lazy(() => import("@/pages/Process"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -45,6 +48,10 @@ function Router() {
           <Route
             path="/work/graphic-design/logo-branding-collection"
             component={LogoBrandIdentityCollection}
+          />
+          <Route
+            path="/work/graphic-design/lumina-botanicals"
+            component={LuminaBotanicalsCaseStudy}
           />
           <Route path="/work/:slug" component={WorkDetail} />
           <Route path="/process" component={Process} />

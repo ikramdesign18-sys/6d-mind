@@ -542,6 +542,70 @@ export const PROJECTS: Project[] = [
     technologies: ["Adobe Illustrator", "Figma", "Adobe Photoshop"],
   },
   {
+    id: "lumina-botanicals",
+    slug: "lumina-botanicals",
+    title: "Lumina Botanicals",
+    category: "Graphic Design",
+    cardCategory: "Branding · Packaging · Visual Identity",
+    filterTags: [
+      "Graphic Design",
+      "Branding",
+      "Packaging",
+      "Visual Identity",
+      "Skincare",
+      "Premium Brand",
+    ],
+    industry: "Premium Skincare · Beauty · Wellness",
+    role: "Brand Identity and Packaging Designer",
+    services: [
+      "Brand strategy",
+      "Logo and monogram design",
+      "Visual identity",
+      "Color and typography direction",
+      "Packaging design",
+      "Stationery design",
+      "Retail applications",
+      "Campaign art direction",
+      "Brand presentation",
+    ],
+    image: "/projects/lumina-botanicals/01-lumina-banner.png",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt:
+      "Lumina Botanicals premium skincare identity banner featuring the botanical LB monogram, wordmark, serum bottle, and matching product box.",
+    detailPath: "/work/graphic-design/lumina-botanicals",
+    homepageVisible: false,
+    platform: "Brand identity · Packaging · Print and digital",
+    year: "2026",
+    summary:
+      "A refined visual identity concept for a premium organic skincare brand, built around calm luxury, botanical purity, and elevated packaging.",
+    shortLabel:
+      "Premium organic skincare identity shaped by botanical purity, calm luxury, and refined packaging.",
+    tags: [
+      "Branding",
+      "Packaging",
+      "Visual Identity",
+      "Skincare",
+      "Graphic Design",
+      "Art Direction",
+    ],
+    overview:
+      "Lumina Botanicals was designed as a premium skincare identity concept rooted in purity, elegance, and natural care. The branding balances soft editorial sophistication with a calm botanical character, creating a cohesive system across packaging, stationery, logo applications, and campaign visuals.",
+    challenge:
+      "Create a fictional skincare identity that feels premium and natural without relying on generic wellness cues, then extend it consistently across product, packaging, print, retail, and campaign touchpoints.",
+    discovery:
+      "Defined an audience that values premium natural skincare, beautiful packaging, quiet confidence, and transparent visual communication.",
+    strategy:
+      "Positioned Lumina around nature, radiance, calm, and purity, then translated those ideas into a botanical LB monogram, editorial typography, restrained color, and elevated packaging applications.",
+    designDecisions:
+      "Combined deep forest green, warm ivory, muted gold, elegant serif typography, botanical linework, and generous negative space to establish a calm luxury language.",
+    developmentApproach:
+      "Prepared a presentation-ready identity concept across logo variations, color and type, packaging, stationery, retail, and campaign art direction. Lumina Botanicals is an independent fictional portfolio concept, not a registered company or launched client brand.",
+    results:
+      "A cohesive premium skincare identity concept spanning logo, packaging, print collateral, retail application, and editorial campaign expression.",
+    technologies: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
+  },
+  {
     id: "fintech-dashboard",
     slug: "fintech-dashboard",
     title: "Aura Financial",

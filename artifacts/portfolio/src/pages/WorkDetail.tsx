@@ -9,6 +9,7 @@ import CrunchTimeFitnessCaseStudy from "./CrunchTimeFitnessCaseStudy";
 import ElanFashionCaseStudy from "./ElanFashionCaseStudy";
 import MdcnDistributionCaseStudy from "./MdcnDistributionCaseStudy";
 import LogoBrandIdentityCollection from "./LogoBrandIdentityCollection";
+import LuminaBotanicalsCaseStudy from "./LuminaBotanicalsCaseStudy";
 
 export default function WorkDetail() {
   const [match, params] = useRoute("/work/:slug");
@@ -46,6 +47,10 @@ export default function WorkDetail() {
 
   if (project.slug === "logo-branding-collection") {
     return <LogoBrandIdentityCollection />;
+  }
+
+  if (project.slug === "lumina-botanicals") {
+    return <LuminaBotanicalsCaseStudy />;
   }
 
   const nextProject = PROJECTS[projectIndex + 1] || PROJECTS[0]; // Loop around
