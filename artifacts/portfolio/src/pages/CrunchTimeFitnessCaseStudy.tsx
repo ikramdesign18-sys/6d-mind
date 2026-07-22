@@ -499,8 +499,6 @@ export default function CrunchTimeFitnessCaseStudy({
       setMetaTag("property", "og:type", "article"),
     ];
 
-    window.scrollTo({ top: 0, behavior: "auto" });
-
     return () => {
       document.title = previousTitle;
       restoreMeta.forEach((restore) => restore());
