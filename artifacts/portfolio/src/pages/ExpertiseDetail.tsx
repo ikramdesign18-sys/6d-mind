@@ -1,31 +1,40 @@
 import { useRoute, Link } from "wouter";
-import { ArrowLeft, CheckCircle2, LayoutTemplate } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { EXPERTISE } from "@/data/expertise";
 import { PROJECTS } from "@/data/projects";
 import NotFound from "./not-found";
 
 export default function ExpertiseDetail() {
   const [match, params] = useRoute("/expertise/:slug");
-  
+
   if (!match) return <NotFound />;
-  
-  const expertise = EXPERTISE.find(e => e.slug === params.slug);
+
+  const expertise = EXPERTISE.find((e) => e.slug === params.slug);
   if (!expertise) return <NotFound />;
 
-  const relatedProjects = PROJECTS.filter(p => p.category.includes(expertise.shortName) || expertise.name.includes(p.category)).slice(0, 3);
+  const relatedProjects = PROJECTS.filter(
+    (project) =>
+      project.category.includes(expertise.shortName) ||
+      project.filterTags?.includes(expertise.shortName),
+  ).slice(0, 3);
 
   return (
     <div className="w-full">
       {/* Hero */}
       <section className="pt-12 pb-24 px-6 border-b border-border bg-muted/30">
         <div className="container mx-auto max-w-5xl">
-          <Link href="/" className="inline-flex items-center text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-8"
+          >
             <ArrowLeft size={14} className="mr-2" /> BACK TO HOME
           </Link>
           <div className="inline-block px-3 py-1 bg-primary/10 text-primary font-mono text-xs tracking-widest mb-6 border border-primary/20">
             EXPERTISE AREA
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">{expertise.name}</h1>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+            {expertise.name}
+          </h1>
           <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-3xl leading-relaxed">
             {expertise.statement}
           </p>
@@ -41,7 +50,9 @@ export default function ExpertiseDetail() {
               <ul className="space-y-6">
                 {expertise.problemsSolved.map((problem, i) => (
                   <li key={i} className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-none border border-destructive flex items-center justify-center text-destructive font-mono text-sm">✕</div>
+                    <div className="flex-shrink-0 w-8 h-8 rounded-none border border-destructive flex items-center justify-center text-destructive font-mono text-sm">
+                      ✕
+                    </div>
                     <p className="text-foreground pt-1">{problem}</p>
                   </li>
                 ))}
@@ -68,20 +79,30 @@ export default function ExpertiseDetail() {
       <section className="py-24 px-6 bg-foreground text-background border-y border-border">
         <div className="container mx-auto max-w-5xl grid md:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-sm font-mono tracking-widest text-muted/50 mb-8 uppercase">Technical Skills</h2>
+            <h2 className="text-sm font-mono tracking-widest text-muted/50 mb-8 uppercase">
+              Technical Skills
+            </h2>
             <div className="flex flex-wrap gap-3">
-              {expertise.skills.map(skill => (
-                <span key={skill} className="px-4 py-2 bg-white/5 border border-white/10 text-white text-sm">
+              {expertise.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-4 py-2 bg-white/5 border border-white/10 text-white text-sm"
+                >
                   {skill}
                 </span>
               ))}
             </div>
           </div>
           <div>
-            <h2 className="text-sm font-mono tracking-widest text-muted/50 mb-8 uppercase">Toolkit</h2>
+            <h2 className="text-sm font-mono tracking-widest text-muted/50 mb-8 uppercase">
+              Toolkit
+            </h2>
             <div className="flex flex-wrap gap-3">
-              {expertise.tools.map(tool => (
-                <span key={tool} className="px-4 py-2 border border-white/20 text-white text-sm font-mono">
+              {expertise.tools.map((tool) => (
+                <span
+                  key={tool}
+                  className="px-4 py-2 border border-white/20 text-white text-sm font-mono"
+                >
                   {tool}
                 </span>
               ))}
@@ -95,11 +116,18 @@ export default function ExpertiseDetail() {
         <div className="container mx-auto max-w-5xl">
           <h2 className="text-3xl font-bold mb-12">Discipline Process</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {expertise.process.map(step => (
-              <div key={step.step} className="p-6 bg-white border border-border">
-                <div className="text-primary font-mono text-4xl font-light mb-4">0{step.step}</div>
+            {expertise.process.map((step) => (
+              <div
+                key={step.step}
+                className="p-6 bg-white border border-border"
+              >
+                <div className="text-primary font-mono text-4xl font-light mb-4">
+                  0{step.step}
+                </div>
                 <h3 className="text-lg font-bold mb-2">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -112,18 +140,40 @@ export default function ExpertiseDetail() {
           <div className="container mx-auto max-w-5xl">
             <div className="flex items-end justify-between mb-12">
               <h2 className="text-3xl font-bold">Selected Work</h2>
-              <Link href="/work" className="text-primary hover:underline font-medium text-sm hidden sm:block">View All Work</Link>
+              <Link
+                href="/work"
+                className="text-primary hover:underline font-medium text-sm hidden sm:block"
+              >
+                View All Work
+              </Link>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {relatedProjects.map(project => (
-                <Link key={project.id} href={`/work/${project.slug}`} className="group block">
-                  <div className="aspect-[4/3] bg-muted mb-4 overflow-hidden border border-border relative flex items-center justify-center">
-                    {/* Placeholder image representation */}
-                    <LayoutTemplate size={48} className="text-muted-foreground/30" />
+              {relatedProjects.map((project) => (
+                <Link
+                  key={project.id}
+                  href={project.detailPath ?? `/work/${project.slug}`}
+                  className="group block"
+                >
+                  <div className="relative mb-4 aspect-[4/3] overflow-hidden border border-border bg-muted">
+                    <img
+                      src={project.image}
+                      width={project.imageWidth}
+                      height={project.imageHeight}
+                      alt={
+                        project.imageAlt ??
+                        `${project.title} project presentation`
+                      }
+                      loading="lazy"
+                      className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
                   </div>
-                  <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{project.title}</h3>
-                  <p className="text-sm text-muted-foreground">{project.industry}</p>
+                  <h3 className="text-lg font-bold group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {project.industry}
+                  </p>
                 </Link>
               ))}
             </div>
@@ -134,9 +184,16 @@ export default function ExpertiseDetail() {
       {/* CTA */}
       <section className="py-24 px-6 bg-white border-t border-border text-center">
         <div className="container mx-auto max-w-2xl">
-          <h2 className="text-3xl font-bold mb-6">Need expertise in {expertise.shortName}?</h2>
-          <p className="text-muted-foreground mb-8">Let's discuss how I can bring value to your next project.</p>
-          <Link href="/contact" className="inline-block px-8 py-4 bg-foreground text-background font-medium hover:bg-primary transition-colors">
+          <h2 className="text-3xl font-bold mb-6">
+            Need expertise in {expertise.shortName}?
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            Let's discuss how I can bring value to your next project.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block px-8 py-4 bg-foreground text-background font-medium hover:bg-primary transition-colors"
+          >
             Start a Conversation
           </Link>
         </div>

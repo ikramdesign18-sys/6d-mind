@@ -32,9 +32,21 @@ export function usePageMetadata(
 ) {
   useEffect(() => {
     const previousTitle = document.title;
+    const pageUrl = window.location.href;
     const socialImage = imagePath.startsWith("http")
       ? imagePath
       : `${window.location.origin}${imagePath}`;
+    const existingCanonical = document.head.querySelector<HTMLLinkElement>(
+      'link[rel="canonical"]',
+    );
+    const canonical = existingCanonical ?? document.createElement("link");
+    const previousCanonical = existingCanonical?.href;
+
+    if (!existingCanonical) {
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = pageUrl;
     document.title = title;
 
     const cleanups = [
@@ -42,6 +54,7 @@ export function usePageMetadata(
       setMetaTag("property", "og:title", title),
       setMetaTag("property", "og:description", description),
       setMetaTag("property", "og:type", type),
+      setMetaTag("property", "og:url", pageUrl),
       setMetaTag("property", "og:image", socialImage),
       setMetaTag("name", "twitter:card", "summary_large_image"),
       setMetaTag("name", "twitter:title", title),
@@ -52,6 +65,11 @@ export function usePageMetadata(
     return () => {
       document.title = previousTitle;
       cleanups.forEach((cleanup) => cleanup());
+      if (existingCanonical && previousCanonical) {
+        canonical.href = previousCanonical;
+      } else {
+        canonical.remove();
+      }
     };
   }, [description, imagePath, title, type]);
 }

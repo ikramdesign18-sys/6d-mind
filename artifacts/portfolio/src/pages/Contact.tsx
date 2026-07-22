@@ -1,330 +1,185 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Terminal, Send, Mail, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  ExternalLink,
+  Mail,
+  MapPin,
+  MessageSquareText,
+  Phone,
+} from "lucide-react";
+import { SiDribbble, SiFiverr } from "react-icons/si";
 
+import EditorialReveal from "@/components/brand/EditorialReveal";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/data/contact";
-import { EXPERTISE } from "@/data/expertise";
+import { usePageMetadata } from "@/lib/use-page-metadata";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-
-const PROJECT_TYPES = [
-  ...EXPERTISE.map(e => e.name),
-  "Complete Digital Product",
-  "Ongoing Support",
-  "Other"
-];
-
-const BUDGETS = [
-  "Under $1,000",
-  "$1,000 - $3,000",
-  "$3,000 - $5,000",
-  "$5,000 - $10,000",
-  "$10,000+",
-  "Let's discuss"
-];
-
-const formSchema = z.object({
-  fullName: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  company: z.string().optional(),
-  projectType: z.string().min(1, "Please select a project type"),
-  budget: z.string().min(1, "Please select a budget range"),
-  timeline: z.string().min(1, "Timeline is required"),
-  description: z.string().min(10, "Please provide more details about your project"),
-  communication: z.string().min(1, "Please select preferred communication"),
-});
+const briefPoints = [
+  "What you are building or improving",
+  "Who the product is for",
+  "The current challenge or opportunity",
+  "The services you may need",
+  "Any preferred timeline or launch date",
+] as const;
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      company: "",
-      projectType: "",
-      budget: "",
-      timeline: "",
-      description: "",
-      communication: "",
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
-    // Simulate network request
-    setTimeout(() => {
-      console.log("Form data (client-side only):", values);
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 1500);
-  }
+  usePageMetadata(
+    "Start a Project — Contact 6D Mind",
+    "Contact 6D Mind to discuss product strategy, UI/UX design, mobile and web development, branding, graphic design, or launch preparation.",
+  );
 
   return (
-    <div className="w-full">
-      {/* Header */}
-      <section className="pt-20 pb-12 px-6 bg-foreground text-background">
-        <div className="container mx-auto max-w-6xl grid md:grid-cols-2 gap-12">
-          <div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">Initialize.</h1>
-            <p className="text-xl text-muted/80 font-light mb-12 max-w-md">
-              Ready to build? Send over the details of your vision, and I'll analyze how we can make it a reality.
+    <article className="w-full bg-background text-foreground">
+      <section className="relative overflow-hidden bg-foreground px-6 py-20 text-background md:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="container relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <EditorialReveal>
+            <div className="font-mono text-xs tracking-[0.24em] text-primary uppercase">
+              Start a Project
+            </div>
+            <h1 className="mt-6 text-5xl font-bold leading-[0.96] tracking-tighter text-white md:text-7xl lg:text-[5.4rem]">
+              Tell us what you are building.
+            </h1>
+            <p className="mt-7 max-w-2xl text-xl leading-relaxed font-light text-white/70">
+              Share your idea, current product, or challenge. We will review the
+              requirements and help identify the right strategy, design,
+              development, branding, or launch solution.
             </p>
-            
-            <div className="space-y-6 font-mono text-sm">
-              <div className="flex items-center gap-4 text-muted/90">
-                <Mail size={18} className="text-primary" />
-                <a href={`mailto:${CONTACT_INFO.email}`} className="hover:text-white transition-colors">{CONTACT_INFO.email}</a>
-              </div>
-              <div className="flex items-center gap-4 text-muted/90">
-                <MapPin size={18} className="text-primary" />
-                <span>{CONTACT_INFO.location}</span>
-              </div>
-              <div className="flex items-center gap-4 text-muted/90">
-                <Terminal size={18} className="text-primary" />
-                <span className="text-primary">{CONTACT_INFO.availability}</span>
-              </div>
-            </div>
-
-            <div className="mt-12">
-              <h3 className="font-mono text-xs text-muted/50 tracking-widest uppercase mb-4">Direct Channels</h3>
-              <div className="flex flex-wrap gap-3">
-                {SOCIAL_LINKS.map(link => (
-                  <a 
-                    key={link.label}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 border border-white/20 text-white hover:bg-white/10 transition-colors text-sm"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-background text-foreground p-8 md:p-10 border border-border relative shadow-2xl md:-mb-32">
-            {isSuccess ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-20 animate-in fade-in zoom-in duration-500">
-                <div className="w-16 h-16 bg-primary/10 text-primary flex items-center justify-center rounded-full mb-6">
-                  <Terminal size={32} />
-                </div>
-                <h2 className="text-2xl font-bold mb-4">Transmission Successful</h2>
-                <p className="text-muted-foreground mb-8 max-w-sm">
-                  Your idea has entered the system. I'll review the details and respond as soon as possible.
-                </p>
-                <Button 
-                  onClick={() => {
-                    setIsSuccess(false);
-                    form.reset();
-                  }}
-                  variant="outline"
-                  className="rounded-none font-mono uppercase tracking-widest"
-                >
-                  Send Another
-                </Button>
-              </div>
-            ) : (
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="fullName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-mono text-xs uppercase tracking-wider">Full Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Jane Doe" className="rounded-none bg-muted/50 border-border focus-visible:ring-primary focus-visible:ring-offset-0" {...field} />
-                          </FormControl>
-                          <FormMessage className="text-xs" />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-mono text-xs uppercase tracking-wider">Email Address</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="jane@example.com" className="rounded-none bg-muted/50 border-border focus-visible:ring-primary focus-visible:ring-offset-0" {...field} />
-                          </FormControl>
-                          <FormMessage className="text-xs" />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name="company"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-mono text-xs uppercase tracking-wider">Company / Organization (Optional)</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Acme Corp" className="rounded-none bg-muted/50 border-border focus-visible:ring-primary focus-visible:ring-offset-0" {...field} />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItem>
-                    )}
-                  />
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="projectType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-mono text-xs uppercase tracking-wider">Project Type</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="rounded-none bg-muted/50 border-border focus:ring-primary focus:ring-offset-0">
-                                <SelectValue placeholder="Select type" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent className="rounded-none">
-                              {PROJECT_TYPES.map(type => (
-                                <SelectItem key={type} value={type} className="rounded-none focus:bg-primary/10 focus:text-primary">{type}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage className="text-xs" />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="budget"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-mono text-xs uppercase tracking-wider">Estimated Budget</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="rounded-none bg-muted/50 border-border focus:ring-primary focus:ring-offset-0">
-                                <SelectValue placeholder="Select budget" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent className="rounded-none">
-                              {BUDGETS.map(budget => (
-                                <SelectItem key={budget} value={budget} className="rounded-none focus:bg-primary/10 focus:text-primary">{budget}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage className="text-xs" />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="timeline"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-mono text-xs uppercase tracking-wider">Expected Timeline</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="rounded-none bg-muted/50 border-border focus:ring-primary focus:ring-offset-0">
-                                <SelectValue placeholder="Select timeline" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent className="rounded-none">
-                              <SelectItem value="ASAP">ASAP (Urgent)</SelectItem>
-                              <SelectItem value="1-2 months">1-2 months</SelectItem>
-                              <SelectItem value="3-6 months">3-6 months</SelectItem>
-                              <SelectItem value="Flexible">Flexible</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage className="text-xs" />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="communication"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-mono text-xs uppercase tracking-wider">Preferred Comms</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="rounded-none bg-muted/50 border-border focus:ring-primary focus:ring-offset-0">
-                                <SelectValue placeholder="Select method" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent className="rounded-none">
-                              <SelectItem value="Email">Email</SelectItem>
-                              <SelectItem value="Video Call">Video Call</SelectItem>
-                              <SelectItem value="WhatsApp">WhatsApp</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage className="text-xs" />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name="description"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-mono text-xs uppercase tracking-wider">Project Description</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            placeholder="Tell me about your goals, current challenges, and what success looks like..." 
-                            className="min-h-[120px] rounded-none bg-muted/50 border-border focus-visible:ring-primary focus-visible:ring-offset-0 resize-y"
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button 
-                    type="submit" 
-                    className="w-full rounded-none h-14 text-base font-bold tracking-wide hover:bg-primary transition-colors flex items-center gap-2"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>Processing <Terminal className="animate-pulse" size={18} /></>
-                    ) : (
-                      <>Submit Inquiry <Send size={18} /></>
-                    )}
-                  </Button>
-                </form>
-              </Form>
-            )}
-          </div>
+          </EditorialReveal>
+          <EditorialReveal
+            delay={0.06}
+            className="border-t border-white/15 pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10"
+          >
+            <p className="text-sm leading-relaxed text-white/55">
+              Email is the most reliable way to share a project brief. The
+              address below opens your email application directly—there is no
+              unverified form or hidden submission service.
+            </p>
+            <a
+              href={CONTACT_INFO.emailHref}
+              aria-label={`Email 6D Mind at ${CONTACT_INFO.email}`}
+              className="mt-6 inline-flex min-h-12 max-w-full items-center gap-3 bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <Mail size={19} aria-hidden="true" />
+              <span className="break-all">Send an Email</span>
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          </EditorialReveal>
         </div>
       </section>
 
-      {/* Spacing for overlapping card */}
-      <div className="h-32 hidden md:block"></div>
-    </div>
+      <section className="border-b border-border bg-white px-6 py-20 md:py-24">
+        <div className="container mx-auto grid max-w-6xl gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <a
+            href={CONTACT_INFO.emailHref}
+            aria-label={`Email 6D Mind at ${CONTACT_INFO.email}`}
+            className="group min-h-48 bg-white p-7 transition-colors hover:bg-muted/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+          >
+            <Mail className="text-primary" aria-hidden="true" />
+            <h2 className="mt-8 text-xl font-bold">Send an Email</h2>
+            <p className="mt-2 break-all text-sm text-muted-foreground">
+              {CONTACT_INFO.email}
+            </p>
+          </a>
+          <a
+            href={CONTACT_INFO.phoneHref}
+            aria-label={`Call 6D Mind at ${CONTACT_INFO.phoneDisplay}`}
+            className="group min-h-48 bg-white p-7 transition-colors hover:bg-muted/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+          >
+            <Phone className="text-primary" aria-hidden="true" />
+            <h2 className="mt-8 text-xl font-bold">Call</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {CONTACT_INFO.phoneDisplay}
+            </p>
+          </a>
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.ariaLabel}
+              className="group min-h-48 bg-white p-7 transition-colors hover:bg-muted/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+            >
+              {link.label === "Fiverr" ? (
+                <SiFiverr
+                  className="text-2xl text-primary"
+                  aria-hidden="true"
+                />
+              ) : (
+                <SiDribbble
+                  className="text-xl text-primary"
+                  aria-hidden="true"
+                />
+              )}
+              <h2 className="mt-8 text-xl font-bold">View {link.label}</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {link.label === "Fiverr"
+                  ? "View Fiverr Profile"
+                  : "View Dribbble Work"}
+              </p>
+              <ExternalLink
+                className="mt-5 text-muted-foreground"
+                size={16}
+                aria-hidden="true"
+              />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-6 py-24 md:py-32">
+        <div className="container mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+          <EditorialReveal>
+            <MessageSquareText
+              className="text-primary"
+              size={34}
+              aria-hidden="true"
+            />
+            <h2 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl">
+              A useful first message.
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              A short, clear brief helps us understand where the project is now
+              and what the next useful step should be.
+            </p>
+          </EditorialReveal>
+          <EditorialReveal delay={0.06}>
+            <div className="border-t border-border">
+              {briefPoints.map((point, index) => (
+                <div
+                  key={point}
+                  className="grid min-h-20 grid-cols-[3rem_1fr] items-center gap-4 border-b border-border py-4"
+                >
+                  <span className="font-mono text-xs text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-medium">{point}</span>
+                </div>
+              ))}
+            </div>
+          </EditorialReveal>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-white px-6 py-20">
+        <div className="container mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <EditorialReveal>
+            <div className="flex items-center gap-3 text-muted-foreground">
+              <MapPin className="text-primary" size={19} aria-hidden="true" />
+              {CONTACT_INFO.location}
+            </div>
+            <h2 className="mt-5 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
+              Based in Islamabad and collaborating with clients worldwide.
+            </h2>
+          </EditorialReveal>
+          <a
+            href={CONTACT_INFO.emailHref}
+            aria-label={`Start a project by emailing ${CONTACT_INFO.email}`}
+            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 bg-foreground px-7 py-3 font-semibold text-background hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            Start a Project <ArrowRight size={18} aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+    </article>
   );
 }

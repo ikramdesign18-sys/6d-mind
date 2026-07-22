@@ -1242,14 +1242,15 @@ export default function ElanFashionCaseStudy({
             </span>
           </Link>
           <Link
-            href="/work/fintech-dashboard"
+            href="/work/graphic-design/logo-branding-collection"
             className="group flex min-h-32 flex-col justify-center py-8 outline-none focus-visible:ring-2 focus-visible:ring-[#7a513f] md:pl-8 md:text-right"
           >
             <span className="font-mono text-xs tracking-[0.16em] text-[#332d29]/45 uppercase">
               Next Project
             </span>
             <span className="mt-2 flex items-center gap-3 text-xl font-bold transition-colors group-hover:text-[#7a513f] md:justify-end">
-              Aura Financial <ArrowRight size={20} aria-hidden="true" />
+              Logo &amp; Brand Identity Collection
+              <ArrowRight size={20} aria-hidden="true" />
             </span>
           </Link>
         </div>

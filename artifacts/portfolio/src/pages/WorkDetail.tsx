@@ -1,5 +1,5 @@
 import { useRoute, Link } from "wouter";
-import { ArrowLeft, ArrowRight, LayoutTemplate } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PROJECTS } from "@/data/projects";
 import NotFound from "./not-found";
 import PlanitPrepCaseStudy from "./PlanitPrepCaseStudy";
@@ -10,6 +10,7 @@ import ElanFashionCaseStudy from "./ElanFashionCaseStudy";
 import MdcnDistributionCaseStudy from "./MdcnDistributionCaseStudy";
 import LogoBrandIdentityCollection from "./LogoBrandIdentityCollection";
 import LuminaBotanicalsCaseStudy from "./LuminaBotanicalsCaseStudy";
+import OrpheviaBrandingCaseStudy from "./OrpheviaBrandingCaseStudy";
 
 export default function WorkDetail() {
   const [match, params] = useRoute("/work/:slug");
@@ -51,6 +52,10 @@ export default function WorkDetail() {
 
   if (project.slug === "lumina-botanicals") {
     return <LuminaBotanicalsCaseStudy />;
+  }
+
+  if (project.slug === "orphevia-branding") {
+    return <OrpheviaBrandingCaseStudy />;
   }
 
   const nextProject = PROJECTS[projectIndex + 1] || PROJECTS[0]; // Loop around
@@ -110,15 +115,16 @@ export default function WorkDetail() {
         </div>
       </section>
 
-      {/* Hero Image Placeholder */}
+      {/* Hero image */}
       <section className="px-6 mb-24">
         <div className="container mx-auto max-w-5xl">
-          <div className="aspect-[21/9] bg-muted border border-border flex items-center justify-center relative overflow-hidden">
-            <LayoutTemplate size={80} className="text-muted-foreground/20" />
-            <div className="absolute inset-0 flex items-center justify-center font-mono text-muted-foreground/40 bg-stripes">
-              {project.image}
-            </div>
-          </div>
+          <img
+            src={project.image}
+            width={project.imageWidth}
+            height={project.imageHeight}
+            alt={project.imageAlt ?? `${project.title} project presentation`}
+            className="block h-auto w-full border border-border object-cover"
+          />
         </div>
       </section>
 
@@ -157,12 +163,14 @@ export default function WorkDetail() {
               </div>
             </div>
 
-            {/* Execution Placeholder Image 1 */}
-            <div className="aspect-[16/9] bg-muted border border-border flex items-center justify-center">
-              <span className="font-mono text-sm text-muted-foreground/50">
-                Process Visual Placeholder
-              </span>
-            </div>
+            {project.galleryImages?.[0] && (
+              <img
+                src={project.galleryImages[0].src}
+                alt={project.galleryImages[0].alt}
+                loading="lazy"
+                className="block h-auto w-full border border-border"
+              />
+            )}
 
             {/* Execution */}
             <div>
@@ -198,12 +206,14 @@ export default function WorkDetail() {
               </div>
             </div>
 
-            {/* Execution Placeholder Image 2 */}
-            <div className="aspect-[16/9] bg-muted border border-border flex items-center justify-center">
-              <span className="font-mono text-sm text-muted-foreground/50">
-                Final Solution Visual Placeholder
-              </span>
-            </div>
+            {project.galleryImages?.[1] && (
+              <img
+                src={project.galleryImages[1].src}
+                alt={project.galleryImages[1].alt}
+                loading="lazy"
+                className="block h-auto w-full border border-border"
+              />
+            )}
 
             {/* Results */}
             <div>
@@ -236,7 +246,7 @@ export default function WorkDetail() {
       {/* Next Project Navigation */}
       <section className="border-t border-border bg-muted/20 hover:bg-muted/40 transition-colors">
         <Link
-          href={`/work/${nextProject.slug}`}
+          href={nextProject.detailPath ?? `/work/${nextProject.slug}`}
           className="block py-20 px-6 container mx-auto text-center group"
         >
           <div className="text-sm font-mono text-muted-foreground mb-4 tracking-widest uppercase">

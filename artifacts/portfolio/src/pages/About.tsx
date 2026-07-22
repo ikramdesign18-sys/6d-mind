@@ -1,99 +1,224 @@
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { SiDribbble, SiFiverr } from "react-icons/si";
 import { Link } from "wouter";
-import { Download, Terminal } from "lucide-react";
+
+import ConnectedDimensions from "@/components/brand/ConnectedDimensions";
+import EditorialReveal from "@/components/brand/EditorialReveal";
+import { BRAND_DIMENSIONS } from "@/data/brand";
+import { CONTACT_INFO, SOCIAL_LINKS } from "@/data/contact";
 import { STATS } from "@/data/stats";
+import { usePageMetadata } from "@/lib/use-page-metadata";
+
+const expertise = [
+  "Product strategy",
+  "UI/UX and product design",
+  "Mobile application design and development",
+  "Website and web application development",
+  "Branding and graphic design",
+  "Product refinement and launch preparation",
+] as const;
+
+const proof = [
+  [STATS.experience, "Years of multidisciplinary experience"],
+  [STATS.projects, "Completed projects"],
+  [STATS.collaboration, "Remote client collaboration"],
+  ["6", "Connected digital disciplines"],
+] as const;
 
 export default function About() {
+  usePageMetadata(
+    "About 6D Mind — Multidisciplinary Digital Product Studio",
+    "Meet Ikram, the multidisciplinary product designer and developer behind 6D Mind, connecting strategy, UI/UX, development, branding, and launch preparation.",
+  );
+
   return (
-    <div className="w-full">
-      {/* Hero */}
-      <section className="pt-20 pb-16 px-6">
-        <div className="container mx-auto max-w-5xl">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 max-w-3xl">
-            I don't just design interfaces. <br />
-            <span className="text-primary">I build complete products.</span>
-          </h1>
+    <article className="w-full bg-background text-foreground">
+      <section className="relative overflow-hidden bg-foreground px-6 py-20 text-background md:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="container relative mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
+          <EditorialReveal>
+            <div className="font-mono text-xs tracking-[0.24em] text-primary uppercase">
+              About 6D Mind
+            </div>
+            <h1 className="mt-6 max-w-4xl text-5xl font-bold leading-[0.98] tracking-tighter text-white md:text-7xl">
+              One multidisciplinary mind behind complete digital products.
+            </h1>
+            <p className="mt-7 max-w-2xl text-xl leading-relaxed font-light text-white/72">
+              6D Mind is a multidisciplinary digital studio led by Ikram,
+              combining product strategy, UI/UX design, mobile and web
+              development, branding, graphic design, and launch preparation
+              through one connected process.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/contact"
+                className="inline-flex min-h-12 items-center justify-center gap-2 bg-primary px-7 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                Start a Project <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex min-h-12 items-center justify-center border border-white/25 px-7 py-3 font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                Contact 6D Mind
+              </Link>
+            </div>
+          </EditorialReveal>
+          <EditorialReveal delay={0.08}>
+            <ConnectedDimensions />
+          </EditorialReveal>
         </div>
       </section>
 
-      {/* Intro & Portrait */}
-      <section className="py-12 px-6">
-        <div className="container mx-auto max-w-5xl">
-          <div className="grid md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-5">
-              <div className="aspect-[3/4] bg-muted border border-border relative flex items-center justify-center overflow-hidden">
-                <div className="text-center p-6 opacity-30">
-                  <Terminal size={48} className="mx-auto mb-4" />
-                  <p className="font-mono text-sm tracking-widest">[PORTRAIT_PLACEHOLDER.JPG]</p>
+      <section className="border-b border-border bg-white px-6">
+        <div className="container mx-auto grid max-w-6xl divide-y divide-border sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+          {proof.map(([value, label], index) => (
+            <EditorialReveal
+              key={label}
+              delay={index * 0.04}
+              className="px-0 py-10 sm:px-6 lg:py-14 first:pl-0 last:pr-0"
+            >
+              <div className="text-4xl font-bold tracking-tight text-primary md:text-5xl">
+                {value}
+              </div>
+              <p className="mt-3 max-w-44 text-sm leading-relaxed text-muted-foreground">
+                {label}
+              </p>
+            </EditorialReveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-6 py-24 md:py-32">
+        <div className="container mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+          <EditorialReveal>
+            <div className="font-mono text-xs tracking-[0.22em] text-primary uppercase">
+              The Person Behind the Studio
+            </div>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
+              Product thinking, design craft, and technical execution.
+            </h2>
+          </EditorialReveal>
+          <EditorialReveal
+            delay={0.06}
+            className="space-y-6 text-lg leading-relaxed text-muted-foreground"
+          >
+            <p>
+              Over the past seven years, I have worked across more than 300
+              projects, helping founders and businesses transform early ideas,
+              improve existing products, design clear user experiences, build
+              digital platforms, and prepare products for launch.
+            </p>
+            <p>
+              I work closely with clients, study the complete product rather
+              than only the requested screen or feature, and remain focused on
+              creating a result that is useful, practical, polished, and ready
+              for the next stage.
+            </p>
+            <p className="border-l-2 border-primary pl-6 text-xl font-medium text-foreground">
+              You work directly with the person shaping the strategy, design,
+              brand, and implementation direction.
+            </p>
+          </EditorialReveal>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-white px-6 py-24 md:py-32">
+        <div className="container mx-auto max-w-6xl">
+          <EditorialReveal className="max-w-3xl">
+            <div className="font-mono text-xs tracking-[0.22em] text-primary uppercase">
+              Connected Expertise
+            </div>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
+              Six disciplines, one consistent product direction.
+            </h2>
+          </EditorialReveal>
+          <div className="mt-14 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+            {expertise.map((item, index) => (
+              <EditorialReveal
+                key={item}
+                delay={(index % 3) * 0.04}
+                className="min-h-44 bg-white p-7 md:p-9"
+              >
+                <div className="font-mono text-sm text-primary">
+                  {String(index + 1).padStart(2, "0")}
                 </div>
-                {/* Decorative scanning line effect */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-primary/30 blur-sm animate-[pulse_4s_ease-in-out_infinite]" style={{ animation: "scan 4s linear infinite" }} />
-              </div>
-            </div>
-            
-            <div className="md:col-span-7 space-y-8 text-lg font-light leading-relaxed text-foreground/80">
-              <p className="text-xl font-normal text-foreground">
-                Hi, I'm [Your Name]. I am a multidisciplinary digital product expert bridging the gap between human-centered design and robust software engineering.
-              </p>
-              <p>
-                The traditional agency model is broken. You hire a designer, and the developers complain the designs aren't buildable. You hire developers, and the UI lacks polish. You try to integrate AI, and nobody understands the product strategy.
-              </p>
-              <p>
-                I solve this by being a single point of accountability. I understand typography and state management. I know how to conduct user research and how to configure a React Native build pipeline. I design with data structures in mind, and I code with an obsession for pixel-perfection.
-              </p>
-              <p>
-                For the past {STATS.experience} years, I've partnered with startups, established brands, and visionary founders worldwide to launch over {STATS.projects} successful digital products.
-              </p>
+                <h3 className="mt-8 text-2xl font-bold">{item}</h3>
+                <div className="mt-5 font-mono text-[0.65rem] tracking-[0.14em] text-muted-foreground uppercase">
+                  {BRAND_DIMENSIONS[index]}
+                </div>
+              </EditorialReveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="pt-6 flex gap-4">
-                <a href="/placeholder-resume.pdf" download className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-medium hover:bg-primary transition-colors">
-                  <Download size={18} /> Download Résumé
+      <section className="px-6 py-24 md:py-28">
+        <div className="container mx-auto grid max-w-6xl gap-12 bg-foreground p-7 text-background md:p-12 lg:grid-cols-[1.15fr_0.85fr]">
+          <EditorialReveal>
+            <div className="font-mono text-xs tracking-[0.2em] text-primary uppercase">
+              Based in Islamabad · Working Worldwide
+            </div>
+            <h2 className="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl">
+              Let&apos;s build the next stage of your product.
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/65">
+              {CONTACT_INFO.worldwide}
+            </p>
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex min-h-12 items-center gap-2 bg-primary px-7 py-3 font-semibold text-white hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Let&apos;s Work Together{" "}
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </EditorialReveal>
+          <EditorialReveal
+            delay={0.06}
+            className="space-y-5 border-t border-white/15 pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10"
+          >
+            <a
+              href={CONTACT_INFO.emailHref}
+              aria-label={`Email 6D Mind at ${CONTACT_INFO.email}`}
+              className="flex min-h-11 items-center gap-4 text-white/75 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <Mail className="text-primary" size={19} aria-hidden="true" />
+              <span className="break-all">{CONTACT_INFO.email}</span>
+            </a>
+            <a
+              href={CONTACT_INFO.phoneHref}
+              aria-label={`Call 6D Mind at ${CONTACT_INFO.phoneDisplay}`}
+              className="flex min-h-11 items-center gap-4 text-white/75 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <Phone className="text-primary" size={19} aria-hidden="true" />
+              {CONTACT_INFO.phoneDisplay}
+            </a>
+            <div className="flex min-h-11 items-center gap-4 text-white/75">
+              <MapPin className="text-primary" size={19} aria-hidden="true" />
+              {CONTACT_INFO.location}
+            </div>
+            <div className="flex flex-wrap gap-3 pt-4">
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.ariaLabel}
+                  className="inline-flex min-h-11 items-center border border-white/20 px-4 py-2 text-white hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {link.label === "Fiverr" ? (
+                    <SiFiverr className="mr-2 text-lg" aria-hidden="true" />
+                  ) : (
+                    <SiDribbble className="mr-2" aria-hidden="true" />
+                  )}
+                  {link.label}
                 </a>
-                <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 border border-border font-medium hover:bg-muted transition-colors">
-                  Get in touch
-                </Link>
-              </div>
+              ))}
             </div>
-          </div>
+          </EditorialReveal>
         </div>
       </section>
-
-      {/* Core Principles */}
-      <section className="py-24 px-6 bg-muted/20 border-t border-border">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold mb-12">Operating Principles</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="p-8 bg-white border border-border">
-              <div className="w-10 h-10 bg-primary/10 text-primary flex items-center justify-center font-mono font-bold mb-6">01</div>
-              <h3 className="text-xl font-bold mb-3">Function Over Form, Always</h3>
-              <p className="text-muted-foreground font-light">A beautiful product that confuses users is a failed product. Design must serve the goal, not the ego.</p>
-            </div>
-            <div className="p-8 bg-white border border-border">
-              <div className="w-10 h-10 bg-primary/10 text-primary flex items-center justify-center font-mono font-bold mb-6">02</div>
-              <h3 className="text-xl font-bold mb-3">Ship Early, Iterate Fast</h3>
-              <p className="text-muted-foreground font-light">Perfectionism is the enemy of progress. Get the core value proposition into users' hands and let data drive the rest.</p>
-            </div>
-            <div className="p-8 bg-white border border-border">
-              <div className="w-10 h-10 bg-primary/10 text-primary flex items-center justify-center font-mono font-bold mb-6">03</div>
-              <h3 className="text-xl font-bold mb-3">Maintainable by Default</h3>
-              <p className="text-muted-foreground font-light">Code and design systems are written for humans first, machines second. Clarity and structure prevent technical debt.</p>
-            </div>
-            <div className="p-8 bg-white border border-border">
-              <div className="w-10 h-10 bg-primary/10 text-primary flex items-center justify-center font-mono font-bold mb-6">04</div>
-              <h3 className="text-xl font-bold mb-3">Transparent Communication</h3>
-              <p className="text-muted-foreground font-light">No black boxes. You will always know where the project stands, what the blockers are, and what happens next.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <style>{`
-        @keyframes scan {
-          0% { top: 0; opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { top: 100%; opacity: 0; }
-        }
-      `}</style>
-    </div>
+    </article>
   );
 }

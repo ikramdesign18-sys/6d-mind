@@ -15,56 +15,60 @@ import { TESTIMONIALS } from "@/data/testimonials";
 import { usePageMetadata } from "@/lib/use-page-metadata";
 
 const fragmented = [
-  "Separate specialists and repeated explanations",
-  "Conflicting decisions and slower handoffs",
-  "Unclear responsibility across the journey",
-  "Inconsistent quality between disciplines",
-  "More project management for the client",
+  "Multiple separate specialists",
+  "Repeated explanations",
+  "Conflicting decisions",
+  "Slow handoffs",
+  "Inconsistent execution",
+  "Unclear responsibility",
+  "More client management",
 ];
 
 const connected = [
-  "One product direction and connected process",
-  "Unified design, brand, and development decisions",
-  "Faster answers with clear responsibility",
-  "Product improvement throughout the journey",
-  "Support through the agreed completion",
+  "One connected product direction",
+  "Strategy before execution",
+  "Design and development alignment",
+  "Consistent visual identity",
+  "Clear communication",
+  "Fewer handoff problems",
+  "Continued involvement until agreed completion",
 ];
 
 const reasons = [
   {
     number: "01",
-    title: "Strong multidisciplinary expertise",
-    copy: "Our experience connects UI/UX design, product thinking, branding, graphic design, mobile applications, websites, frontend development, and launch preparation. Every decision is considered as part of the complete product—not as an isolated task.",
+    title: "Strong Multidisciplinary Expertise",
+    copy: "We combine product strategy, UI/UX, branding, graphic design, mobile applications, websites, frontend development, and launch preparation. This allows every decision to support the complete product rather than one isolated task.",
     span: "lg:col-span-7",
   },
   {
     number: "02",
-    title: "Everything in one place",
-    copy: "You do not need to search for a different designer, developer, brand specialist, or launch partner at every stage. We connect the complete workflow through one consistent direction.",
+    title: "More Than 300 Completed Projects",
+    copy: "Experience across hundreds of projects has helped us understand different industries, user needs, product challenges, client expectations, and practical delivery requirements.",
     span: "lg:col-span-5",
   },
   {
     number: "03",
-    title: "We improve the idea",
-    copy: "We do not simply copy instructions into screens or code. We study the idea, identify weaknesses, improve the experience, clarify the product, and suggest stronger solutions before implementation.",
+    title: "Seven Years of Experience",
+    copy: "Our experience connects creative direction with product thinking and technical execution, helping us identify risks, improve decisions, and maintain quality across the complete journey.",
     span: "lg:col-span-5",
   },
   {
     number: "04",
-    title: "Real product experience",
-    copy: "We have worked on owned digital products as well as client products. We understand that useful flows, clear positioning, practical development decisions, and a realistic launch path matter as much as attractive screens.",
+    title: "Everything in One Place",
+    copy: "You do not need to hire a separate strategist, designer, developer, branding specialist, and launch partner. 6D Mind connects these disciplines through one clear direction and one consistent workflow.",
     span: "lg:col-span-7",
   },
   {
     number: "05",
-    title: "Partnership until completion",
-    copy: "We remain involved through the agreed project journey, review the details, solve problems, and work toward a complete result rather than disappearing after the first delivery.",
+    title: "We Improve the Original Idea",
+    copy: "We do not simply follow instructions without thinking. We study the concept, identify weaknesses, improve flows, recommend stronger features, simplify unnecessary complexity, and help shape a more useful product.",
     span: "lg:col-span-7",
   },
   {
     number: "06",
-    title: "Premium quality, practical execution",
-    copy: "We combine strong design craft with responsive behavior, usability, accessibility, performance, maintainable development, and launch preparation.",
+    title: "We Understand Product Ownership",
+    copy: "We have worked on our own digital products as well as client products. That experience helps us think beyond attractive screens and consider usability, business goals, technical feasibility, launch readiness, and long-term product quality.",
     span: "lg:col-span-5",
   },
 ];
@@ -123,17 +127,13 @@ export default function Why6DMind() {
               Why 6D Mind
             </div>
             <h1 className="max-w-4xl text-5xl font-bold leading-[0.95] tracking-tighter text-white md:text-7xl lg:text-[5.4rem]">
-              One partner for the entire product journey.
+              One partner for your complete product journey.
             </h1>
             <p className="mt-7 max-w-2xl text-xl leading-relaxed font-light text-white/68">
-              Strategy, design, branding, development, launch, and
-              growth—connected through one experienced product mind.
-            </p>
-            <p className="mt-6 max-w-2xl leading-relaxed text-white/58">
-              Most digital projects become difficult because each stage is
-              handled by people with different priorities. 6D Mind brings the
-              complete journey together, giving you one clear partner from the
-              first idea to the final product.
+              6D Mind brings strategy, design, development, branding, launch
+              preparation, and product improvement together through one
+              connected process—so you do not need to coordinate separate
+              specialists at every stage.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -183,10 +183,10 @@ export default function Why6DMind() {
         <div className="container mx-auto max-w-6xl">
           <EditorialReveal className="max-w-3xl">
             <div className="font-mono text-xs tracking-[0.22em] text-primary uppercase">
-              The Difference
+              Client Experience
             </div>
             <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
-              You do not need to manage five different specialists.
+              A Clearer Way to Build
             </h2>
           </EditorialReveal>
           <div className="mt-14 grid overflow-hidden border border-border lg:grid-cols-2">
@@ -244,10 +244,10 @@ export default function Why6DMind() {
         <div className="container mx-auto max-w-6xl">
           <EditorialReveal className="max-w-3xl">
             <div className="font-mono text-xs tracking-[0.22em] text-primary uppercase">
-              Why Clients Choose Us
+              Six Reasons
             </div>
             <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
-              More than execution. We help shape the product.
+              Why Choose 6D Mind
             </h2>
           </EditorialReveal>
           <div className="mt-14 grid gap-px bg-border lg:grid-cols-12">
@@ -269,6 +269,10 @@ export default function Why6DMind() {
               </EditorialReveal>
             ))}
           </div>
+          <EditorialReveal className="mt-12 border-l-2 border-primary pl-6 text-2xl font-semibold leading-relaxed md:text-3xl">
+            You bring the vision. We help make it clearer, stronger, and ready
+            to become a complete product.
+          </EditorialReveal>
         </div>
       </section>
 
@@ -351,13 +355,13 @@ export default function Why6DMind() {
         <EditorialReveal className="container mx-auto max-w-6xl">
           <ShieldCheck size={40} aria-hidden="true" />
           <h2 className="mt-7 max-w-5xl text-4xl font-bold tracking-tight md:text-6xl">
-            No handoff chaos. No disconnected decisions. No unfinished product
-            thinking.
+            We stay involved until the agreed project is complete.
           </h2>
           <p className="mt-7 max-w-3xl text-xl leading-relaxed text-white/78">
-            You receive one connected product journey with clear responsibility,
-            direct collaboration, and a partner who understands both the
-            creative and technical sides of the work.
+            Our work does not stop after the first design delivery. We review
+            details, solve agreed issues, refine the experience, support
+            implementation, and keep the complete product goal in view
+            throughout the project.
           </p>
           <div className="mt-10 grid gap-px bg-white/25 md:grid-cols-3">
             {[

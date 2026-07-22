@@ -1392,14 +1392,14 @@ export default function MdcnDistributionCaseStudy({
             </span>
           </Link>
           <Link
-            href="/work/fintech-dashboard"
+            href="/work/graphic-design/orphevia-branding"
             className="group flex min-h-32 flex-col justify-center border-b border-[#d8d8d8] py-8 outline-none focus-visible:ring-2 focus-visible:ring-[#111] md:border-b-0 md:border-r md:px-8"
           >
             <span className="font-mono text-xs tracking-[0.16em] text-[#555] uppercase">
               Previous Project
             </span>
             <span className="mt-2 text-xl font-bold transition-colors group-hover:text-[#555]">
-              Aura Financial
+              ORPHEVIA
             </span>
           </Link>
           <Link

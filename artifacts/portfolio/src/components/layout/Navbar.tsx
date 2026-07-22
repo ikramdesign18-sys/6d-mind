@@ -10,8 +10,9 @@ const LINKS = [
   { href: "/why-6d-mind", label: "Why 6D Mind" },
   { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
+
+const MOBILE_LINKS = [...LINKS, { href: "/contact", label: "Contact" }];
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -71,7 +72,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="ml-4 bg-foreground text-background px-5 py-2 text-sm font-medium hover:bg-primary transition-colors"
+            className="ml-4 inline-flex min-h-11 items-center bg-foreground px-5 py-2 text-sm font-medium text-background transition-colors hover:bg-primary"
           >
             Start a Project
           </Link>
@@ -79,7 +80,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden p-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center p-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
           aria-expanded={isMobileMenuOpen}
@@ -95,12 +96,12 @@ export default function Navbar() {
           id="mobile-navigation"
           className="absolute top-full left-0 w-full bg-background border-b border-border shadow-lg lg:hidden flex flex-col py-4 px-6 gap-4"
         >
-          {LINKS.map((link) => (
+          {MOBILE_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-lg font-medium py-2 border-b border-border",
+                "flex min-h-11 items-center border-b border-border py-2 text-lg font-medium",
                 location.startsWith(link.href)
                   ? "text-primary"
                   : "text-foreground",

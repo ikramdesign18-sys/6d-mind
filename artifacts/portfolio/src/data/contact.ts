@@ -1,14 +1,23 @@
 export const CONTACT_INFO = {
-  email: "hello@creativebrain.placeholder.com",
+  email: "ikramdesign18@gmail.com",
+  emailHref: "mailto:ikramdesign18@gmail.com",
+  phoneDisplay: "+92 319 1790598",
+  phoneHref: "tel:+923191790598",
+  phoneMachine: "+923191790598",
   location: "Islamabad, Pakistan",
   availability: "Available for selected projects",
-};
+  worldwide: "Based in Islamabad and collaborating with clients worldwide.",
+} as const;
 
 export const SOCIAL_LINKS = [
-  { label: "LinkedIn", url: "https://linkedin.com/in/placeholder" },
-  { label: "Twitter", url: "https://twitter.com/placeholder" },
-  { label: "Upwork", url: "https://upwork.com/freelancers/~placeholder" },
-  { label: "Fiverr", url: "https://fiverr.com/placeholder" },
-  { label: "WhatsApp", url: "https://wa.me/1234567890" },
-  { label: "Schedule a Meeting", url: "https://calendly.com/placeholder" },
-];
+  {
+    label: "Fiverr",
+    url: "https://www.fiverr.com/ikramuiux?public_mode=true",
+    ariaLabel: "View 6D Mind on Fiverr",
+  },
+  {
+    label: "Dribbble",
+    url: "https://dribbble.com/6dmind",
+    ariaLabel: "View 6D Mind on Dribbble",
+  },
+] as const;

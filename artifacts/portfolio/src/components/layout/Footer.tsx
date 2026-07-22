@@ -1,12 +1,24 @@
+import { Mail, Phone } from "lucide-react";
+import { SiDribbble, SiFiverr } from "react-icons/si";
 import { Link } from "wouter";
-import { SOCIAL_LINKS } from "@/data/contact";
+
 import BrandLogo from "@/components/brand/BrandLogo";
+import { CONTACT_INFO, SOCIAL_LINKS } from "@/data/contact";
+
+const FOOTER_LINKS = [
+  ["Work", "/work"],
+  ["Solutions", "/solutions"],
+  ["Why 6D Mind", "/why-6d-mind"],
+  ["Process", "/process"],
+  ["About", "/about"],
+  ["Contact", "/contact"],
+] as const;
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground text-background py-20 mt-auto">
+    <footer className="mt-auto bg-foreground py-20 text-background">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Link
               href="/"
@@ -19,86 +31,73 @@ export default function Footer() {
                 wordmarkClassName="text-xl"
               />
             </Link>
-            <p className="text-muted text-lg max-w-sm mb-8 font-light">
+            <p className="mb-8 max-w-sm text-lg font-light text-muted">
               One Mind. Six Digital Dimensions.
             </p>
             <Link
               href="/contact"
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-3 font-medium transition-colors inline-block"
+              className="inline-flex min-h-11 items-center bg-primary px-6 py-3 font-medium text-white transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               Start a Project with 6D Mind
             </Link>
           </div>
 
-          <div>
-            <h4 className="font-mono text-sm tracking-widest text-muted/50 uppercase mb-6">
-              Expertise
-            </h4>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  href="/expertise/ui-ux-product-design"
-                  className="text-muted hover:text-white transition-colors"
-                >
-                  UI/UX Design
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/expertise/mobile-app-development"
-                  className="text-muted hover:text-white transition-colors"
-                >
-                  Mobile Apps
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/expertise/website-web-app-development"
-                  className="text-muted hover:text-white transition-colors"
-                >
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/expertise/ai-product-development"
-                  className="text-muted hover:text-white transition-colors"
-                >
-                  AI Products
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/expertise/graphic-design"
-                  className="text-muted hover:text-white transition-colors"
-                >
-                  Graphic Design
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/expertise/branding-visual-identity"
-                  className="text-muted hover:text-white transition-colors"
-                >
-                  Branding
-                </Link>
-              </li>
+          <nav aria-label="Footer navigation">
+            <h2 className="mb-6 font-mono text-sm tracking-widest text-muted/50 uppercase">
+              Navigate
+            </h2>
+            <ul className="space-y-1">
+              {FOOTER_LINKS.map(([label, href]) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
 
           <div>
-            <h4 className="font-mono text-sm tracking-widest text-muted/50 uppercase mb-6">
+            <h2 className="mb-6 font-mono text-sm tracking-widest text-muted/50 uppercase">
               Connect
-            </h4>
-            <ul className="space-y-4">
+            </h2>
+            <ul className="space-y-1">
+              <li>
+                <a
+                  href={CONTACT_INFO.emailHref}
+                  aria-label={`Email 6D Mind at ${CONTACT_INFO.email}`}
+                  className="inline-flex min-h-11 max-w-full items-center gap-3 break-all text-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <Mail size={16} aria-hidden="true" /> {CONTACT_INFO.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={CONTACT_INFO.phoneHref}
+                  aria-label={`Call 6D Mind at ${CONTACT_INFO.phoneDisplay}`}
+                  className="inline-flex min-h-11 items-center gap-3 text-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <Phone size={16} aria-hidden="true" />
+                  {CONTACT_INFO.phoneDisplay}
+                </a>
+              </li>
               {SOCIAL_LINKS.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted hover:text-white transition-colors flex items-center gap-2"
+                    aria-label={link.ariaLabel}
+                    className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
+                    {link.label === "Fiverr" ? (
+                      <SiFiverr className="mr-2 text-lg" aria-hidden="true" />
+                    ) : (
+                      <SiDribbble className="mr-2" aria-hidden="true" />
+                    )}
                     {link.label}
                   </a>
                 </li>
@@ -107,13 +106,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-sm text-muted/60">
             &copy; {new Date().getFullYear()} 6D Mind. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-muted/60">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-muted/60">
             <span>Based in Islamabad</span>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <span>Working Worldwide</span>
           </div>
         </div>
