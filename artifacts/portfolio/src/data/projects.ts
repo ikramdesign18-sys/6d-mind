@@ -606,6 +606,86 @@ export const PROJECTS: Project[] = [
     technologies: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
   },
   {
+    id: "orphevia-branding",
+    slug: "orphevia-branding",
+    title: "ORPHEVIA",
+    category: "Graphic Design",
+    cardCategory: "Branding · Visual Identity · Technology",
+    filterTags: [
+      "Graphic Design",
+      "Branding",
+      "Logo Design",
+      "Visual Identity",
+      "Product Branding",
+      "Technology Branding",
+      "Packaging",
+      "Digital Campaign",
+    ],
+    industry: "Audio Technology · Consumer Electronics · Digital Products",
+    role: "Brand Identity Designer",
+    services: [
+      "Brand positioning",
+      "Brand personality",
+      "Brand naming concept",
+      "Logo and symbol design",
+      "Monogram design",
+      "Wordmark design",
+      "Visual identity system",
+      "Color palette",
+      "Typography system",
+      "Brand guidelines",
+      "Product identity",
+      "Hardware branding",
+      "Packaging direction",
+      "Stationery design",
+      "Digital experience direction",
+      "Social campaign design",
+      "Launch communication",
+    ],
+    image: "/projects/orphevia-branding/01-orphevia-portfolio-banner.png",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt:
+      "ORPHEVIA spatial audio identity presentation featuring the luminous O symbol, premium headphones, brand typography, and violet-to-cyan visual system.",
+    detailPath: "/work/graphic-design/orphevia-branding",
+    homepageVisible: false,
+    platform: "Brand identity · Product · Packaging · Digital campaign",
+    year: "2026",
+    summary:
+      "A complete visual identity created for a fictional premium spatial-audio brand, extending from logo strategy and product hardware to packaging, stationery, and digital campaigns.",
+    shortLabel:
+      "A future-facing spatial-audio identity balancing immersive technology, precision, and emotional depth.",
+    tags: [
+      "Graphic Design",
+      "Branding",
+      "Logo Design",
+      "Visual Identity",
+      "Technology",
+      "Product Branding",
+      "Packaging",
+      "Art Direction",
+    ],
+    overview:
+      "ORPHEVIA is an independent fictional spatial-audio brand concept developed to explore how sound, depth, precision, and emotion can become one cohesive visual system across premium hardware, packaging, stationery, and digital communication.",
+    challenge:
+      "Build a technology identity that feels advanced without becoming cold, and expressive without losing the precision, clarity, and trust expected from premium audio hardware.",
+    discovery:
+      "Mapped the visual and verbal needs of spatial listening products, from compact digital marks and product engraving to retail packaging, setup touchpoints, campaign messaging, and responsive interface contexts.",
+    strategy:
+      "Positioned ORPHEVIA around dimensional listening: a precise but human experience where sound is not only heard, but placed, felt, and understood in space.",
+    designDecisions:
+      "Combined a radial O symbol, orbital geometry, deep midnight surfaces, violet-to-cyan light, editorial serif display type, and clear interface typography to balance emotion with engineered credibility.",
+    developmentApproach:
+      "Prepared a presentation-ready fictional identity system across vector logo assets, product concepts, packaging, stationery, digital applications, and campaign direction. The work is not presented as a launched company, registered trademark, or client-owned brand.",
+    results:
+      "A cohesive premium audio identity concept that scales from a compact app icon and hardware mark to packaging, editorial layouts, digital campaigns, and full brand presentations.",
+    technologies: [
+      "Vector identity system",
+      "Responsive brand applications",
+      "Print and digital presentation",
+    ],
+  },
+  {
     id: "fintech-dashboard",
     slug: "fintech-dashboard",
     title: "Aura Financial",

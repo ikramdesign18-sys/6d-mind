@@ -21,6 +21,9 @@ const LogoBrandIdentityCollection = lazy(
 const LuminaBotanicalsCaseStudy = lazy(
   () => import("@/pages/LuminaBotanicalsCaseStudy"),
 );
+const OrpheviaBrandingCaseStudy = lazy(
+  () => import("@/pages/OrpheviaBrandingCaseStudy"),
+);
 const Process = lazy(() => import("@/pages/Process"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -63,6 +66,10 @@ function Router() {
           <Route
             path="/work/graphic-design/lumina-botanicals"
             component={LuminaBotanicalsCaseStudy}
+          />
+          <Route
+            path="/work/graphic-design/orphevia-branding"
+            component={OrpheviaBrandingCaseStudy}
           />
           <Route path="/work/:slug" component={WorkDetail} />
           <Route path="/process" component={Process} />

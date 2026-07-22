@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="500" viewBox="0 0 1400 500">
+  <rect width="1400" height="500" fill="none"/>
+  <g transform="translate(55,90)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M190 20 A150 150 0 0 1 72 264" stroke="#38D8FF" stroke-width="14"/>
+    <path d="M38 132 A150 150 0 0 1 235 35" stroke="#8C6CFF" stroke-width="14"/>
+    <path d="M58 150 H95 L120 85 L148 222 L178 105 L206 150 H242" stroke="#FFFFFF" stroke-width="14"/>
+    <circle cx="150" cy="150" r="9" fill="#38D8FF" stroke="none"/>
+  </g>
+  <text x="370" y="215" font-family="Inter, Arial, sans-serif" font-size="96" letter-spacing="12" fill="#FFFFFF">ORPHEVIA</text>
+  <text x="375" y="292" font-family="Inter, Arial, sans-serif" font-size="26" letter-spacing="7" fill="#38D8FF">SPATIAL AUDIO SYSTEMS</text>
+</svg>

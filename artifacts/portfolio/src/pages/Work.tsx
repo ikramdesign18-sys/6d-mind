@@ -5,7 +5,18 @@ import { EXPERTISE } from "@/data/expertise";
 import { cn } from "@/lib/utils";
 import ProjectCard from "@/components/work/ProjectCard";
 
-const FILTERS = ["All", ...EXPERTISE.map((e) => e.shortName), "Logo Design"];
+const FILTERS = Array.from(
+  new Set([
+    "All",
+    ...EXPERTISE.map((e) => e.shortName),
+    "Logo Design",
+    "Visual Identity",
+    "Product Branding",
+    "Technology Branding",
+    "Packaging",
+    "Digital Campaign",
+  ]),
+);
 
 export default function Work() {
   const [activeFilter, setActiveFilter] = useState("All");
