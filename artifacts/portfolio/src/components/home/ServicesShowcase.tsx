@@ -4,9 +4,9 @@ import {
   useInView,
   useReducedMotion,
 } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Volume2, VolumeX } from "lucide-react";
 import {
-  type KeyboardEvent,
+  type RefCallback,
   useCallback,
   useEffect,
   useRef,
@@ -21,9 +21,8 @@ type Service = {
   slug: string;
   name: string;
   description: string;
-  labels: readonly string[];
   mp4: string;
-  poster: string;
+  productionReady: boolean;
 };
 
 const SERVICES: readonly Service[] = [
@@ -32,10 +31,9 @@ const SERVICES: readonly Service[] = [
     slug: "ui-ux-product-design",
     name: "UI/UX & Product Design",
     description:
-      "Research-led digital experiences, scalable design systems, prototypes, dashboards, websites, mobile apps, and developer-ready interfaces.",
-    labels: ["UX Research", "Product Design", "Design Systems"],
+      "Research-led experiences, scalable design systems, prototypes, dashboards, websites, mobile apps, and developer-ready interfaces.",
     mp4: "/media/services/ui-ux-product-design.mp4",
-    poster: "/media/services/ui-ux-product-design-poster.jpg",
+    productionReady: false,
   },
   {
     id: "mobile-app-development",
@@ -43,9 +41,8 @@ const SERVICES: readonly Service[] = [
     name: "Mobile App Development",
     description:
       "Production-ready mobile applications built for performance, usability, maintainability, and long-term growth.",
-    labels: ["React Native", "Expo", "TypeScript"],
     mp4: "/media/services/mobile-app-development.mp4",
-    poster: "/media/services/mobile-app-development-poster.jpg",
+    productionReady: false,
   },
   {
     id: "website-web-app-development",
@@ -53,9 +50,8 @@ const SERVICES: readonly Service[] = [
     name: "Website & Web App Development",
     description:
       "Modern websites, SaaS products, dashboards, e-commerce platforms, and responsive web applications.",
-    labels: ["React", "Next.js", "Full Stack"],
     mp4: "/media/services/web-development.mp4",
-    poster: "/media/services/web-development-poster.jpg",
+    productionReady: false,
   },
   {
     id: "ai-product-development",
@@ -63,9 +59,8 @@ const SERVICES: readonly Service[] = [
     name: "AI Product Development",
     description:
       "Practical AI-powered products that automate workflows, personalize experiences, and solve real business problems.",
-    labels: ["AI Strategy", "LLM Integration", "Automation"],
     mp4: "/media/services/ai-product-development.mp4",
-    poster: "/media/services/ai-product-development-poster.jpg",
+    productionReady: false,
   },
   {
     id: "graphic-design",
@@ -73,9 +68,8 @@ const SERVICES: readonly Service[] = [
     name: "Graphic Design",
     description:
       "High-impact visual communication for campaigns, digital platforms, products, presentations, and social media.",
-    labels: ["Campaign Design", "Social Media", "Marketing Visuals"],
     mp4: "/media/services/graphic-design.mp4",
-    poster: "/media/services/graphic-design-poster.jpg",
+    productionReady: false,
   },
   {
     id: "branding-visual-identity",
@@ -83,45 +77,44 @@ const SERVICES: readonly Service[] = [
     name: "Branding & Visual Identity",
     description:
       "Strategic identity systems that make products and businesses recognizable, consistent, and memorable.",
-    labels: ["Brand Strategy", "Logo Systems", "Visual Identity"],
     mp4: "/media/services/branding-identity.mp4",
-    poster: "/media/services/branding-identity-poster.jpg",
+    productionReady: false,
   },
 ] as const;
 
-function useMobileLayout() {
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window === "undefined"
-      ? false
-      : window.matchMedia("(max-width: 900px)").matches,
-  );
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 900px)");
-    const updateLayout = () => setIsMobile(mediaQuery.matches);
-
-    updateLayout();
-    mediaQuery.addEventListener("change", updateLayout);
-    return () => mediaQuery.removeEventListener("change", updateLayout);
-  }, []);
-
-  return isMobile;
-}
+const SOUND_PREFERENCE_KEY = "6d-mind-services-sound";
 
 function ServiceMedia({
   service,
+  serviceIndex,
   shouldPlay,
+  soundEnabled,
   reduceMotion,
+  registerVideo,
 }: {
   service: Service;
+  serviceIndex: number;
   shouldPlay: boolean;
+  soundEnabled: boolean;
   reduceMotion: boolean;
+  registerVideo: (index: number, video: HTMLVideoElement | null) => void;
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const assignVideoRef: RefCallback<HTMLVideoElement> = useCallback(
+    (video) => {
+      videoRef.current = video;
+      registerVideo(serviceIndex, video);
+    },
+    [registerVideo, serviceIndex],
+  );
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reduceMotion) return;
+    if (!video || !service.productionReady || reduceMotion) return;
+
+    video.muted = !soundEnabled;
+    video.currentTime = 0;
 
     const syncPlayback = () => {
       if (!shouldPlay || document.hidden) {
@@ -140,242 +133,245 @@ function ServiceMedia({
       document.removeEventListener("visibilitychange", syncPlayback);
       video.pause();
     };
-  }, [reduceMotion, service.mp4, shouldPlay]);
+  }, [reduceMotion, service, shouldPlay, soundEnabled]);
 
-  if (reduceMotion) {
+  if (!service.productionReady || reduceMotion) {
     return (
-      <div className="services-media" aria-hidden="true">
-        <img src={service.poster} alt="" />
+      <div className="services-clean-poster" aria-hidden="true">
+        <img
+          src="/brand/6d-mind/6d-mind-icon.png"
+          width="650"
+          height="650"
+          alt=""
+        />
       </div>
     );
   }
 
   return (
-    <div className="services-media" aria-hidden="true">
-      <video
-        ref={videoRef}
-        muted
-        loop
-        playsInline
-        autoPlay={shouldPlay}
-        preload="metadata"
-        poster={service.poster}
-        tabIndex={-1}
-      >
-        <source src={service.mp4} type="video/mp4" />
-      </video>
-    </div>
-  );
-}
-
-function ServiceDetails({ service }: { service: Service }) {
-  return (
-    <div className="services-details">
-      <p className="services-details__number">
-        {String(SERVICES.indexOf(service) + 1).padStart(2, "0")} / 06
-      </p>
-      <h3>{service.name}</h3>
-      <p className="services-details__description">{service.description}</p>
-      <ul className="services-details__labels" aria-label="Capabilities">
-        {service.labels.map((label) => (
-          <li key={label}>{label}</li>
-        ))}
-      </ul>
-      <Link
-        href={`/expertise/${service.slug}`}
-        className="services-details__link"
-        aria-label={`View ${service.name.replace("&", "and")} details`}
-      >
-        View Details
-        <ArrowRight size={17} aria-hidden="true" />
-      </Link>
-    </div>
+    <video
+      ref={assignVideoRef}
+      muted={!soundEnabled}
+      loop
+      playsInline
+      autoPlay={shouldPlay}
+      preload="metadata"
+      tabIndex={-1}
+      aria-hidden="true"
+    >
+      <source src={service.mp4} type="video/mp4" />
+    </video>
   );
 }
 
 export default function ServicesShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [soundEnabled, setSoundEnabled] = useState(false);
+  const activeIndexRef = useRef(0);
   const sectionRef = useRef<HTMLElement>(null);
-  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const videoRefs = useRef(new Map<number, HTMLVideoElement>());
   const reduceMotion = useReducedMotion() ?? false;
-  const isInView = useInView(sectionRef, { amount: 0.15 });
-  const isMobile = useMobileLayout();
+  const sectionInView = useInView(sectionRef, { amount: 0.05 });
   const activeService = SERVICES[activeIndex];
-  const shouldPlayVideo = isInView && !reduceMotion;
 
-  const activate = useCallback((index: number) => {
+  const registerVideo = useCallback(
+    (index: number, video: HTMLVideoElement | null) => {
+      if (video) {
+        videoRefs.current.set(index, video);
+      } else {
+        videoRefs.current.delete(index);
+      }
+    },
+    [],
+  );
+
+  const activateService = useCallback((index: number) => {
+    if (activeIndexRef.current === index) return;
+
+    videoRefs.current.forEach((video) => video.pause());
+    activeIndexRef.current = index;
     setActiveIndex(index);
   }, []);
 
-  const handleTabKeyDown = (
-    event: KeyboardEvent<HTMLButtonElement>,
-    index: number,
-  ) => {
-    let nextIndex: number | undefined;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleStep = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-      nextIndex = (index + 1) % SERVICES.length;
-    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-      nextIndex = (index - 1 + SERVICES.length) % SERVICES.length;
-    } else if (event.key === "Home") {
-      nextIndex = 0;
-    } else if (event.key === "End") {
-      nextIndex = SERVICES.length - 1;
+        if (!visibleStep) return;
+        const nextIndex = Number(
+          (visibleStep.target as HTMLDivElement).dataset.service,
+        );
+
+        if (Number.isInteger(nextIndex)) activateService(nextIndex);
+      },
+      {
+        rootMargin: "-44% 0px -44% 0px",
+        threshold: [0, 0.05],
+      },
+    );
+
+    stepRefs.current.forEach((step) => {
+      if (step) observer.observe(step);
+    });
+
+    return () => observer.disconnect();
+  }, [activateService]);
+
+  useEffect(() => {
+    setSoundEnabled(sessionStorage.getItem(SOUND_PREFERENCE_KEY) === "on");
+  }, []);
+
+  const toggleSound = () => {
+    const nextSoundState = !soundEnabled;
+    setSoundEnabled(nextSoundState);
+    sessionStorage.setItem(SOUND_PREFERENCE_KEY, nextSoundState ? "on" : "off");
+
+    const activeVideo = videoRefs.current.get(activeIndex);
+    if (!activeVideo) return;
+
+    activeVideo.muted = !nextSoundState;
+    if (nextSoundState) {
+      const playPromise = activeVideo.play();
+      if (playPromise) void playPromise.catch(() => undefined);
     }
-
-    if (nextIndex === undefined) return;
-
-    event.preventDefault();
-    activate(nextIndex);
-    tabRefs.current[nextIndex]?.focus();
   };
 
   const transition = reduceMotion
     ? { duration: 0 }
-    : { duration: 0.34, ease: [0.22, 1, 0.36, 1] as const };
+    : { duration: 0.48, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
     <section
       id="expertise"
       ref={sectionRef}
-      className="services-showcase"
-      aria-labelledby="services-heading"
+      className="services-scroll-story"
+      aria-labelledby="services-story-heading"
     >
-      <div className="services-showcase__inner">
-        <header className="services-showcase__header">
-          <p className="services-showcase__eyebrow">Our capabilities</p>
+      <div className="services-sticky-stage">
+        <div className="services-media-stack" aria-hidden="true">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={activeService.id}
+              className="services-media-layer"
+              initial={reduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={transition}
+            >
+              <ServiceMedia
+                service={activeService}
+                serviceIndex={activeIndex}
+                shouldPlay={sectionInView && !reduceMotion}
+                soundEnabled={soundEnabled}
+                reduceMotion={reduceMotion}
+                registerVideo={registerVideo}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="services-video-scrim" aria-hidden="true" />
+
+        <header className="services-story-intro">
+          <p>Our capabilities</p>
+          <h2 id="services-story-heading">
+            Six Disciplines. <span>One Complete Product Journey.</span>
+          </h2>
           <div>
-            <h2 id="services-heading">
-              Six Disciplines. <span>One Complete Product Journey.</span>
-            </h2>
-            <p className="services-showcase__intro">
-              Strategy, design, development, AI, visual communication, and
-              branding—connected through one focused workflow.
-            </p>
+            Strategy, design, development, AI, visual communication, and
+            branding—connected through one focused workflow.
           </div>
         </header>
 
-        {!isMobile ? (
-          <div className="services-desktop">
-            <div
-              className="services-nav"
-              role="tablist"
-              aria-label="Select a service"
-              aria-orientation="vertical"
-            >
-              {SERVICES.map((service, index) => {
-                const isActive = activeIndex === index;
-                return (
-                  <button
-                    type="button"
-                    role="tab"
-                    id={`service-tab-${service.id}`}
-                    aria-controls={`service-panel-${service.id}`}
-                    aria-selected={isActive}
-                    tabIndex={isActive ? 0 : -1}
-                    className="services-nav__item"
-                    key={service.id}
-                    ref={(element) => {
-                      tabRefs.current[index] = element;
-                    }}
-                    onClick={() => activate(index)}
-                    onMouseEnter={() => activate(index)}
-                    onKeyDown={(event) => handleTabKeyDown(event, index)}
-                  >
-                    {isActive && (
-                      <motion.span
-                        className="services-nav__indicator"
-                        layoutId="service-indicator"
-                        transition={transition}
-                      />
-                    )}
-                    <span className="services-nav__number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span>{service.name}</span>
-                    <span className="services-nav__state" aria-hidden="true">
-                      {isActive ? "Active" : "View"}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="services-stage">
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  key={activeService.id}
-                  id={`service-panel-${activeService.id}`}
-                  role="tabpanel"
-                  aria-labelledby={`service-tab-${activeService.id}`}
-                  className="services-stage__panel"
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
-                  transition={transition}
-                >
-                  <ServiceDetails service={activeService} />
-                  <ServiceMedia
-                    service={activeService}
-                    shouldPlay={shouldPlayVideo}
-                    reduceMotion={reduceMotion}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-        ) : (
-          <div className="services-mobile" aria-label="Services">
-            {SERVICES.map((service, index) => {
-              const isActive = activeIndex === index;
-              const buttonId = `mobile-service-button-${service.id}`;
-              const panelId = `mobile-service-panel-${service.id}`;
-
-              return (
-                <div
-                  className={`services-mobile__item${isActive ? " is-active" : ""}`}
-                  key={service.id}
-                >
-                  <button
-                    type="button"
-                    id={buttonId}
-                    className="services-mobile__button"
-                    aria-expanded={isActive}
-                    aria-controls={panelId}
-                    onClick={() => activate(index)}
-                  >
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <strong>{service.name}</strong>
-                    <i aria-hidden="true">{isActive ? "−" : "+"}</i>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isActive && (
-                      <motion.div
-                        id={panelId}
-                        role="region"
-                        aria-labelledby={buttonId}
-                        className="services-mobile__panel"
-                        initial={
-                          reduceMotion ? false : { opacity: 0, height: 0 }
-                        }
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={transition}
-                      >
-                        <ServiceMedia
-                          service={service}
-                          shouldPlay={shouldPlayVideo}
-                          reduceMotion={reduceMotion}
-                        />
-                        <ServiceDetails service={service} />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
+        {activeService.productionReady && !reduceMotion && (
+          <button
+            type="button"
+            className="services-sound-control"
+            onClick={toggleSound}
+            aria-label={
+              soundEnabled
+                ? "Turn service video sound off"
+                : "Turn service video sound on"
+            }
+          >
+            {soundEnabled ? (
+              <Volume2 size={16} aria-hidden="true" />
+            ) : (
+              <VolumeX size={16} aria-hidden="true" />
+            )}
+            <span>{soundEnabled ? "Sound Off" : "Sound On"}</span>
+          </button>
         )}
+
+        <div className="services-story-bottom">
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={activeService.id}
+              className="services-story-content"
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
+              transition={transition}
+            >
+              <p className="services-story-number">
+                {String(activeIndex + 1).padStart(2, "0")} / 06
+              </p>
+              <h3>{activeService.name}</h3>
+              <p className="services-story-description">
+                {activeService.description}
+              </p>
+              <Link
+                href={`/expertise/${activeService.slug}`}
+                className="services-story-link"
+                aria-label={`View ${activeService.name.replace("&", "and")} details`}
+              >
+                View Details
+                <ArrowRight size={17} aria-hidden="true" />
+              </Link>
+            </motion.div>
+          </AnimatePresence>
+
+          <div
+            className="services-story-progress"
+            role="progressbar"
+            aria-label={`Service ${activeIndex + 1} of ${SERVICES.length}: ${activeService.name}`}
+            aria-valuemin={1}
+            aria-valuemax={SERVICES.length}
+            aria-valuenow={activeIndex + 1}
+          >
+            <span>{String(activeIndex + 1).padStart(2, "0")} / 06</span>
+            <div aria-hidden="true">
+              {SERVICES.map((service, index) => (
+                <i
+                  key={service.id}
+                  className={index <= activeIndex ? "is-complete" : ""}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <p className="services-story-announcement" aria-live="polite">
+          Showing service {activeIndex + 1} of {SERVICES.length}:{" "}
+          {activeService.name}
+        </p>
+      </div>
+
+      <div className="services-scroll-steps" aria-hidden="true">
+        {SERVICES.map((service, index) => (
+          <div
+            key={service.id}
+            ref={(step) => {
+              stepRefs.current[index] = step;
+            }}
+            className="services-scroll-step"
+            data-service={index}
+          />
+        ))}
       </div>
     </section>
   );
