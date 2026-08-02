@@ -1,16 +1,12 @@
 import {
   AnimatePresence,
   motion,
-  useInView,
+  useMotionValueEvent,
   useReducedMotion,
+  useScroll,
 } from "framer-motion";
 import { ArrowRight, Volume2, VolumeX } from "lucide-react";
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 
 import "./ServicesShowcase.css";
@@ -74,33 +70,26 @@ const SERVICES: readonly Service[] = [
   },
 ] as const;
 
+const CROSSFADE_DURATION_MS = 560;
 const SOUND_PREFERENCE_KEY = "6d-mind-services-sound";
 const PLAYBACK_ERROR_MESSAGE =
-  "The active service video could not start. Please try scrolling to the next service and back.";
+  "The active service video could not start. Please try scrolling again.";
 
 export default function ServicesShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [playbackError, setPlaybackError] = useState<string | null>(null);
+  const storyRef = useRef<HTMLElement>(null);
   const activeIndexRef = useRef(0);
-  const sectionRef = useRef<HTMLElement>(null);
-  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const sectionInViewRef = useRef(false);
-  const soundEnabledRef = useRef(false);
+  const transitionTimerRef = useRef<number | null>(null);
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const reduceMotion = useReducedMotion() ?? false;
-  const sectionInView = useInView(sectionRef, { amount: 0.05 });
+  const { scrollYProgress } = useScroll({
+    target: storyRef,
+    offset: ["start start", "end end"],
+  });
   const activeService = SERVICES[activeIndex];
-
-  const activateService = useCallback((index: number) => {
-    if (index < 0 || index >= SERVICES.length || activeIndexRef.current === index) {
-      return;
-    }
-
-    videoRef.current?.pause();
-    activeIndexRef.current = index;
-    setActiveIndex(index);
-  }, []);
 
   const playVideo = useCallback(
     async (video: HTMLVideoElement, enableSound: boolean) => {
@@ -117,130 +106,93 @@ export default function ServicesShowcase() {
     [],
   );
 
-  useEffect(() => {
-    const visibleSteps = new Map<number, IntersectionObserverEntry>();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = Number(
-            (entry.target as HTMLDivElement).dataset.serviceIndex,
-          );
-
-          if (!Number.isInteger(index)) return;
-
-          if (entry.isIntersecting) {
-            visibleSteps.set(index, entry);
-          } else {
-            visibleSteps.delete(index);
-          }
-        });
-
-        const visibleStep = [...visibleSteps.values()].sort((a, b) => {
-          const aCenter =
-            a.boundingClientRect.top + a.boundingClientRect.height / 2;
-          const bCenter =
-            b.boundingClientRect.top + b.boundingClientRect.height / 2;
-          const viewportCenter = window.innerHeight / 2;
-
-          return (
-            Math.abs(aCenter - viewportCenter) -
-              Math.abs(bCenter - viewportCenter) ||
-            b.intersectionRatio - a.intersectionRatio
-          );
-        })[0];
-
-        if (!visibleStep) return;
-        const nextIndex = Number(
-          (visibleStep.target as HTMLDivElement).dataset.serviceIndex,
-        );
-
-        if (Number.isInteger(nextIndex)) activateService(nextIndex);
-      },
-      {
-        rootMargin: "-20% 0px -20% 0px",
-        threshold: [0, 0.2, 0.5],
-      },
+  const setStoryIndex = useCallback((progress: number) => {
+    const nextIndex = Math.min(
+      SERVICES.length - 1,
+      Math.max(0, Math.floor(progress * SERVICES.length)),
     );
 
-    stepRefs.current.forEach((step) => {
-      if (step) observer.observe(step);
-    });
+    if (nextIndex === activeIndexRef.current) return;
 
-    return () => observer.disconnect();
-  }, [activateService]);
+    const outgoingIndex = activeIndexRef.current;
+    const incomingVideo = videoRefs.current[nextIndex];
+
+    if (incomingVideo) {
+      incomingVideo.pause();
+      incomingVideo.currentTime = 0;
+    }
+
+    if (transitionTimerRef.current !== null) {
+      window.clearTimeout(transitionTimerRef.current);
+    }
+
+    activeIndexRef.current = nextIndex;
+    setPreviousIndex(outgoingIndex);
+    setActiveIndex(nextIndex);
+
+    transitionTimerRef.current = window.setTimeout(() => {
+      setPreviousIndex(null);
+      transitionTimerRef.current = null;
+    }, reduceMotion ? 0 : CROSSFADE_DURATION_MS);
+  }, [reduceMotion]);
+
+  useMotionValueEvent(scrollYProgress, "change", setStoryIndex);
+
+  useEffect(() => {
+    setStoryIndex(scrollYProgress.get());
+  }, [scrollYProgress, setStoryIndex]);
 
   useEffect(() => {
     setSoundEnabled(sessionStorage.getItem(SOUND_PREFERENCE_KEY) === "on");
   }, []);
 
   useEffect(() => {
-    soundEnabledRef.current = soundEnabled;
-    const video = videoRef.current;
-    if (!video) return;
+    const activeVideo = videoRefs.current[activeIndex];
+    const outgoingVideo =
+      previousIndex === null ? null : videoRefs.current[previousIndex];
 
-    if (!soundEnabled) {
-      video.muted = true;
-      return;
-    }
-
-    if (sectionInViewRef.current && !document.hidden) {
-      void playVideo(video, true);
-    }
-  }, [playVideo, soundEnabled]);
-
-  useEffect(() => {
-    sectionInViewRef.current = sectionInView;
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (!sectionInView || document.hidden) {
+    videoRefs.current.forEach((video, index) => {
+      if (!video || index === activeIndex || index === previousIndex) return;
       video.pause();
-      return;
+      video.muted = true;
+    });
+
+    if (outgoingVideo) {
+      void playVideo(outgoingVideo, false);
     }
 
-    void playVideo(video, soundEnabledRef.current);
-  }, [playVideo, sectionInView]);
+    if (activeVideo) {
+      void playVideo(activeVideo, soundEnabled);
+    }
+  }, [activeIndex, playVideo, previousIndex, soundEnabled]);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let disposed = false;
-
-    const startActiveVideo = () => {
-      if (disposed || !sectionInViewRef.current || document.hidden) return;
-
-      video.currentTime = 0;
-      void playVideo(video, soundEnabledRef.current);
-    };
-
-    const syncVisibility = () => {
-      if (document.hidden || !sectionInViewRef.current) {
-        video.pause();
+    const syncDocumentVisibility = () => {
+      if (document.hidden) {
+        videoRefs.current.forEach((video) => video?.pause());
         return;
       }
 
-      void playVideo(video, soundEnabledRef.current);
+      const activeVideo = videoRefs.current[activeIndexRef.current];
+      if (activeVideo) void playVideo(activeVideo, soundEnabled);
     };
 
-    video.pause();
-    video.muted = true;
-    video.load();
-    video.addEventListener("loadeddata", startActiveVideo, { once: true });
-    document.addEventListener("visibilitychange", syncVisibility);
-
-    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-      startActiveVideo();
-    }
+    document.addEventListener("visibilitychange", syncDocumentVisibility);
 
     return () => {
-      disposed = true;
-      video.removeEventListener("loadeddata", startActiveVideo);
-      document.removeEventListener("visibilitychange", syncVisibility);
-      video.pause();
+      document.removeEventListener("visibilitychange", syncDocumentVisibility);
     };
-  }, [activeService.mp4, playVideo]);
+  }, [playVideo, soundEnabled]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimerRef.current !== null) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
+
+      videoRefs.current.forEach((video) => video?.pause());
+    };
+  }, []);
 
   const toggleSound = () => {
     const nextSoundState = !soundEnabled;
@@ -248,39 +200,57 @@ export default function ServicesShowcase() {
     sessionStorage.setItem(SOUND_PREFERENCE_KEY, nextSoundState ? "on" : "off");
   };
 
-  const transition = reduceMotion
+  const crossfade = reduceMotion
     ? { duration: 0 }
-    : { duration: 0.48, ease: [0.22, 1, 0.36, 1] as const };
+    : {
+        duration: CROSSFADE_DURATION_MS / 1000,
+        ease: [0.22, 1, 0.36, 1] as const,
+      };
+  const contentTransition = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.42, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
     <section
       id="expertise"
-      ref={sectionRef}
-      className="services-scroll-story"
+      ref={storyRef}
+      className="services-pinned-story"
       aria-labelledby="services-story-heading"
     >
-      <div className="services-sticky-stage">
-        <div className="services-media-stack" aria-hidden="true">
-          <video
-            ref={videoRef}
-            className="service-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            tabIndex={-1}
-            onError={() => setPlaybackError(PLAYBACK_ERROR_MESSAGE)}
-          >
-            <source
-              key={activeService.mp4}
-              src={activeService.mp4}
-              type="video/mp4"
-            />
-          </video>
+      <div className="services-pinned-stage">
+        <div className="services-video-stack" aria-hidden="true">
+          {SERVICES.map((service, index) => (
+            <motion.video
+              key={service.id}
+              ref={(video) => {
+                videoRefs.current[index] = video;
+              }}
+              className="services-stage-video"
+              initial={{ opacity: index === 0 ? 1 : 0 }}
+              animate={{ opacity: index === activeIndex ? 1 : 0 }}
+              transition={crossfade}
+              style={{
+                zIndex:
+                  index === activeIndex ? 2 : index === previousIndex ? 1 : 0,
+              }}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              tabIndex={-1}
+              onLoadedData={(event) => {
+                if (index === activeIndex) {
+                  void playVideo(event.currentTarget, soundEnabled);
+                }
+              }}
+              onError={() => setPlaybackError(PLAYBACK_ERROR_MESSAGE)}
+            >
+              <source src={service.mp4} type="video/mp4" />
+            </motion.video>
+          ))}
         </div>
 
-        <div className="services-video-scrim" aria-hidden="true" />
+        <div className="services-stage-scrim" aria-hidden="true" />
 
         <header className="services-story-intro">
           <p>Our capabilities</p>
@@ -319,10 +289,10 @@ export default function ServicesShowcase() {
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
-              transition={transition}
+              transition={contentTransition}
             >
               <p className="services-story-number">
-                {String(activeIndex + 1).padStart(2, "0")} / 06
+                {String(activeIndex + 1).padStart(2, "0")}
               </p>
               <h3>{activeService.name}</h3>
               <p className="services-story-description">
@@ -341,22 +311,8 @@ export default function ServicesShowcase() {
         </div>
 
         <p className="services-story-announcement" aria-live="polite">
-          {playbackError ||
-            `Showing service ${activeIndex + 1} of ${SERVICES.length}: ${activeService.name}`}
+          {playbackError || `Showing ${activeService.name}`}
         </p>
-      </div>
-
-      <div className="services-scroll-steps" aria-hidden="true">
-        {SERVICES.map((service, index) => (
-          <div
-            key={service.id}
-            ref={(step) => {
-              stepRefs.current[index] = step;
-            }}
-            className="services-scroll-step"
-            data-service-index={index}
-          />
-        ))}
       </div>
     </section>
   );
