@@ -1,12 +1,12 @@
 import { Link } from "wouter";
 import { ArrowRight, Terminal } from "lucide-react";
 import BrainScene from "@/components/3d/BrainScene";
-import { EXPERTISE } from "@/data/expertise";
 import { STATS, WORK_MESSAGE } from "@/data/stats";
 import { CONTACT_INFO } from "@/data/contact";
 import { PROJECTS } from "@/data/projects";
 import ProjectCard from "@/components/work/ProjectCard";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
+import ServicesShowcase from "@/components/home/ServicesShowcase";
 
 export default function Home() {
   const selectedProjects = [
@@ -80,66 +80,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Expertise Grid Section */}
-      <section
-        id="expertise"
-        className="py-24 md:py-32 bg-white border-t border-border px-6"
-      >
-        <div className="container mx-auto max-w-6xl">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Neural Connections
-            </h2>
-            <p className="text-lg text-muted-foreground font-light max-w-2xl">
-              Six core disciplines integrated into a single cohesive workflow. I
-              replace the siloed agency model with unified expertise.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {EXPERTISE.map((item, index) => (
-              <Link
-                key={item.id}
-                href={`/expertise/${item.slug}`}
-                className="group p-8 border border-border bg-background hover:border-primary transition-all duration-300 flex flex-col relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors pointer-events-none" />
-                <div className="text-sm font-mono text-muted-foreground mb-4">
-                  0{index + 1}
-                </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                  {item.name}
-                </h3>
-                <p className="text-muted-foreground font-light text-sm mb-8 flex-1">
-                  {item.statement}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {item.skills.slice(0, 3).map((skill) => (
-                    <span
-                      key={skill}
-                      className="text-xs bg-muted px-2 py-1 text-muted-foreground border border-border/50"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                  {item.skills.length > 3 && (
-                    <span className="text-xs text-muted-foreground px-1 py-1">
-                      +{item.skills.length - 3}
-                    </span>
-                  )}
-                </div>
-                <div className="mt-auto flex items-center text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                  View Detail{" "}
-                  <ArrowRight
-                    size={14}
-                    className="ml-2 group-hover:translate-x-1 transition-transform"
-                  />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServicesShowcase />
 
       {/* Selected Work */}
       {selectedProjects.length > 0 && (
