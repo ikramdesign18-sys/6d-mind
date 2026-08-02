@@ -7,8 +7,8 @@ import {
 import { ArrowRight } from "lucide-react";
 import {
   type KeyboardEvent,
-  type ReactNode,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -22,7 +22,8 @@ type Service = {
   name: string;
   description: string;
   labels: readonly string[];
-  visual: "product" | "mobile" | "web" | "ai" | "graphic" | "brand";
+  mp4: string;
+  poster: string;
 };
 
 const SERVICES: readonly Service[] = [
@@ -33,7 +34,8 @@ const SERVICES: readonly Service[] = [
     description:
       "Research-led digital experiences, scalable design systems, prototypes, dashboards, websites, mobile apps, and developer-ready interfaces.",
     labels: ["UX Research", "Product Design", "Design Systems"],
-    visual: "product",
+    mp4: "/media/services/ui-ux-product-design.mp4",
+    poster: "/media/services/ui-ux-product-design-poster.jpg",
   },
   {
     id: "mobile-app-development",
@@ -42,7 +44,8 @@ const SERVICES: readonly Service[] = [
     description:
       "Production-ready mobile applications built for performance, usability, maintainability, and long-term growth.",
     labels: ["React Native", "Expo", "TypeScript"],
-    visual: "mobile",
+    mp4: "/media/services/mobile-app-development.mp4",
+    poster: "/media/services/mobile-app-development-poster.jpg",
   },
   {
     id: "website-web-app-development",
@@ -51,7 +54,8 @@ const SERVICES: readonly Service[] = [
     description:
       "Modern websites, SaaS products, dashboards, e-commerce platforms, and responsive web applications.",
     labels: ["React", "Next.js", "Full Stack"],
-    visual: "web",
+    mp4: "/media/services/web-development.mp4",
+    poster: "/media/services/web-development-poster.jpg",
   },
   {
     id: "ai-product-development",
@@ -60,7 +64,8 @@ const SERVICES: readonly Service[] = [
     description:
       "Practical AI-powered products that automate workflows, personalize experiences, and solve real business problems.",
     labels: ["AI Strategy", "LLM Integration", "Automation"],
-    visual: "ai",
+    mp4: "/media/services/ai-product-development.mp4",
+    poster: "/media/services/ai-product-development-poster.jpg",
   },
   {
     id: "graphic-design",
@@ -69,7 +74,8 @@ const SERVICES: readonly Service[] = [
     description:
       "High-impact visual communication for campaigns, digital platforms, products, presentations, and social media.",
     labels: ["Campaign Design", "Social Media", "Marketing Visuals"],
-    visual: "graphic",
+    mp4: "/media/services/graphic-design.mp4",
+    poster: "/media/services/graphic-design-poster.jpg",
   },
   {
     id: "branding-visual-identity",
@@ -78,148 +84,86 @@ const SERVICES: readonly Service[] = [
     description:
       "Strategic identity systems that make products and businesses recognizable, consistent, and memorable.",
     labels: ["Brand Strategy", "Logo Systems", "Visual Identity"],
-    visual: "brand",
+    mp4: "/media/services/branding-identity.mp4",
+    poster: "/media/services/branding-identity-poster.jpg",
   },
 ] as const;
 
-function ProductArtwork() {
-  return (
-    <div className="service-art service-art--product">
-      <span className="product-grid" />
-      <span className="product-frame product-frame--one" />
-      <span className="product-frame product-frame--two" />
-      <span className="product-module product-module--one" />
-      <span className="product-module product-module--two" />
-      <span className="product-module product-module--three" />
-      <span className="product-cursor" />
-    </div>
+function useMobileLayout() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window === "undefined"
+      ? false
+      : window.matchMedia("(max-width: 900px)").matches,
   );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 900px)");
+    const updateLayout = () => setIsMobile(mediaQuery.matches);
+
+    updateLayout();
+    mediaQuery.addEventListener("change", updateLayout);
+    return () => mediaQuery.removeEventListener("change", updateLayout);
+  }, []);
+
+  return isMobile;
 }
 
-function MobileArtwork() {
-  return (
-    <div className="service-art service-art--mobile">
-      <span className="mobile-orbit mobile-orbit--one" />
-      <span className="mobile-orbit mobile-orbit--two" />
-      <span className="mobile-device mobile-device--back">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="mobile-device mobile-device--front">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="mobile-signal mobile-signal--one" />
-      <span className="mobile-signal mobile-signal--two" />
-    </div>
-  );
-}
-
-function WebArtwork() {
-  return (
-    <div className="service-art service-art--web">
-      <span className="web-rail web-rail--one" />
-      <span className="web-rail web-rail--two" />
-      <span className="web-plane web-plane--back">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="web-plane web-plane--front">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="web-node web-node--one" />
-      <span className="web-node web-node--two" />
-      <span className="web-node web-node--three" />
-    </div>
-  );
-}
-
-function AiArtwork() {
-  return (
-    <div className="service-art service-art--ai">
-      <span className="ai-ring ai-ring--outer" />
-      <span className="ai-ring ai-ring--inner" />
-      <span className="ai-core">
-        <i />
-      </span>
-      {Array.from({ length: 10 }, (_, index) => (
-        <span
-          className={`ai-node ai-node--${index + 1}`}
-          key={`ai-node-${index + 1}`}
-        />
-      ))}
-    </div>
-  );
-}
-
-function GraphicArtwork() {
-  return (
-    <div className="service-art service-art--graphic">
-      <span className="graphic-axis" />
-      <span className="graphic-sheet graphic-sheet--one">
-        <i />
-      </span>
-      <span className="graphic-sheet graphic-sheet--two">
-        <i />
-      </span>
-      <span className="graphic-sheet graphic-sheet--three">
-        <i />
-      </span>
-      <span className="graphic-disc graphic-disc--one" />
-      <span className="graphic-disc graphic-disc--two" />
-    </div>
-  );
-}
-
-function BrandArtwork() {
-  return (
-    <div className="service-art service-art--brand">
-      <span className="brand-grid" />
-      <span className="brand-mark">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="brand-swatch brand-swatch--navy" />
-      <span className="brand-swatch brand-swatch--blue" />
-      <span className="brand-swatch brand-swatch--gold" />
-      <span className="brand-rule brand-rule--one" />
-      <span className="brand-rule brand-rule--two" />
-    </div>
-  );
-}
-
-const ARTWORK: Record<Service["visual"], ReactNode> = {
-  product: <ProductArtwork />,
-  mobile: <MobileArtwork />,
-  web: <WebArtwork />,
-  ai: <AiArtwork />,
-  graphic: <GraphicArtwork />,
-  brand: <BrandArtwork />,
-};
-
-function ServiceArtwork({
+function ServiceMedia({
   service,
-  paused,
+  shouldPlay,
+  reduceMotion,
 }: {
   service: Service;
-  paused: boolean;
+  shouldPlay: boolean;
+  reduceMotion: boolean;
 }) {
-  return (
-    <div
-      className={`services-artwork${paused ? " services-artwork--paused" : ""}`}
-      aria-hidden="true"
-    >
-      <div className="services-artwork__index">
-        {String(SERVICES.indexOf(service) + 1).padStart(2, "0")}
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || reduceMotion) return;
+
+    const syncPlayback = () => {
+      if (!shouldPlay || document.hidden) {
+        video.pause();
+        return;
+      }
+
+      const playPromise = video.play();
+      if (playPromise) void playPromise.catch(() => undefined);
+    };
+
+    syncPlayback();
+    document.addEventListener("visibilitychange", syncPlayback);
+
+    return () => {
+      document.removeEventListener("visibilitychange", syncPlayback);
+      video.pause();
+    };
+  }, [reduceMotion, service.mp4, shouldPlay]);
+
+  if (reduceMotion) {
+    return (
+      <div className="services-media" aria-hidden="true">
+        <img src={service.poster} alt="" />
       </div>
-      <div className="services-artwork__caption">CONNECTED SYSTEM</div>
-      {ARTWORK[service.visual]}
+    );
+  }
+
+  return (
+    <div className="services-media" aria-hidden="true">
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        autoPlay={shouldPlay}
+        preload="metadata"
+        poster={service.poster}
+        tabIndex={-1}
+      >
+        <source src={service.mp4} type="video/mp4" />
+      </video>
     </div>
   );
 }
@@ -255,8 +199,9 @@ export default function ServicesShowcase() {
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const reduceMotion = useReducedMotion() ?? false;
   const isInView = useInView(sectionRef, { amount: 0.15 });
+  const isMobile = useMobileLayout();
   const activeService = SERVICES[activeIndex];
-  const artworkPaused = reduceMotion || !isInView;
+  const shouldPlayVideo = isInView && !reduceMotion;
 
   const activate = useCallback((index: number) => {
     setActiveIndex(index);
@@ -310,127 +255,127 @@ export default function ServicesShowcase() {
           </div>
         </header>
 
-        <div className="services-desktop">
-          <div
-            className="services-nav"
-            role="tablist"
-            aria-label="Select a service"
-            aria-orientation="vertical"
-          >
+        {!isMobile ? (
+          <div className="services-desktop">
+            <div
+              className="services-nav"
+              role="tablist"
+              aria-label="Select a service"
+              aria-orientation="vertical"
+            >
+              {SERVICES.map((service, index) => {
+                const isActive = activeIndex === index;
+                return (
+                  <button
+                    type="button"
+                    role="tab"
+                    id={`service-tab-${service.id}`}
+                    aria-controls={`service-panel-${service.id}`}
+                    aria-selected={isActive}
+                    tabIndex={isActive ? 0 : -1}
+                    className="services-nav__item"
+                    key={service.id}
+                    ref={(element) => {
+                      tabRefs.current[index] = element;
+                    }}
+                    onClick={() => activate(index)}
+                    onMouseEnter={() => activate(index)}
+                    onKeyDown={(event) => handleTabKeyDown(event, index)}
+                  >
+                    {isActive && (
+                      <motion.span
+                        className="services-nav__indicator"
+                        layoutId="service-indicator"
+                        transition={transition}
+                      />
+                    )}
+                    <span className="services-nav__number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span>{service.name}</span>
+                    <span className="services-nav__state" aria-hidden="true">
+                      {isActive ? "Active" : "View"}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="services-stage">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={activeService.id}
+                  id={`service-panel-${activeService.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`service-tab-${activeService.id}`}
+                  className="services-stage__panel"
+                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
+                  transition={transition}
+                >
+                  <ServiceDetails service={activeService} />
+                  <ServiceMedia
+                    service={activeService}
+                    shouldPlay={shouldPlayVideo}
+                    reduceMotion={reduceMotion}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        ) : (
+          <div className="services-mobile" aria-label="Services">
             {SERVICES.map((service, index) => {
               const isActive = activeIndex === index;
+              const buttonId = `mobile-service-button-${service.id}`;
+              const panelId = `mobile-service-panel-${service.id}`;
+
               return (
-                <button
-                  type="button"
-                  role="tab"
-                  id={`service-tab-${service.id}`}
-                  aria-controls={`service-panel-${service.id}`}
-                  aria-selected={isActive}
-                  tabIndex={isActive ? 0 : -1}
-                  className="services-nav__item"
+                <div
+                  className={`services-mobile__item${isActive ? " is-active" : ""}`}
                   key={service.id}
-                  ref={(element) => {
-                    tabRefs.current[index] = element;
-                  }}
-                  onClick={() => activate(index)}
-                  onMouseEnter={() => activate(index)}
-                  onKeyDown={(event) => handleTabKeyDown(event, index)}
                 >
-                  {isActive && (
-                    <motion.span
-                      className="services-nav__indicator"
-                      layoutId="service-indicator"
-                      transition={transition}
-                    />
-                  )}
-                  <span className="services-nav__number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span>{service.name}</span>
-                  <span className="services-nav__state" aria-hidden="true">
-                    {isActive ? "Active" : "View"}
-                  </span>
-                </button>
+                  <button
+                    type="button"
+                    id={buttonId}
+                    className="services-mobile__button"
+                    aria-expanded={isActive}
+                    aria-controls={panelId}
+                    onClick={() => activate(index)}
+                  >
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{service.name}</strong>
+                    <i aria-hidden="true">{isActive ? "−" : "+"}</i>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isActive && (
+                      <motion.div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={buttonId}
+                        className="services-mobile__panel"
+                        initial={
+                          reduceMotion ? false : { opacity: 0, height: 0 }
+                        }
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={transition}
+                      >
+                        <ServiceMedia
+                          service={service}
+                          shouldPlay={shouldPlayVideo}
+                          reduceMotion={reduceMotion}
+                        />
+                        <ServiceDetails service={service} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
-
-          <div className="services-stage">
-            <AnimatePresence initial={false} mode="wait">
-              <motion.div
-                key={activeService.id}
-                id={`service-panel-${activeService.id}`}
-                role="tabpanel"
-                aria-labelledby={`service-tab-${activeService.id}`}
-                className="services-stage__panel"
-                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
-                transition={transition}
-              >
-                <ServiceDetails service={activeService} />
-                <ServiceArtwork
-                  service={activeService}
-                  paused={artworkPaused}
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        <div className="services-mobile" aria-label="Services">
-          {SERVICES.map((service, index) => {
-            const isActive = activeIndex === index;
-            const buttonId = `mobile-service-button-${service.id}`;
-            const panelId = `mobile-service-panel-${service.id}`;
-
-            return (
-              <div
-                className={`services-mobile__item${isActive ? " is-active" : ""}`}
-                key={service.id}
-              >
-                <button
-                  type="button"
-                  id={buttonId}
-                  className="services-mobile__button"
-                  aria-expanded={isActive}
-                  aria-controls={panelId}
-                  onClick={() => activate(index)}
-                >
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{service.name}</strong>
-                  <i aria-hidden="true">{isActive ? "−" : "+"}</i>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isActive && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      className="services-mobile__panel"
-                      initial={reduceMotion ? false : { opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={
-                        reduceMotion
-                          ? { opacity: 0, height: 0 }
-                          : { opacity: 0, height: 0 }
-                      }
-                      transition={transition}
-                    >
-                      <div className="services-mobile__artwork">
-                        <ServiceArtwork
-                          service={service}
-                          paused={artworkPaused}
-                        />
-                      </div>
-                      <ServiceDetails service={service} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
+        )}
       </div>
     </section>
   );
