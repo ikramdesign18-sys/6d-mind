@@ -70,71 +70,76 @@ const SERVICES: readonly Service[] = [
   },
 ] as const;
 
-const CROSSFADE_DURATION_MS = 560;
+const CROSSFADE_DURATION_MS = 500;
 const SOUND_PREFERENCE_KEY = "6d-mind-services-sound";
-const PLAYBACK_ERROR_MESSAGE =
-  "The active service video could not start. Please try scrolling again.";
 
 export default function ServicesShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(false);
-  const [playbackError, setPlaybackError] = useState<string | null>(null);
   const storyRef = useRef<HTMLElement>(null);
   const activeIndexRef = useRef(0);
   const transitionTimerRef = useRef<number | null>(null);
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const reduceMotion = useReducedMotion() ?? false;
+
   const { scrollYProgress } = useScroll({
     target: storyRef,
     offset: ["start start", "end end"],
   });
+
   const activeService = SERVICES[activeIndex];
 
   const playVideo = useCallback(
     async (video: HTMLVideoElement, enableSound: boolean) => {
-      video.muted = true;
-
+      video.muted = !enableSound;
       try {
         await video.play();
-        if (enableSound) video.muted = false;
-        setPlaybackError(null);
       } catch {
-        setPlaybackError(PLAYBACK_ERROR_MESSAGE);
+        if (enableSound) {
+          video.muted = true;
+          await video.play().catch(() => {});
+        }
       }
     },
     [],
   );
 
-  const setStoryIndex = useCallback((progress: number) => {
-    const nextIndex = Math.min(
-      SERVICES.length - 1,
-      Math.max(0, Math.floor(progress * SERVICES.length)),
-    );
+  const setStoryIndex = useCallback(
+    (progress: number) => {
+      const nextIndex = Math.min(
+        SERVICES.length - 1,
+        Math.max(0, Math.floor(progress * SERVICES.length)),
+      );
 
-    if (nextIndex === activeIndexRef.current) return;
+      if (nextIndex === activeIndexRef.current) return;
 
-    const outgoingIndex = activeIndexRef.current;
-    const incomingVideo = videoRefs.current[nextIndex];
+      const outgoingIndex = activeIndexRef.current;
+      const incomingVideo = videoRefs.current[nextIndex];
 
-    if (incomingVideo) {
-      incomingVideo.pause();
-      incomingVideo.currentTime = 0;
-    }
+      if (incomingVideo) {
+        incomingVideo.pause();
+        incomingVideo.currentTime = 0;
+      }
 
-    if (transitionTimerRef.current !== null) {
-      window.clearTimeout(transitionTimerRef.current);
-    }
+      if (transitionTimerRef.current !== null) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
 
-    activeIndexRef.current = nextIndex;
-    setPreviousIndex(outgoingIndex);
-    setActiveIndex(nextIndex);
+      activeIndexRef.current = nextIndex;
+      setPreviousIndex(outgoingIndex);
+      setActiveIndex(nextIndex);
 
-    transitionTimerRef.current = window.setTimeout(() => {
-      setPreviousIndex(null);
-      transitionTimerRef.current = null;
-    }, reduceMotion ? 0 : CROSSFADE_DURATION_MS);
-  }, [reduceMotion]);
+      transitionTimerRef.current = window.setTimeout(
+        () => {
+          setPreviousIndex(null);
+          transitionTimerRef.current = null;
+        },
+        reduceMotion ? 0 : CROSSFADE_DURATION_MS,
+      );
+    },
+    [reduceMotion],
+  );
 
   useMotionValueEvent(scrollYProgress, "change", setStoryIndex);
 
@@ -143,7 +148,10 @@ export default function ServicesShowcase() {
   }, [scrollYProgress, setStoryIndex]);
 
   useEffect(() => {
-    setSoundEnabled(sessionStorage.getItem(SOUND_PREFERENCE_KEY) === "on");
+    const savedSound = sessionStorage.getItem(SOUND_PREFERENCE_KEY);
+    if (savedSound === "on") {
+      setSoundEnabled(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -154,11 +162,10 @@ export default function ServicesShowcase() {
     videoRefs.current.forEach((video, index) => {
       if (!video || index === activeIndex || index === previousIndex) return;
       video.pause();
-      video.muted = true;
     });
 
     if (outgoingVideo) {
-      void playVideo(outgoingVideo, false);
+      void playVideo(outgoingVideo, soundEnabled);
     }
 
     if (activeVideo) {
@@ -189,35 +196,36 @@ export default function ServicesShowcase() {
       if (transitionTimerRef.current !== null) {
         window.clearTimeout(transitionTimerRef.current);
       }
-
       videoRefs.current.forEach((video) => video?.pause());
     };
   }, []);
 
   const toggleSound = () => {
-    const nextSoundState = !soundEnabled;
-    setSoundEnabled(nextSoundState);
-    sessionStorage.setItem(SOUND_PREFERENCE_KEY, nextSoundState ? "on" : "off");
+    const nextState = !soundEnabled;
+    setSoundEnabled(nextState);
+    sessionStorage.setItem(SOUND_PREFERENCE_KEY, nextState ? "on" : "off");
+    const activeVideo = videoRefs.current[activeIndex];
+    if (activeVideo) {
+      activeVideo.muted = !nextState;
+      if (nextState) {
+        void activeVideo.play().catch(() => {});
+      }
+    }
   };
 
-  const crossfade = reduceMotion
+  const crossfadeTransition = reduceMotion
     ? { duration: 0 }
-    : {
-        duration: CROSSFADE_DURATION_MS / 1000,
-        ease: [0.22, 1, 0.36, 1] as const,
-      };
-  const contentTransition = reduceMotion
-    ? { duration: 0 }
-    : { duration: 0.42, ease: [0.22, 1, 0.36, 1] as const };
+    : { duration: CROSSFADE_DURATION_MS / 1000, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
     <section
       id="expertise"
       ref={storyRef}
       className="services-pinned-story"
-      aria-labelledby="services-story-heading"
+      aria-label="Services Story"
     >
       <div className="services-pinned-stage">
+        {/* Fullscreen Stage Videos */}
         <div className="services-video-stack" aria-hidden="true">
           {SERVICES.map((service, index) => (
             <motion.video
@@ -228,49 +236,35 @@ export default function ServicesShowcase() {
               className="services-stage-video"
               initial={{ opacity: index === 0 ? 1 : 0 }}
               animate={{ opacity: index === activeIndex ? 1 : 0 }}
-              transition={crossfade}
+              transition={crossfadeTransition}
               style={{
                 zIndex:
                   index === activeIndex ? 2 : index === previousIndex ? 1 : 0,
               }}
-              muted
+              autoPlay
+              muted={!soundEnabled}
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
               tabIndex={-1}
-              onLoadedData={(event) => {
-                if (index === activeIndex) {
-                  void playVideo(event.currentTarget, soundEnabled);
-                }
-              }}
-              onError={() => setPlaybackError(PLAYBACK_ERROR_MESSAGE)}
             >
               <source src={service.mp4} type="video/mp4" />
             </motion.video>
           ))}
         </div>
 
+        {/* Gradient Scrim for Readability */}
         <div className="services-stage-scrim" aria-hidden="true" />
 
-        <header className="services-story-intro">
-          <p>Our capabilities</p>
-          <h2 id="services-story-heading">
-            Six Disciplines. <span>One Complete Product Journey.</span>
-          </h2>
-          <div>
-            Strategy, design, development, AI, visual communication, and
-            branding—connected through one focused workflow.
-          </div>
-        </header>
-
+        {/* Sound Toggle Button */}
         <button
           type="button"
           className="services-sound-control"
           onClick={toggleSound}
           aria-label={
             soundEnabled
-              ? "Turn service video sound off"
-              : "Turn service video sound on"
+              ? "Mute service video sound"
+              : "Unmute service video sound"
           }
         >
           {soundEnabled ? (
@@ -278,23 +272,25 @@ export default function ServicesShowcase() {
           ) : (
             <VolumeX size={16} aria-hidden="true" />
           )}
-          <span>{soundEnabled ? "Sound Off" : "Sound On"}</span>
+          <span>🔊 Sound</span>
         </button>
 
+        {/* Bottom-Left Overlay Text */}
         <div className="services-story-bottom">
-          <AnimatePresence initial={false} mode="wait">
+          <AnimatePresence mode="wait">
             <motion.div
               key={activeService.id}
               className="services-story-content"
-              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
-              transition={contentTransition}
+              exit={{ opacity: 0, y: reduceMotion ? 0 : -10 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
             >
               <p className="services-story-number">
-                {String(activeIndex + 1).padStart(2, "0")}
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(SERVICES.length).padStart(2, "0")}
               </p>
-              <h3>{activeService.name}</h3>
+              <h2 className="services-story-title">{activeService.name}</h2>
               <p className="services-story-description">
                 {activeService.description}
               </p>
@@ -303,17 +299,13 @@ export default function ServicesShowcase() {
                 className="services-story-link"
                 aria-label={`View ${activeService.name.replace("&", "and")} details`}
               >
-                View Details
-                <ArrowRight size={17} aria-hidden="true" />
+                View Details <ArrowRight size={18} aria-hidden="true" />
               </Link>
             </motion.div>
           </AnimatePresence>
         </div>
-
-        <p className="services-story-announcement" aria-live="polite">
-          {playbackError || `Showing ${activeService.name}`}
-        </p>
       </div>
     </section>
   );
 }
+
