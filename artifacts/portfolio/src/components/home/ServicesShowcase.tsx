@@ -1,18 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
-  Bot,
   CheckCircle2,
-  Code2,
-  Cpu,
-  Figma,
-  Globe,
+  ExternalLink,
   Layers,
-  Layout,
-  Palette,
-  Smartphone,
   Sparkles,
-  Terminal,
   Zap,
 } from "lucide-react";
 import { useState } from "react";
@@ -115,402 +107,274 @@ const DISCIPLINES: readonly Discipline[] = [
 ] as const;
 
 /* -------------------------------------------------------------------------- */
-/* Detailed Skill-Matched Motion Graphic Preview Components                   */
+/* World-Class Real Product Motion Graphic Previews                           */
 /* -------------------------------------------------------------------------- */
 
-/* 01: UI/UX & Product Design (Figma Prototype & Design System Wireframe) */
+/* 01: UI/UX & Product Design — Real Figma Canvas Showcase */
 function MotionGraphicUIUX() {
   return (
-    <div className="motion-stage-canvas">
-      <svg viewBox="0 0 440 300" className="w-full h-full">
-        <defs>
-          <linearGradient id="uiGlass" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#a855f7" stopOpacity="0.1" />
-          </linearGradient>
-          <linearGradient id="activeWidget" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#6366f1" />
-            <stop offset="100%" stopColor="#818cf8" />
-          </linearGradient>
-        </defs>
+    <div className="product-motion-stage">
+      <div className="product-window-frame">
+        {/* Top Figma Header */}
+        <div className="product-window-topbar font-mono">
+          <div className="flex items-center gap-1.5">
+            <span className="dot red" />
+            <span className="dot yellow" />
+            <span className="dot green" />
+          </div>
+          <span className="text-xs text-slate-400 font-semibold ml-2">ÉLAN Fashion System — Figma Desktop</span>
+        </div>
 
-        {/* Figma Editor Frame */}
-        <rect x="15" y="15" width="410" height="270" rx="14" fill="#0b0f19" stroke="#1e293b" strokeWidth="2" />
-        
-        {/* Top Control Bar */}
-        <rect x="15" y="15" width="410" height="32" fill="#111827" rx="14" />
-        <circle cx="35" cy="31" r="4" fill="#ef4444" />
-        <circle cx="47" cy="31" r="4" fill="#f59e0b" />
-        <circle cx="59" cy="31" r="4" fill="#10b981" />
-        <text x="80" y="35" fill="#64748b" fontSize="10" fontFamily="monospace">Figma // AppSystem.fig (Design System v2.4)</text>
+        {/* Real Product UI Mockup Stage */}
+        <div className="product-window-body">
+          <motion.img
+            src="/projects/elan-fashion/elan-cover.png"
+            alt="UI UX Product Design Mockup"
+            className="product-main-img"
+            initial={{ scale: 1.05 }}
+            animate={{ scale: [1.05, 1, 1.05] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
 
-        {/* Left Layer Tree Panel */}
-        <rect x="25" y="55" width="95" height="215" rx="8" fill="#111827" stroke="#1e293b" strokeWidth="1" />
-        <rect x="35" y="68" width="75" height="8" rx="4" fill="#334155" />
-        <rect x="35" y="86" width="60" height="6" rx="3" fill="#6366f1" opacity="0.8" />
-        <rect x="35" y="100" width="68" height="6" rx="3" fill="#334155" />
-        <rect x="35" y="114" width="50" height="6" rx="3" fill="#334155" />
-        <rect x="35" y="128" width="72" height="6" rx="3" fill="#a855f7" opacity="0.8" />
+          {/* Floating Figma Design Tokens Overlay */}
+          <motion.div
+            className="product-overlay-card bottom-left font-mono"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: [0, -6, 0], opacity: 1 }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="text-[10px] text-indigo-400 font-bold uppercase tracking-wider mb-1">Design System Tokens</div>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-indigo-500 ring-2 ring-indigo-300/40" />
+              <span className="w-3 h-3 rounded-full bg-purple-500" />
+              <span className="w-3 h-3 rounded-full bg-pink-500" />
+              <span className="text-[11px] text-white font-medium ml-1">Auto-Layout 4.0</span>
+            </div>
+          </motion.div>
 
-        {/* Center Design Artboard */}
-        <rect x="130" y="55" width="285" height="215" rx="8" fill="url(#uiGlass)" stroke="#334155" strokeWidth="1" />
-
-        {/* Design System Tokens */}
-        <circle cx="150" cy="75" r="8" fill="#6366f1" />
-        <circle cx="172" cy="75" r="8" fill="#a855f7" />
-        <circle cx="194" cy="75" r="8" fill="#ec4899" />
-        <circle cx="216" cy="75" r="8" fill="#10b981" />
-
-        {/* Interactive Dashboard Card Widget */}
-        <motion.rect
-          x="145"
-          y="95"
-          width="120"
-          height="80"
-          rx="10"
-          fill="#1e1b4b"
-          stroke="#6366f1"
-          strokeWidth="1.5"
-          animate={{ y: [0, -4, 0], strokeOpacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <rect x="160" y="110" width="60" height="8" rx="4" fill="#818cf8" />
-        <rect x="160" y="125" width="90" height="6" rx="3" fill="#4338ca" />
-        <motion.rect x="160" y="145" width="70" height="18" rx="6" fill="url(#activeWidget)" animate={{ scale: [0.96, 1.02, 0.96] }} transition={{ duration: 2, repeat: Infinity }} />
-
-        {/* Secondary Wireframe Component */}
-        <motion.rect
-          x="280"
-          y="95"
-          width="120"
-          height="80"
-          rx="10"
-          fill="#1f1d2b"
-          stroke="#a855f7"
-          strokeWidth="1.5"
-          animate={{ y: [0, 4, 0] }}
-          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <rect x="295" y="110" width="70" height="8" rx="4" fill="#c084fc" />
-        <rect x="295" y="125" width="80" height="6" rx="3" fill="#581c87" />
-
-        {/* Prototype Connection Wire */}
-        <motion.path
-          d="M265 135 C 275 135, 270 135, 280 135"
-          fill="none"
-          stroke="#a855f7"
-          strokeWidth="2"
-          strokeDasharray="4 4"
-          animate={{ strokeDashoffset: [0, -16] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* User Journey Bar Chart */}
-        <rect x="145" y="190" width="255" height="65" rx="8" fill="#111827" stroke="#1e293b" />
-        <motion.rect x="165" y="215" width="16" height="30" rx="3" fill="#6366f1" animate={{ height: [20, 35, 20] }} transition={{ duration: 2.2, repeat: Infinity }} />
-        <motion.rect x="195" y="205" width="16" height="40" rx="3" fill="#818cf8" animate={{ height: [35, 45, 35] }} transition={{ duration: 2.5, repeat: Infinity }} />
-        <motion.rect x="225" y="220" width="16" height="25" rx="3" fill="#a855f7" animate={{ height: [15, 30, 15] }} transition={{ duration: 1.9, repeat: Infinity }} />
-        <motion.rect x="255" y="200" width="16" height="45" rx="3" fill="#c084fc" animate={{ height: [40, 50, 40] }} transition={{ duration: 2.7, repeat: Infinity }} />
-
-        {/* Designer Cursor with Figma Label */}
-        <motion.g
-          animate={{ x: [0, 110, 190, 0], y: [0, -20, 45, 0] }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <path d="M190 140 L204 168 L194 172 L185 155 L178 160 Z" fill="#6366f1" stroke="#ffffff" strokeWidth="1.5" />
-          <rect x="202" y="165" width="48" height="16" rx="4" fill="#6366f1" />
-          <text x="208" y="176" fill="#ffffff" fontSize="9" fontWeight="bold">Designer</text>
-        </motion.g>
-      </svg>
+          {/* Animated Cursor */}
+          <motion.g
+            className="absolute top-1/3 left-1/2 z-20 pointer-events-none"
+            animate={{ x: [-40, 60, -20, -40], y: [-20, 30, -10, -20] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="flex items-center gap-1 bg-indigo-600 text-white px-2 py-0.5 rounded shadow-lg text-[10px] font-bold">
+              <span>Figma Cursor</span>
+            </div>
+          </motion.g>
+        </div>
+      </div>
     </div>
   );
 }
 
-/* 02: Mobile App Development (React Native & Expo Multi-Screen App Preview) */
+/* 02: Mobile App Development — Real Native Mobile App Showcase */
 function MotionGraphicMobile() {
   return (
-    <div className="motion-stage-canvas">
-      <svg viewBox="0 0 440 300" className="w-full h-full">
-        <defs>
-          <linearGradient id="appHeader" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#3b82f6" />
-            <stop offset="100%" stopColor="#1d4ed8" />
-          </linearGradient>
-        </defs>
+    <div className="product-motion-stage">
+      <div className="product-mobile-wrapper">
+        {/* Floating iPhone Device Chassis */}
+        <motion.div
+          className="product-phone-chassis"
+          initial={{ y: 10, rotate: -2 }}
+          animate={{ y: [-6, 6, -6], rotate: [-2, 1, -2] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="phone-notch" />
+          <img
+            src="/projects/amanat-diary/amanat-home-experience.png"
+            alt="Mobile App Real Screenshot"
+            className="phone-screen-img"
+          />
+        </motion.div>
 
-        {/* Dual Phone Frames (iOS & Android) */}
-        {/* iOS Chassis */}
-        <rect x="80" y="20" width="135" height="260" rx="22" fill="#0b0f19" stroke="#3b82f6" strokeWidth="2.5" />
-        <rect x="122" y="28" width="50" height="6" rx="3" fill="#1e293b" />
-        
-        {/* iOS App UI */}
-        <rect x="90" y="42" width="115" height="225" rx="14" fill="#0f172a" />
-        <rect x="90" y="42" width="115" height="45" fill="url(#appHeader)" rx="14" />
-        <text x="100" y="62" fill="#ffffff" fontSize="10" fontWeight="bold">React Native</text>
-        <circle cx="190" cy="58" r="8" fill="#60a5fa" opacity="0.6" />
+        {/* Floating Android Secondary Device Showcase */}
+        <motion.div
+          className="product-phone-chassis secondary"
+          initial={{ y: -10, rotate: 4 }}
+          animate={{ y: [6, -6, 6], rotate: [4, -1, 4] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <img
+            src="/projects/mahfooz/mahfooz-cover.png"
+            alt="React Native App Screen"
+            className="phone-screen-img"
+          />
+        </motion.div>
 
-        {/* Dynamic App Feed Cards */}
-        <motion.rect
-          x="98"
-          y="98"
-          width="99"
-          height="45"
-          rx="8"
-          fill="#1e293b"
-          stroke="#3b82f6"
-          strokeWidth="1"
-          animate={{ y: [0, 4, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <rect x="106" y="108" width="55" height="6" rx="3" fill="#60a5fa" />
-        <rect x="106" y="120" width="75" height="5" rx="2" fill="#475569" />
-
-        <motion.rect
-          x="98"
-          y="152"
-          width="99"
-          height="45"
-          rx="8"
-          fill="#1e293b"
-          stroke="#1e40af"
-          strokeWidth="1"
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <rect x="106" y="162" width="45" height="6" rx="3" fill="#38bdf8" />
-        <rect x="106" y="174" width="65" height="5" rx="2" fill="#475569" />
-
-        {/* Bottom Tab Bar */}
-        <rect x="90" y="235" width="115" height="32" fill="#1e293b" rx="8" />
-        <circle cx="115" cy="251" r="5" fill="#3b82f6" />
-        <circle cx="147" cy="251" r="5" fill="#64748b" />
-        <circle cx="179" cy="251" r="5" fill="#64748b" />
-
-        {/* Android Chassis */}
-        <rect x="235" y="30" width="130" height="240" rx="18" fill="#0b0f19" stroke="#60a5fa" strokeWidth="2" />
-        <circle cx="300" cy="40" r="3" fill="#475569" />
-        <rect x="243" y="48" width="114" height="210" rx="10" fill="#111827" />
-
-        {/* Native Code Performance Indicator */}
-        <rect x="250" y="60" width="100" height="60" rx="8" fill="#1e3a8a" opacity="0.7" />
-        <text x="260" y="78" fill="#93c5fd" fontSize="9" fontFamily="monospace">60 FPS Native</text>
-        <motion.path
-          d="M260 100 Q 275 80, 290 95 T 320 85 T 340 105"
-          fill="none"
-          stroke="#60a5fa"
-          strokeWidth="2"
-          animate={{ pathLength: [0.2, 1, 0.2] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-
-        {/* Animated Tap Ripple */}
-        <motion.circle
-          cx="147"
-          cy="120"
-          r="12"
-          fill="none"
-          stroke="#60a5fa"
-          strokeWidth="1.5"
-          animate={{ scale: [0.5, 1.8], opacity: [1, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity }}
-        />
-      </svg>
+        {/* Floating Performance Badge */}
+        <motion.div
+          className="product-overlay-card top-right font-mono"
+          animate={{ scale: [0.96, 1.04, 0.96] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
+          <span className="text-blue-400 font-bold text-xs">60 FPS // React Native</span>
+        </motion.div>
+      </div>
     </div>
   );
 }
 
-/* 03: Website & Web App Development (Full-Stack IDE & Responsive Live Web Dashboard) */
+/* 03: Website & Web App Development — Real Full-Stack Web Platform */
 function MotionGraphicWeb() {
   return (
-    <div className="motion-stage-canvas">
-      <svg viewBox="0 0 440 300" className="w-full h-full">
-        {/* Left IDE Window */}
-        <rect x="15" y="20" width="200" height="260" rx="10" fill="#0b0f19" stroke="#10b981" strokeWidth="1.5" />
-        <rect x="15" y="20" width="200" height="28" fill="#111827" rx="10" />
-        <circle cx="30" cy="34" r="4" fill="#ef4444" />
-        <circle cx="42" cy="34" r="4" fill="#f59e0b" />
-        <circle cx="54" cy="34" r="4" fill="#10b981" />
-        <text x="70" y="38" fill="#64748b" fontSize="9" fontFamily="monospace">App.tsx — Next.js</text>
+    <div className="product-motion-stage">
+      <div className="product-window-frame">
+        {/* Safari Browser Header */}
+        <div className="product-window-topbar font-mono">
+          <div className="flex items-center gap-1.5">
+            <span className="dot red" />
+            <span className="dot yellow" />
+            <span className="dot green" />
+          </div>
+          <div className="bg-slate-800/80 px-4 py-0.5 rounded text-[11px] text-emerald-400 mx-auto">
+            https://mdcn.6dmind.com // Next.js 15
+          </div>
+        </div>
 
-        {/* TypeScript Code Editor Syntax */}
-        <motion.g animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 2, repeat: Infinity }}>
-          <text x="25" y="65" fill="#f43f5e" fontSize="9" fontFamily="monospace">import</text>
-          <text x="65" y="65" fill="#f8fafc" fontSize="9" fontFamily="monospace">&#123; React &#125;</text>
-          <text x="110" y="65" fill="#f43f5e" fontSize="9" fontFamily="monospace">from</text>
-          <text x="140" y="65" fill="#34d399" fontSize="9" fontFamily="monospace">'react'</text>
+        {/* Real Production Web Screenshot Stage */}
+        <div className="product-window-body">
+          <motion.img
+            src="/projects/mdcn-distribution/mdcn-cover.png"
+            alt="Web App Real Screenshot"
+            className="product-main-img"
+            initial={{ y: 0 }}
+            animate={{ y: [0, -40, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
 
-          <text x="25" y="85" fill="#3b82f6" fontSize="9" fontFamily="monospace">export default</text>
-          <text x="105" y="85" fill="#fbbf24" fontSize="9" fontFamily="monospace">function</text>
-          <text x="150" y="85" fill="#60a5fa" fontSize="9" fontFamily="monospace">App()</text>
-
-          <text x="25" y="105" fill="#f8fafc" fontSize="9" fontFamily="monospace">&#123; return (</text>
-          <text x="35" y="125" fill="#34d399" fontSize="9" fontFamily="monospace">&lt;Dashboard</text>
-          <text x="45" y="145" fill="#a78bfa" fontSize="9" fontFamily="monospace">theme=</text>
-          <text x="80" y="145" fill="#34d399" fontSize="9" fontFamily="monospace">"dark"</text>
-          <text x="45" y="165" fill="#a78bfa" fontSize="9" fontFamily="monospace">speed=</text>
-          <text x="80" y="165" fill="#fbbf24" fontSize="9" fontFamily="monospace">&#123;100&#125;</text>
-          <text x="35" y="185" fill="#34d399" fontSize="9" fontFamily="monospace">/&gt;</text>
-          <text x="25" y="205" fill="#f8fafc" fontSize="9" fontFamily="monospace">); &#125;</text>
-        </motion.g>
-
-        {/* Right Live Render Window */}
-        <rect x="225" y="20" width="200" height="260" rx="10" fill="#0f172a" stroke="#334155" strokeWidth="1.5" />
-        <rect x="225" y="20" width="200" height="28" fill="#1e293b" rx="10" />
-        <rect x="240" y="28" width="130" height="12" rx="6" fill="#0f172a" />
-        <text x="248" y="37" fill="#10b981" fontSize="8" fontFamily="monospace">https://app.6dmind.com</text>
-
-        {/* Live Responsive Analytics Dashboard */}
-        <motion.rect x="240" y="60" width="170" height="65" rx="8" fill="#064e3b" stroke="#10b981" strokeWidth="1" animate={{ opacity: [0.8, 1, 0.8] }} transition={{ duration: 2.4, repeat: Infinity }} />
-        <text x="252" y="78" fill="#a7f3d0" fontSize="9" fontWeight="bold">SaaS Revenue // +142%</text>
-        <motion.path
-          d="M252 110 L275 95 L298 102 L320 85 L345 92 L370 78 L395 82"
-          fill="none"
-          stroke="#34d399"
-          strokeWidth="2"
-          animate={{ pathLength: [0, 1] }}
-          transition={{ duration: 2.5, repeat: Infinity }}
-        />
-
-        {/* Grid Components */}
-        <rect x="240" y="135" width="80" height="60" rx="6" fill="#1e293b" />
-        <rect x="250" y="145" width="50" height="6" rx="3" fill="#10b981" />
-        <rect x="250" y="160" width="60" height="18" rx="4" fill="#065f46" />
-
-        <rect x="330" y="135" width="80" height="60" rx="6" fill="#1e293b" />
-        <rect x="340" y="145" width="50" height="6" rx="3" fill="#6366f1" />
-        <rect x="340" y="160" width="60" height="18" rx="4" fill="#3730a3" />
-
-        {/* Lighthouse Score Badge */}
-        <rect x="240" y="205" width="170" height="35" rx="6" fill="#064e3b" />
-        <circle cx="260" cy="222" r="10" fill="#10b981" />
-        <text x="255" y="226" fill="#ffffff" fontSize="9" fontWeight="bold">99</text>
-        <text x="278" y="226" fill="#6ee7b7" fontSize="9" fontWeight="bold">Lighthouse Performance</text>
-      </svg>
+          {/* Lighthouse Score Card */}
+          <motion.div
+            className="product-overlay-card bottom-right font-mono"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 2.8, repeat: Infinity }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center">99</span>
+              <span className="text-xs text-white font-semibold">Lighthouse Performance</span>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
 
-/* 04: AI Product Development (RAG Pipeline & Neural Waveform Visualizer) */
+/* 04: AI Product Development — Real AI Assistant & RAG Workflow Showcase */
 function MotionGraphicAI() {
   return (
-    <div className="motion-stage-canvas">
-      <svg viewBox="0 0 440 300" className="w-full h-full">
-        {/* RAG Neural Mesh Connections */}
-        <g stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="3 3">
-          <line x1="70" y1="150" x2="190" y2="70" />
-          <line x1="70" y1="150" x2="190" y2="150" />
-          <line x1="70" y1="150" x2="190" y2="230" />
-          <line x1="190" y1="70" x2="330" y2="150" />
-          <line x1="190" y1="150" x2="330" y2="150" />
-          <line x1="190" y1="230" x2="330" y2="150" />
-        </g>
+    <div className="product-motion-stage">
+      <div className="product-window-frame">
+        <div className="product-window-topbar font-mono">
+          <div className="flex items-center gap-1.5">
+            <span className="dot red" />
+            <span className="dot yellow" />
+            <span className="dot green" />
+          </div>
+          <span className="text-xs text-purple-400 font-semibold ml-2">Mahfooz AI Engine // OpenAI RAG Pipeline</span>
+        </div>
 
-        {/* Vector Embedding Nodes */}
-        <motion.circle cx="70" cy="150" r="18" fill="#6d28d9" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-        <text x="58" y="154" fill="#ffffff" fontSize="9" fontStyle="bold">User</text>
+        <div className="product-window-body">
+          <motion.img
+            src="/projects/mahfooz/mahfooz-ai-assistant.png"
+            alt="AI Assistant Product Screenshot"
+            className="product-main-img"
+            initial={{ scale: 1 }}
+            animate={{ scale: [1, 1.03, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
 
-        <motion.circle cx="190" cy="70" r="14" fill="#8b5cf6" animate={{ scale: [1, 1.25, 1] }} transition={{ duration: 2.2, repeat: Infinity, delay: 0.2 }} />
-        <motion.circle cx="190" cy="150" r="16" fill="#a78bfa" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 1.8, repeat: Infinity, delay: 0.4 }} />
-        <motion.circle cx="190" cy="230" r="14" fill="#8b5cf6" animate={{ scale: [1, 1.25, 1] }} transition={{ duration: 2.4, repeat: Infinity, delay: 0.1 }} />
-
-        <motion.circle cx="330" cy="150" r="22" fill="#7c3aed" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }} />
-        <text x="317" y="154" fill="#ffffff" fontSize="9" fontWeight="bold">LLM</text>
-
-        {/* Glowing Data Flow Tokens */}
-        <motion.circle cx="130" cy="110" r="5" fill="#ddd6fe" animate={{ x: [-60, 60], y: [40, -40], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
-        <motion.circle cx="260" cy="110" r="5" fill="#ddd6fe" animate={{ x: [-70, 70], y: [-40, 40], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6, ease: "linear" }} />
-
-        {/* Live AI Streaming Response Bubble */}
-        <rect x="80" y="15" width="280" height="38" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="1" />
-        <text x="95" y="38" fill="#c4b5fd" fontSize="9" fontFamily="monospace">AI Agent: Synthesizing vectors &amp; automation...</text>
-        <motion.rect x="340" y="28" width="8" height="12" fill="#a78bfa" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 0.8, repeat: Infinity }} />
-      </svg>
+          {/* Streaming Prompt Overlay */}
+          <motion.div
+            className="product-overlay-card top-left font-mono"
+            animate={{ opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <div className="text-[10px] text-purple-400 font-bold uppercase mb-1">RAG Vector Agent</div>
+            <div className="text-xs text-white font-medium">Streaming 142 tokens/sec...</div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
 
-/* 05: Graphic Design (Studio Visual Layout & Dynamic Typography Grid) */
+/* 05: Graphic Design — Real Studio Visual Campaign Showcase */
 function MotionGraphicGraphic() {
   return (
-    <div className="motion-stage-canvas">
-      <svg viewBox="0 0 440 300" className="w-full h-full">
-        {/* Poster Canvas Frame */}
-        <rect x="30" y="20" width="380" height="260" rx="10" fill="#0b0f19" stroke="#f59e0b" strokeWidth="1.5" />
+    <div className="product-motion-stage">
+      <div className="product-window-frame">
+        <div className="product-window-topbar font-mono">
+          <div className="flex items-center gap-1.5">
+            <span className="dot red" />
+            <span className="dot yellow" />
+            <span className="dot green" />
+          </div>
+          <span className="text-xs text-amber-400 font-semibold ml-2">Visual Campaign Studio // 2026</span>
+        </div>
 
-        {/* Golden Ratio Radial Alignment */}
-        <motion.circle cx="220" cy="150" r="85" fill="none" stroke="#fbbf24" strokeWidth="1" strokeDasharray="6 6" animate={{ rotate: 360 }} transition={{ duration: 16, repeat: Infinity, ease: "linear" }} />
+        <div className="product-window-body">
+          <motion.img
+            src="/projects/lumina-botanicals/08-editorial-campaign.png"
+            alt="Graphic Design Campaign Mockup"
+            className="product-main-img"
+            initial={{ scale: 1.04 }}
+            animate={{ scale: [1.04, 1, 1.04] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          />
 
-        {/* Dynamic Vector Geometry */}
-        <motion.polygon
-          points="220,70 290,195 150,195"
-          fill="rgba(245, 158, 11, 0.3)"
-          stroke="#f59e0b"
-          strokeWidth="2"
-          animate={{ rotate: [0, 180, 360] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: "220px 150px" }}
-        />
-
-        <motion.rect
-          x="180"
-          y="110"
-          width="80"
-          height="80"
-          fill="rgba(251, 191, 36, 0.2)"
-          stroke="#fde047"
-          strokeWidth="2"
-          animate={{ rotate: [360, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: "220px 150px" }}
-        />
-
-        {/* Typography Overlay Specs */}
-        <text x="50" y="50" fill="#fbbf24" fontSize="18" fontWeight="bold" fontFamily="sans-serif">VISUAL / IMPACT</text>
-        <text x="50" y="70" fill="#94a3b8" fontSize="9" fontFamily="monospace">DISPLAY TYPE SYSTEM // 2026</text>
-      </svg>
+          <motion.div
+            className="product-overlay-card bottom-left font-mono"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 3.2, repeat: Infinity }}
+          >
+            <span className="text-amber-400 font-bold text-xs">High-Impact Campaign Assets</span>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
 
-/* 06: Branding & Visual Identity (Complete Brand System & Identity Mark Specimen) */
+/* 06: Branding & Visual Identity — Real Brand System Showcase */
 function MotionGraphicBranding() {
   return (
-    <div className="motion-stage-canvas">
-      <svg viewBox="0 0 440 300" className="w-full h-full">
-        {/* Brand System Specification Board */}
-        <rect x="20" y="20" width="400" height="260" rx="12" fill="#0b0f19" stroke="#ec4899" strokeWidth="1.5" />
+    <div className="product-motion-stage">
+      <div className="product-window-frame">
+        <div className="product-window-topbar font-mono">
+          <div className="flex items-center gap-1.5">
+            <span className="dot red" />
+            <span className="dot yellow" />
+            <span className="dot green" />
+          </div>
+          <span className="text-xs text-pink-400 font-semibold ml-2">Orphevia Identity Guidelines // Brand System</span>
+        </div>
 
-        {/* Morphing Emblem Brand Symbol */}
-        <g style={{ transformOrigin: "130px 150px" }}>
-          <motion.rect
-            x="80"
-            y="100"
-            width="100"
-            height="100"
-            rx="20"
-            fill="#ec4899"
-            opacity="0.85"
-            animate={{ rotate: [0, 90, 180, 270, 360] }}
+        <div className="product-window-body">
+          <motion.img
+            src="/projects/orphevia-branding/01-orphevia-portfolio-banner.png"
+            alt="Brand Identity System Showcase"
+            className="product-main-img"
+            initial={{ scale: 1 }}
+            animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            style={{ transformOrigin: "130px 150px" }}
           />
-          <motion.circle cx="130" cy="150" r="32" fill="#f472b6" animate={{ scale: [0.85, 1.15, 0.85] }} transition={{ duration: 3, repeat: Infinity }} />
-        </g>
 
-        {/* Brand Guidelines Color Swatches */}
-        <motion.rect x="260" y="45" width="130" height="38" rx="8" fill="#ec4899" animate={{ x: [0, 6, 0] }} transition={{ duration: 3, repeat: Infinity }} />
-        <text x="272" y="68" fill="#ffffff" fontSize="9" fontWeight="bold">PRIMARY // #EC4899</text>
-
-        <motion.rect x="260" y="95" width="130" height="38" rx="8" fill="#f472b6" animate={{ x: [0, 6, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 0.2 }} />
-        <text x="272" y="118" fill="#ffffff" fontSize="9" fontWeight="bold">ACCENT // #F472B6</text>
-
-        <motion.rect x="260" y="145" width="130" height="38" rx="8" fill="#831843" animate={{ x: [0, 6, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 0.4 }} />
-        <text x="272" y="168" fill="#fbcfe8" fontSize="9" fontWeight="bold">DARK // #831843</text>
-
-        {/* Typography Scale Specimen */}
-        <text x="40" y="245" fill="#f472b6" fontSize="14" fontWeight="bold">6D MIND BRAND SYSTEM</text>
-        <text x="40" y="262" fill="#94a3b8" fontSize="9" fontFamily="monospace">Primary Font: Inter / Outfit Display</text>
-      </svg>
+          {/* Color Palette Overlay */}
+          <motion.div
+            className="product-overlay-card bottom-right font-mono"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            <div className="text-[10px] text-pink-400 font-bold mb-1">Brand Guideline Book</div>
+            <div className="flex items-center gap-1.5">
+              <span className="w-3.5 h-3.5 rounded bg-pink-500" />
+              <span className="w-3.5 h-3.5 rounded bg-purple-600" />
+              <span className="w-3.5 h-3.5 rounded bg-slate-900 ring-1 ring-white/20" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -552,7 +416,7 @@ export default function ServicesShowcase() {
 
         {/* Main Interactive Stage Grid */}
         <div className="agency-services-grid">
-          {/* Left Column: Interactive Motion Graphic Stage */}
+          {/* Left Column: Real Product Motion Graphic Stage */}
           <div className="agency-motion-column">
             <div
               className="agency-motion-card"
@@ -566,7 +430,7 @@ export default function ServicesShowcase() {
                 <span className="agency-motion-dot yellow" />
                 <span className="agency-motion-dot green" />
                 <span className="agency-motion-label font-mono">
-                  LIVE MOTION PREVIEW // {activeDiscipline.num}
+                  REAL PRODUCT PREVIEW // {activeDiscipline.num}
                 </span>
               </div>
 
@@ -576,9 +440,9 @@ export default function ServicesShowcase() {
                   <motion.div
                     key={activeDiscipline.id}
                     className="w-full h-full"
-                    initial={{ opacity: 0, scale: 0.96 }}
+                    initial={{ opacity: 0, scale: 0.97 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.04 }}
+                    exit={{ opacity: 0, scale: 1.03 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
                   >
                     {MOTION_GRAPHICS[activeDiscipline.id]}
@@ -676,6 +540,7 @@ export default function ServicesShowcase() {
     </section>
   );
 }
+
 
 
 
