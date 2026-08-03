@@ -11,15 +11,16 @@ import { Link } from "wouter";
 
 import "./ServicesShowcase.css";
 
-type Service = {
+type ServiceItem = {
   id: string;
   slug: string;
   name: string;
   description: string;
   mp4: string;
+  tags: string[];
 };
 
-const SERVICES: readonly Service[] = [
+const SERVICES: readonly ServiceItem[] = [
   {
     id: "ui-ux-product-design",
     slug: "ui-ux-product-design",
@@ -27,6 +28,7 @@ const SERVICES: readonly Service[] = [
     description:
       "Research-led experiences, scalable design systems, prototypes, dashboards, websites, mobile apps, and developer-ready interfaces.",
     mp4: "/media/services/ui-ux-product-design.mp4",
+    tags: ["UX Research", "User Flows", "Design Systems", "Figma", "Prototypes"],
   },
   {
     id: "mobile-app-development",
@@ -35,6 +37,7 @@ const SERVICES: readonly Service[] = [
     description:
       "Production-ready mobile applications built for performance, usability, maintainability, and long-term growth.",
     mp4: "/media/services/mobile-app-development.mp4",
+    tags: ["React Native", "Expo", "iOS & Android", "Cross-Platform"],
   },
   {
     id: "website-web-app-development",
@@ -43,6 +46,7 @@ const SERVICES: readonly Service[] = [
     description:
       "Modern websites, SaaS products, dashboards, e-commerce platforms, and responsive web applications.",
     mp4: "/media/services/web-development.mp4",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
   },
   {
     id: "ai-product-development",
@@ -51,6 +55,7 @@ const SERVICES: readonly Service[] = [
     description:
       "Practical AI-powered products that automate workflows, personalize experiences, and solve real business problems.",
     mp4: "/media/services/ai-product-development.mp4",
+    tags: ["LLM Integration", "OpenAI", "RAG Pipelines", "Automation"],
   },
   {
     id: "graphic-design",
@@ -59,6 +64,7 @@ const SERVICES: readonly Service[] = [
     description:
       "High-impact visual communication for campaigns, digital platforms, products, presentations, and social media.",
     mp4: "/media/services/graphic-design.mp4",
+    tags: ["Social Media", "Marketing Assets", "Presentations", "App Visuals"],
   },
   {
     id: "branding-visual-identity",
@@ -67,6 +73,7 @@ const SERVICES: readonly Service[] = [
     description:
       "Strategic identity systems that make products and businesses recognizable, consistent, and memorable.",
     mp4: "/media/services/branding-identity.mp4",
+    tags: ["Brand Strategy", "Logo Suite", "Typography", "Visual Identity"],
   },
 ] as const;
 
@@ -224,7 +231,19 @@ export default function ServicesShowcase() {
       className="services-pinned-story"
       aria-label="Services Story"
     >
-      <div className="services-pinned-stage">
+      <div
+        className="services-pinned-stage"
+        onClick={toggleSound}
+        role="button"
+        tabIndex={0}
+        aria-label="Click stage to toggle video sound"
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleSound();
+          }
+        }}
+      >
         {/* Fullscreen Stage Videos */}
         <div className="services-video-stack" aria-hidden="true">
           {SERVICES.map((service, index) => (
@@ -256,11 +275,14 @@ export default function ServicesShowcase() {
         {/* Gradient Scrim for Readability */}
         <div className="services-stage-scrim" aria-hidden="true" />
 
-        {/* Sound Toggle Button */}
+        {/* Sound Toggle Control (Top Right) */}
         <button
           type="button"
           className="services-sound-control"
-          onClick={toggleSound}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleSound();
+          }}
           aria-label={
             soundEnabled
               ? "Mute service video sound"
@@ -272,11 +294,14 @@ export default function ServicesShowcase() {
           ) : (
             <VolumeX size={16} aria-hidden="true" />
           )}
-          <span>🔊 Sound</span>
+          <span>{soundEnabled ? "Sound On" : "Muted (Click to Unmute)"}</span>
         </button>
 
         {/* Bottom-Left Overlay Text */}
-        <div className="services-story-bottom">
+        <div
+          className="services-story-bottom"
+          onClick={(e) => e.stopPropagation()}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeService.id}
@@ -294,10 +319,21 @@ export default function ServicesShowcase() {
               <p className="services-story-description">
                 {activeService.description}
               </p>
+
+              {/* Service Tags */}
+              <div className="services-story-tags">
+                {activeService.tags.map((tag) => (
+                  <span key={tag} className="services-story-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
               <Link
                 href={`/expertise/${activeService.slug}`}
                 className="services-story-link"
                 aria-label={`View ${activeService.name.replace("&", "and")} details`}
+                onClick={(e) => e.stopPropagation()}
               >
                 View Details <ArrowRight size={18} aria-hidden="true" />
               </Link>
@@ -308,4 +344,5 @@ export default function ServicesShowcase() {
     </section>
   );
 }
+
 
