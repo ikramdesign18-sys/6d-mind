@@ -40,6 +40,63 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: "antigravity-h1",
+    slug: "antigravity-h1",
+    title: "The Antigravity H1 Headphone Experience",
+    category: "AI Artist · Audio Hardware · 3D Product Visualization",
+    cardCategory: "AI Artist · 3D Audio Hardware Visualization",
+    filterTags: ["AI Artist", "Visual Assets"],
+    industry: "High-End Audiophile & Luxury Lifestyle Fashion",
+    role: "Lead Product Designer & 3D Visualization Specialist",
+    services: [
+      "AI Product Visualization",
+      "Acoustic Material Engineering",
+      "360° Material Inspector",
+      "Landing Page UI/UX",
+    ],
+    image: "/projects/antigravity-h1/hero.png",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt:
+      "The Antigravity H1 audiophile headphones featuring dark walnut wood, champagne gold aluminum framing, and emerald green leather",
+    detailPath: "/work/ai-artist/antigravity-h1",
+    homepageVisible: true,
+    platform: "Digital Showcase · E-Commerce · Lifestyle Marketing",
+    year: "2026",
+    summary:
+      "Flagship audiophile headphone engineered at the intersection of haute artisan craftsmanship and cutting-edge acoustic engineering, combining precision-milled dark walnut wood, champagne-gold aluminum framing, and dark emerald green leather.",
+    shortLabel:
+      "Bridging haute fashion with pristine audio engineering and 3D product visualization.",
+    tags: [
+      "AI Artist",
+      "Audio Hardware",
+      "3D Visualization",
+      "Walnut & Gold",
+      "Luxury Tech",
+      "Acoustic Wave",
+    ],
+    overview:
+      "Antigravity H1 is a flagship audiophile headphone engineered at the intersection of haute artisan craftsmanship and cutting-edge acoustic engineering. Combining precision-milled dark walnut wood, brushed champagne-gold aluminum framing, and dark emerald green leather, the product balances raw organic textures with high-fashion luxury tech aesthetics.",
+    challenge:
+      "High-end audiophile hardware often suffers from a sterile, hyper-industrial design language that leans heavily into utilitarian plastics and carbon fiber. The goal was to develop a visual brand identity and digital showcase landing page that bridges luxury lifestyle fashion with pristine audio engineering—positioning the headphones as an heirloom accessory.",
+    discovery:
+      "Researched luxury lifestyle fashion accessories, acoustic resonance properties of sculpted walnut earcups, and high-conversion luxury e-commerce interactive patterns.",
+    strategy:
+      "Crafted a tactile luxury design system around Dark Walnut Wood, Brushed Champagne Gold, Emerald Green Leather, and Gold-Plated Braided Cables paired with 3 distinct production visual assets (Hero, Editorial Portrait, Workspace Scene).",
+    designDecisions:
+      "Utilized dark walnut wood for natural acoustic resonance and organic visual warmth, champagne gold for ultra-lightweight structural integrity, and hand-stitched emerald green leather for ergonomic acoustic isolation.",
+    developmentApproach:
+      "Built interactive digital UX highlights including a 360° Material Inspector, real-time Acoustic Wave Visualization, and a minimalist checkout flow.",
+    results:
+      "Established a brand identity for luxury audio hardware, boosting campaign engagement and maintaining high-conversion UI patterns without breaking brand immersion.",
+    technologies: [
+      "Midjourney / AI Render",
+      "Product Mockups",
+      "Studio Lighting Renders",
+      "Brand Visual Assets",
+    ],
+  },
+  {
     id: "aethelgard-watch",
     slug: "aethelgard-watch",
     title: "Aethelgard Luxury Timepiece - 3D Visual Asset Suite",

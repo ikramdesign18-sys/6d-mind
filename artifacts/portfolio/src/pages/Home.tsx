@@ -10,6 +10,7 @@ import ServicesShowcase from "@/components/home/ServicesShowcase";
 
 export default function Home() {
   const selectedProjects = [
+    "antigravity-h1",
     "aethelgard-watch",
     "mdcn-distribution",
     "elan-fashion",

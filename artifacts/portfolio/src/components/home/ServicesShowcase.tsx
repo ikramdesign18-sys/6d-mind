@@ -332,15 +332,26 @@ export default function ServicesShowcase() {
                 {/* Action Link */}
                 <div className="award-card-cta flex flex-col gap-2">
                   {activeService.id === "ai-artist" && (
-                    <Link
-                      href="/work/ai-artist/aethelgard-watch"
-                      className="award-cta-btn"
-                      style={{ background: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)" }}
-                    >
-                      <Sparkles size={16} />
-                      <span>View Aethelgard 3D Watch Case Study</span>
-                      <ArrowUpRight size={18} />
-                    </Link>
+                    <>
+                      <Link
+                        href="/work/ai-artist/antigravity-h1"
+                        className="award-cta-btn"
+                        style={{ background: "linear-gradient(135deg, #10b981 0%, #a855f7 100%)" }}
+                      >
+                        <Sparkles size={16} />
+                        <span>View Antigravity H1 Headphone Case Study</span>
+                        <ArrowUpRight size={18} />
+                      </Link>
+                      <Link
+                        href="/work/ai-artist/aethelgard-watch"
+                        className="award-cta-btn opacity-90"
+                        style={{ background: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)" }}
+                      >
+                        <Sparkles size={16} />
+                        <span>View Aethelgard 3D Watch Case Study</span>
+                        <ArrowUpRight size={18} />
+                      </Link>
+                    </>
                   )}
                   <Link
                     href={`/expertise/${activeService.slug}`}
