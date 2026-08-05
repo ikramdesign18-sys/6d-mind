@@ -61,20 +61,6 @@ export const PROJECTS: Project[] = [
       "Aethelgard luxury timepiece presented on a marble pedestal with organic moss accents",
     detailPath: "/work/ai-artist/aethelgard-watch",
     homepageVisible: true,
-    galleryImages: [
-      {
-        src: "/projects/aethelgard-watch/hero.png",
-        alt: "Hero Showcase - Centralized studio render with brushed rose-gold casing and emerald sunburst dial",
-      },
-      {
-        src: "/projects/aethelgard-watch/detail.jpg",
-        alt: "Detail View - Macro perspective of brushed rose gold fluted bezel and dial",
-      },
-      {
-        src: "/projects/aethelgard-watch/lifestyle.jpg",
-        alt: "Ecosystem Layout - Styled rose gold watch on wrist inside luxury vehicle",
-      },
-    ],
     platform: "Digital Marketing · DTC E-Commerce · Social Media",
     year: "2026",
     summary:
