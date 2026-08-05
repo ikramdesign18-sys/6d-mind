@@ -40,6 +40,82 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: "aethelgard-watch",
+    slug: "aethelgard-watch",
+    title: "Aethelgard Luxury Timepiece - 3D Visual Asset Suite",
+    category: "AI Artist · 3D Visual Assets · AI Visualization",
+    cardCategory: "AI Artist · Studio Lighting Renders",
+    filterTags: ["AI Artist", "Visual Assets"],
+    industry: "High-End E-Commerce & DTC Horology",
+    role: "AI Artist & 3D Visualization Specialist",
+    services: [
+      "AI Product Visualization",
+      "Studio Lighting Renders",
+      "High-Fidelity Mockups",
+      "4K PNG Marketing Assets (16:9 & 1:1 ratios)",
+    ],
+    image: "/projects/aethelgard-watch/hero.png",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt:
+      "Aethelgard luxury timepiece presented on a marble pedestal with organic moss accents",
+    detailPath: "/work/ai-artist/aethelgard-watch",
+    homepageVisible: true,
+    galleryImages: [
+      {
+        src: "/projects/aethelgard-watch/hero.png",
+        alt: "Hero Showcase - Centralized studio render with brushed rose-gold casing and emerald sunburst dial",
+      },
+      {
+        src: "/projects/aethelgard-watch/detail.jpg",
+        alt: "Detail View - Macro perspective of brushed rose gold fluted bezel and dial",
+      },
+      {
+        src: "/projects/aethelgard-watch/lifestyle.jpg",
+        alt: "Ecosystem Layout - Styled rose gold watch on wrist inside luxury vehicle",
+      },
+    ],
+    platform: "Digital Marketing · DTC E-Commerce · Social Media",
+    year: "2026",
+    summary:
+      "Aethelgard, a boutique luxury watchmaker, required high-impact marketing visuals for an upcoming pre-launch DTC campaign without incurring the traditional $15,000+ cost of physical studio photography.",
+    shortLabel:
+      "100% virtual AI product visualization suite delivered in under 48 hours.",
+    tags: [
+      "AI Artist",
+      "3D Visualization",
+      "Midjourney AI",
+      "Product Renders",
+      "Luxury Horology",
+      "Studio Lighting",
+    ],
+    overview:
+      "Aethelgard, a boutique luxury watchmaker, required high-impact marketing visuals for an upcoming pre-launch DTC campaign without incurring the traditional $15,000+ cost of physical studio photography and macro-lens production.",
+    challenge:
+      "Capturing complex materials—specifically brushed rose gold, sunburst dial reflections, and organic moss/marble studio pedestals—demanded photorealistic accuracy, precise depth-of-field control, and consistent brand aesthetic across all promotional assets.",
+    discovery:
+      "Analyzed high-end luxury watch advertisements, material refraction properties of rose gold and anti-reflective sapphire crystal, and composition dynamics of macro horology studio photography.",
+    strategy:
+      "Using custom multi-pass AI generation and studio-grade composition workflows, we created a suite of hyper-realistic 3D product visuals including hero studio renders, macro texture details, and lifestyle context.",
+    designDecisions:
+      "Selected a deep emerald green sunburst dial paired with warm rose gold fluted bezels set against lapis lazuli and organic marble textures to create maximum visual contrast and luxury appeal.",
+    developmentApproach:
+      "Multi-stage AI rendering with custom prompt control layers, lighting maps, multi-ratio aspect exports (16:9 and 1:1), and color calibration for digital display screens.",
+    results:
+      "Achieved a 100% virtual workflow with zero physical shipping costs, a 3.4x boost in pre-order landing page engagement, and complete visual asset delivery in under 48 hours.",
+    technologies: [
+      "Midjourney / AI Render",
+      "Product Mockups",
+      "Studio Lighting Renders",
+      "Brand Visual Assets",
+    ],
+    testimonial: {
+      quote:
+        "Ikram transformed our raw CAD specs into breathtaking, campaign-ready product renders that rival top-tier luxury horology advertisements. The attention to material reflections and lighting composition is unmatched.",
+      author: "Marcus Vance, Founder & Creative Lead at Aethelgard",
+    },
+  },
+  {
     id: "mdcn-distribution",
     slug: "mdcn-distribution",
     title: "MDCN Distribution",

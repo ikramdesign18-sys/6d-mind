@@ -24,6 +24,9 @@ const LuminaBotanicalsCaseStudy = lazy(
 const OrpheviaBrandingCaseStudy = lazy(
   () => import("@/pages/OrpheviaBrandingCaseStudy"),
 );
+const AethelgardWatchCaseStudy = lazy(
+  () => import("@/pages/AethelgardWatchCaseStudy"),
+);
 const Process = lazy(() => import("@/pages/Process"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -70,6 +73,10 @@ function Router() {
           <Route
             path="/work/graphic-design/orphevia-branding"
             component={OrpheviaBrandingCaseStudy}
+          />
+          <Route
+            path="/work/ai-artist/aethelgard-watch"
+            component={AethelgardWatchCaseStudy}
           />
           <Route path="/work/:slug" component={WorkDetail} />
           <Route path="/process" component={Process} />

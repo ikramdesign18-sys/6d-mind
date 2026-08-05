@@ -66,25 +66,25 @@ export const EXPERTISE = [
     ]
   },
   {
-    id: "ai-product-development",
-    slug: "ai-product-development",
-    name: "AI Product Development",
-    shortName: "AI Products",
-    statement: "Practical AI-powered products that automate work, personalize experiences, and solve real business problems.",
-    skills: ["AI product strategy", "LLM integrations", "OpenAI integrations", "Groq integrations", "AI assistants", "content generation", "image analysis", "voice processing", "recommendation systems", "workflow automation"],
-    tools: ["OpenAI API", "Groq", "LangChain", "Pinecone", "Vercel AI SDK"],
+    id: "ai-artist",
+    slug: "ai-artist",
+    name: "AI Artist",
+    shortName: "AI Artist",
+    statement: "Creating photorealistic product mockups, modern UI visual concepts, studio-quality 3D assets, and custom AI artwork for digital platforms and luxury brands.",
+    skills: ["Midjourney / AI Render", "Product Mockups", "Studio Lighting Renders", "Brand Visual Assets"],
+    tools: ["Midjourney", "Stable Diffusion", "Photoshop", "Magnific AI", "ComfyUI"],
     problemsSolved: [
-      "Manual, repetitive tasks consuming team time",
-      "Generic user experiences lacking personalization",
-      "Difficulty extracting insights from unstructured data",
-      "High support volume that could be automated"
+      "Slow visual iteration and expensive traditional photoshoots",
+      "Generic stock images lacking brand uniqueness",
+      "Difficulty rendering complex 3D visual concepts fast",
+      "Inconsistent visual aesthetic across digital platforms"
     ],
-    deliverables: ["AI Integration Architecture", "Custom RAG Pipelines", "Automated Workflows", "Intelligent Chat/Assistant UIs"],
+    deliverables: ["High-Resolution PNG/JPG Exports", "Custom Aspect Ratios (1:1, 16:9, 9:16)", "Photorealistic Product Renders", "Full Commercial Use Rights"],
     process: [
-      { step: 1, title: "Use Case Identification", desc: "Finding where AI adds real value." },
-      { step: 2, title: "Prompt Engineering", desc: "Crafting reliable, secure instructions." },
-      { step: 3, title: "Integration", desc: "Wiring LLMs into the application flow." },
-      { step: 4, title: "Refinement", desc: "Testing edge cases and hallucination prevention." }
+      { step: 1, title: "Prompt Architecture", desc: "Crafting precise aesthetic and lighting prompts." },
+      { step: 2, title: "Visual Generation", desc: "Generating high-fidelity renders with modern AI tools." },
+      { step: 3, title: "Post-Processing", desc: "Upscaling, retouching, and optimizing visual assets." },
+      { step: 4, title: "Multi-Format Export", desc: "Exporting across custom aspect ratios and resolution standards." }
     ]
   },
   {

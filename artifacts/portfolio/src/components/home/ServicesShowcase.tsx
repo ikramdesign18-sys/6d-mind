@@ -25,6 +25,7 @@ type ServiceCategory = {
   slug: string;
   num: string;
   name: string;
+  headline?: string;
   tagline: string;
   description: string;
   skills: string[];
@@ -86,20 +87,31 @@ const SERVICES_DATA: readonly ServiceCategory[] = [
     motionGraphicImage: "/motion-graphics/web-dev-motion.jpg",
   },
   {
-    id: "ai-product-development",
-    slug: "ai-product-development",
+    id: "ai-artist",
+    slug: "ai-artist",
     num: "04",
-    name: "AI Product Development",
-    tagline: "Practical AI integration & LLM workflows",
+    name: "AI Artist",
+    headline: "AI Artist & High-Fidelity Visual Generation",
+    tagline: "AI Artist & Visual Assets",
     description:
-      "Embedding intelligent AI capabilities directly into digital products. Custom RAG pipelines, OpenAI / Groq integrations, automated workflows, and smart assistant interfaces.",
-    skills: ["LLM Integrations", "OpenAI & Groq", "RAG Pipelines", "Vercel AI SDK", "Workflow Automation"],
-    deliverables: ["Custom RAG Pipeline", "AI Assistant UI", "Prompt Engineering Specs", "Automated Agents"],
-    gradient: "linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)",
+      "Creating photorealistic product mockups, modern UI visual concepts, studio-quality 3D assets, and custom AI artwork for digital platforms and luxury brands.",
+    skills: [
+      "Midjourney / AI Render",
+      "Product Mockups",
+      "Studio Lighting Renders",
+      "Brand Visual Assets",
+    ],
+    deliverables: [
+      "High-Resolution PNG/JPG Exports",
+      "Custom Aspect Ratios (1:1, 16:9, 9:16)",
+      "Photorealistic Product Renders",
+      "Full Commercial Use Rights",
+    ],
+    gradient: "linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)",
     glow: "rgba(139, 92, 246, 0.35)",
-    accent: "#c084fc",
-    badge: "AI ENGINEERING",
-    motionGraphicImage: "/motion-graphics/ai-product-motion.jpg",
+    accent: "#a855f7",
+    badge: "AI ARTIST & VISUAL ASSETS",
+    motionGraphicImage: "/projects/aethelgard-watch/hero.png",
   },
   {
     id: "graphic-design",
@@ -140,7 +152,7 @@ const SERVICES_DATA: readonly ServiceCategory[] = [
 /* -------------------------------------------------------------------------- */
 
 export default function ServicesShowcase() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(3);
   const activeService = SERVICES_DATA[activeIndex];
 
   return (
@@ -288,7 +300,7 @@ export default function ServicesShowcase() {
                   <div className="award-card-num font-mono" style={{ color: activeService.accent }}>
                     {activeService.num} // {activeService.badge}
                   </div>
-                  <h3 className="award-card-title">{activeService.name}</h3>
+                  <h3 className="award-card-title">{activeService.headline || activeService.name}</h3>
                   <p className="award-card-desc">{activeService.description}</p>
                 </div>
 
@@ -318,10 +330,21 @@ export default function ServicesShowcase() {
                 </div>
 
                 {/* Action Link */}
-                <div className="award-card-cta">
+                <div className="award-card-cta flex flex-col gap-2">
+                  {activeService.id === "ai-artist" && (
+                    <Link
+                      href="/work/ai-artist/aethelgard-watch"
+                      className="award-cta-btn"
+                      style={{ background: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)" }}
+                    >
+                      <Sparkles size={16} />
+                      <span>View Aethelgard 3D Watch Case Study</span>
+                      <ArrowUpRight size={18} />
+                    </Link>
+                  )}
                   <Link
                     href={`/expertise/${activeService.slug}`}
-                    className="award-cta-btn"
+                    className="award-cta-btn opacity-90"
                     style={{ background: activeService.gradient }}
                   >
                     <span>Explore Discipline Details</span>
